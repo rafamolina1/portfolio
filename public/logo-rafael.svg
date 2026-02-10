@@ -1,0 +1,75 @@
+<svg
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <defs>
+    <linearGradient id="gradRM" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00C6FF"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Letra R -->
+  <path
+    d="M110 120
+       H210
+       C255 120 285 150 285 190
+       C285 220 265 245 235 255
+       L290 340
+       H240
+       L195 265
+       H160
+       V340
+       H110
+       Z
+       M160 160
+       V225
+       H205
+       C225 225 235 215 235 195
+       C235 175 225 160 205 160
+       Z"
+    fill="url(#gradRM)"
+  />
+
+  <!-- Letra M -->
+  <path
+    d="M300 340
+       V120
+       H350
+       L385 210
+       L420 120
+       H470
+       V340
+       H425
+       V200
+       L385 300
+       L345 200
+       V340
+       Z"
+    fill="url(#gradRM)"
+  />
+
+  <!-- Símbolo dev <> -->
+  <path
+    d="M85 245 L55 265 L85 285"
+    stroke="#F59E0B"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M95 245 L125 265 L95 285"
+    stroke="#10B981"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <!-- Detalhes de circuito -->
+  <circle cx="270" cy="380" r="6" fill="#60A5FA"/>
+  <circle cx="290" cy="400" r="4" fill="#A78BFA"/>
+  <line x1="270" y1="380" x2="290" y2="400" stroke="#60A5FA" stroke-width="2"/>
+</svg>
