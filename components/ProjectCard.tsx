@@ -35,6 +35,8 @@ const TECH_LOGOS: Record<string, string> = {
   "C#": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg",
   Clerk: "https://cdn.simpleicons.org/clerk/6C47FF",
   Chatwoot: "https://cdn.simpleicons.org/chatwoot/45A8FA",
+  Groq: "https://cdn.simpleicons.org/groq/F55036",
+  Vite: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
 };
 
 interface ProjectCardProps {

@@ -150,6 +150,15 @@ export default function Home() {
             />
 
             <ProjectCard
+              title="Habit Breaker"
+              description="Aplicação para ajudar pessoas a largar o cigarro com rastreamento em tempo real, economia financeira estimada e IA Coach integrada."
+              image="/habit-breaker.png"
+              techs={["JavaScript", "React", "Vite"]}
+              githubUrl="https://github.com/rafamolina1/Habit-Breaker"
+              deployUrl="https://habitbreaker.vercel.app"
+            />
+
+            <ProjectCard
               title="Em Desenvolvimento"
               description="Novas soluções e laboratórios técnicos sendo codificados. Fique atento ao GitHub para atualizações."
               image="/videoloading.mp4"
