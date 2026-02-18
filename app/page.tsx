@@ -168,6 +168,15 @@ export default function Home() {
             />
 
             <ProjectCard
+              title="Km De Lucro"
+              description="O KM de Lucro é uma plataforma web de gestão financeira simplificada, desenvolvida especificamente para motoristas de carga autônomos. O projeto nasceu com o objetivo de substituir planilhas complexas e anotações manuais por uma interface intuitiva e focada em performance, permitindo que o motorista entenda a saúde financeira de sua operação em tempo real."
+              image="/dashkm.png"
+              techs={["Next.js", "TypeScript", "Supabase"]}
+              githubUrl="https://github.com/rafamolina1/KM-De-Lucro"
+              deployUrl="https://kmdelucro.vercel.app"
+            />
+
+            <ProjectCard
               title="Em Desenvolvimento"
               description="Novas soluções e laboratórios técnicos sendo codificados. Fique atento ao GitHub para atualizações."
               image="/videoloading.mp4"

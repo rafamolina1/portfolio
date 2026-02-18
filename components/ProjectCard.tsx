@@ -38,6 +38,7 @@ const TECH_LOGOS: Record<string, string> = {
   Chatwoot: "https://cdn.simpleicons.org/chatwoot/45A8FA",
   Groq: "https://cdn.simpleicons.org/groq/F55036",
   Vite: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+  Supabase: "https://cdn.simpleicons.org/supabase/3ECF8E",
 };
 
 interface ProjectCardProps {
