@@ -159,6 +159,15 @@ export default function Home() {
             />
 
             <ProjectCard
+              title="Market Pulse"
+              description="O MarketPulse é um dashboard financeiro de alta performance projetado para investidores modernos. Ele oferece uma aula técnica e visual em gerenciamento de dados em tempo real, apresentando uma estética inspirada em TRON com glassmorphism avançado."
+              image="/marketpulse.png"
+              techs={["JavaScript", "React", "Vite", "CSS"]}
+              githubUrl="https://github.com/rafamolina1/Market-Pulse"
+              deployUrl="https://market-pulse-rho-beryl.vercel.app"
+            />
+
+            <ProjectCard
               title="Em Desenvolvimento"
               description="Novas soluções e laboratórios técnicos sendo codificados. Fique atento ao GitHub para atualizações."
               image="/videoloading.mp4"
