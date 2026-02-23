@@ -3,13 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-
-const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "Tech Stack", href: "#tech" },
-  { name: "Sobre", href: "#about" },
-  { name: "Projetos", href: "#projects" },
-];
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface HeaderProps {
   onOpenContact: () => void;
@@ -17,6 +12,14 @@ interface HeaderProps {
 
 export default function Header({ onOpenContact }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
+  const t = useTranslations("nav");
+
+  const navItems = [
+    { name: t("home"), href: "#home" },
+    { name: t("techStack"), href: "#tech" },
+    { name: t("about"), href: "#about" },
+    { name: t("projects"), href: "#projects" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -33,10 +36,9 @@ export default function Header({ onOpenContact }: HeaderProps) {
       <nav
         className={`
           flex items-center gap-1 px-2 py-2 rounded-full border transition-all duration-300
-          ${
-            scrolled
-              ? "bg-zinc-900/80 border-zinc-800 backdrop-blur-md shadow-lg shadow-purple-500/5"
-              : "bg-transparent border-transparent"
+          ${scrolled
+            ? "bg-zinc-900/80 border-zinc-800 backdrop-blur-md shadow-lg shadow-purple-500/5"
+            : "bg-transparent border-transparent"
           }
         `}
       >
@@ -60,8 +62,10 @@ export default function Header({ onOpenContact }: HeaderProps) {
           onClick={onOpenContact}
           className="ml-2 px-5 py-2 text-sm font-medium bg-zinc-100 text-zinc-900 rounded-full hover:bg-white hover:scale-105 transition-all cursor-pointer"
         >
-          Contato
+          {t("contact")}
         </button>
+
+        <LanguageSwitcher />
       </nav>
     </motion.header>
   );

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Mail, Linkedin, Github, Check, Copy } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -13,6 +14,7 @@ interface ContactModalProps {
 export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const [copied, setCopied] = useState(false);
   const email = "rafaeloliveiramolina@gmail.com";
+  const t = useTranslations("contact");
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
@@ -40,7 +42,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           >
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-2xl font-bold text-zinc-100">
-                Vamos conversar?
+                {t("title")}
               </h2>
               <button
                 onClick={onClose}
@@ -51,7 +53,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
             </div>
 
             <div className="space-y-4">
-              {/* E-mail com função de copiar */}
               <div className="p-4 bg-zinc-950/50 border border-zinc-800 rounded-xl flex items-center justify-between group">
                 <div className="flex items-center gap-3">
                   <div className="bg-purple-500/10 p-2 rounded-lg text-purple-400">
@@ -86,9 +87,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                   <p className="text-sm font-medium text-zinc-200 group-hover:text-blue-300">
                     LinkedIn
                   </p>
-                  <p className="text-xs text-zinc-500">
-                    Conectar profissionalmente
-                  </p>
+                  <p className="text-xs text-zinc-500">{t("linkedinSub")}</p>
                 </div>
               </Link>
 
@@ -102,7 +101,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                 </div>
                 <div>
                   <p className="text-sm font-medium text-zinc-200">GitHub</p>
-                  <p className="text-xs text-zinc-500">Ver código fonte</p>
+                  <p className="text-xs text-zinc-500">{t("githubSub")}</p>
                 </div>
               </Link>
             </div>

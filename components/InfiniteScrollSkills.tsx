@@ -41,18 +41,16 @@ const SKILLS = [
 ];
 
 export default function InfiniteScrollSkills() {
-  // Duplicamos a lista para criar o efeito infinito perfeito sem gaps
   const duplicatedSkills = [...SKILLS, ...SKILLS];
 
   return (
     <div className="relative w-full overflow-hidden py-10">
-      {/* Gradientes laterais para suavizar a entrada/saída */}
       <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10"></div>
       <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10"></div>
 
       <motion.div
         className="flex gap-4 w-max"
-        animate={{ x: [0, -1500] }} // Ajuste esse valor se a lista for muito longa
+        animate={{ x: [0, -1500] }}
         transition={{
           duration: 30,
           repeat: Infinity,

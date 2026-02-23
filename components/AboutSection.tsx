@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Rocket, GraduationCap, Globe, Server } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const TECH_STACK = [
   {
@@ -31,10 +32,13 @@ const TECH_STACK = [
 ];
 
 export default function AboutSection() {
+  const t = useTranslations("about");
+
   return (
-    <section className="mb-32">
+    <section className="mb-32" id="about">
       <h2 className="text-3xl font-bold mb-8 text-zinc-100">
-        Sobre <span className="text-purple-400">mim</span>
+        {t("title")}{" "}
+        <span className="text-purple-400">{t("titleHighlight")}</span>
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -51,24 +55,25 @@ export default function AboutSection() {
               <Rocket className="text-purple-400" size={24} />
             </div>
             <h3 className="text-xl font-bold text-zinc-100">
-              4 Anos de Experiência
+              {t("experience")}
             </h3>
           </div>
 
           <p className="text-zinc-400 leading-relaxed mb-6">
-            Olá, sou <strong>Rafael Molina</strong>. Desenvolvedor focado em
-            entregas de alto valor e soluções técnicas robustas.
+            {t("bio1")} <strong>{t("bio2")}</strong>
+            {t("bio3")}
             <br />
             <br />
-            Minha trajetória inclui a criação do <strong>Autonomus</strong>, que
-            se destacou nacionalmente como{" "}
-            <strong>semifinalista no Rocket</strong>, reality show de startups
-            da <strong>Globo</strong>.
+            {t("bio4")} <strong>{t("bio5")}</strong>
+            {t("bio6")}{" "}
+            <strong>{t("bio7")}</strong>
+            {t("bio8")} <strong>{t("bio9")}</strong>
+            {t("bio10")}
           </p>
 
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs text-purple-300">
             <Globe size={12} />
-            <span>Rocket Startup Reality (Globo)</span>
+            <span>{t("rocketLabel")}</span>
           </div>
         </motion.div>
 
@@ -83,7 +88,7 @@ export default function AboutSection() {
             <div className="bg-green-500/10 p-2 rounded-lg">
               <GraduationCap className="text-green-400" size={24} />
             </div>
-            <h3 className="text-xl font-bold text-zinc-100">Educação</h3>
+            <h3 className="text-xl font-bold text-zinc-100">{t("education")}</h3>
           </div>
 
           <div className="space-y-6">
@@ -107,10 +112,10 @@ export default function AboutSection() {
               </div>
               <div>
                 <p className="text-zinc-200 font-medium text-sm">
-                  Análise e Des. Sistemas
+                  {t("degree")}
                 </p>
                 <p className="text-zinc-500 text-xs mt-1 leading-relaxed">
-                  Fundação Getúlio Vargas (FGV)
+                  {t("school")}
                 </p>
               </div>
             </div>
@@ -143,10 +148,10 @@ export default function AboutSection() {
               </div>
               <div>
                 <p className="text-zinc-200 font-medium text-sm">
-                  Inglês Fluente (C2)
+                  {t("english")}
                 </p>
                 <p className="text-zinc-500 text-xs mt-1 leading-relaxed">
-                  Mundialmente certificado pela Universidade de Cambridge.
+                  {t("englishCert")}
                 </p>
               </div>
             </div>
@@ -167,12 +172,11 @@ export default function AboutSection() {
                   <Server className="text-blue-400" size={24} />
                 </div>
                 <h3 className="text-xl font-bold text-zinc-100">
-                  Fullstack Developer
+                  {t("fullstack")}
                 </h3>
               </div>
               <p className="text-zinc-400 text-sm leading-relaxed">
-                Construindo arquiteturas escaláveis e seguras, integrando bancos
-                de dados modernos com interfaces fluidas e alta performance.
+                {t("fullstackDesc")}
               </p>
             </div>
 

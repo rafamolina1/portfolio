@@ -1,0 +1,71 @@
+{
+    "hero": {
+        "available": "Available for new challenges",
+        "tagline": "Fullstack Developer focused on building modern SaaS, fluid interfaces and clean code.",
+        "email": "Email"
+    },
+    "nav": {
+        "home": "Home",
+        "techStack": "Tech Stack",
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "projects": {
+        "title": "Projects",
+        "viewAll": "View all on GitHub →",
+        "barber": {
+            "description": "Full dashboard for barbershop management with real-time metrics, WhatsApp integration and a member system."
+        },
+        "habit": {
+            "description": "Application to help people quit smoking with real-time tracking, estimated financial savings and integrated AI Coach."
+        },
+        "market": {
+            "description": "MarketPulse is a high-performance financial dashboard designed for modern investors. It delivers a technical and visual masterclass in real-time data management, featuring a TRON-inspired aesthetic with advanced glassmorphism."
+        },
+        "km": {
+            "description": "KM de Lucro is a simplified financial management web platform developed specifically for independent cargo drivers. The project was born to replace complex spreadsheets and manual notes with an intuitive, performance-focused interface, allowing the driver to understand the financial health of their operation in real time."
+        },
+        "inDev": {
+            "title": "In Development",
+            "description": "New solutions and technical labs being coded. Stay tuned to GitHub for updates."
+        }
+    },
+    "about": {
+        "title": "About",
+        "titleHighlight": "me",
+        "experience": "4 Years of Experience",
+        "bio1": "Hi, I'm",
+        "bio2": "Rafael Molina",
+        "bio3": ". Developer focused on high-value deliveries and robust technical solutions.",
+        "bio4": "My journey includes creating",
+        "bio5": "Autonomus",
+        "bio6": ", which gained national recognition as a",
+        "bio7": "Rocket semifinalist",
+        "bio8": ", a startup reality show by",
+        "bio9": "Globo",
+        "bio10": ".",
+        "rocketLabel": "Rocket Startup Reality (Globo)",
+        "education": "Education",
+        "degree": "Systems Analysis & Dev.",
+        "school": "Fundação Getúlio Vargas (FGV)",
+        "english": "Fluent English (C2)",
+        "englishCert": "Internationally certified by the University of Cambridge.",
+        "fullstack": "Fullstack Developer",
+        "fullstackDesc": "Building scalable and secure architectures, integrating modern databases with fluid interfaces and high performance."
+    },
+    "contact": {
+        "title": "Let's talk?",
+        "linkedinSub": "Connect professionally",
+        "githubSub": "View source code"
+    },
+    "footer": {
+        "rights": "© 2026 Rafael Molina. All rights reserved.",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "metadata": {
+        "title": "Rafael Molina | Fullstack Developer",
+        "description": "Fullstack Developer focused on building modern SaaS and fluid interfaces."
+    }
+}
