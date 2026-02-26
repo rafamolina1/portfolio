@@ -184,13 +184,6 @@ export default function Home() {
                             deployUrl="https://kmdelucro.vercel.app"
                         />
 
-                        <ProjectCard
-                            title={t("projects.inDev.title")}
-                            description={t("projects.inDev.description")}
-                            image="/videoloading.mp4"
-                            techs={["Node.js", "Docker", ".NET", "C#"]}
-                            githubUrl="https://github.com/rafamolina1"
-                        />
                     </div>
                 </section>
 

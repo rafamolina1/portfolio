@@ -15,20 +15,16 @@
         "title": "Proyectos",
         "viewAll": "Ver todos en GitHub →",
         "barber": {
-            "description": "Dashboard completo para gestión de barberías con métricas en tiempo real, integración con WhatsApp y sistema de membresías."
+            "description": "Plataforma SaaS Multi-Tenant para el monitoreo de interacciones vía WhatsApp, construida con Next.js 14 (App Router), TypeScript, Prisma y Vercel Postgres. Cada organización opera en un entorno completamente aislado, identificado por un organizationId gestionado a través de Clerk. La arquitectura integra N8N para la orquestación de workflows, Recharts para dashboards analíticos y Svix para validación segura de webhooks — garantizando el aislamiento de datos entre tenants y escalabilidad real desde el MVP."
         },
         "habit": {
-            "description": "Aplicación para ayudar a personas a dejar de fumar con seguimiento en tiempo real, ahorro financiero estimado e IA Coach integrada."
+            "description": "Aplicación web para ayudar a los usuarios a dejar de fumar, construida con React, Vite y Tailwind CSS. Muestra un contador en tiempo real de días, horas y minutos sin fumar, calcula el ahorro financiero generado y los cigarrillos evitados, y cuenta con un AI Coach integrado a través de la API de Groq para brindar apoyo en los momentos de ansiedad. Sistema de notificaciones motivacionales y diseño totalmente responsivo con animaciones a través de Framer Motion."
         },
         "market": {
-            "description": "MarketPulse es un dashboard financiero de alto rendimiento diseñado para inversores modernos. Ofrece una masterclass técnica y visual en gestión de datos en tiempo real, con una estética inspirada en TRON y glassmorphism avanzado."
+            "description": "Dashboard financiero en tiempo real construido con React 18, Vite y CSS personalizado con glassmorphism. Integra la API WebSocket de Binance para cotizaciones de criptoactivos en vivo, gestiona portafolios con cálculo de P&L por múltiples contextos (MarketContext + PortfolioContext), y soporta exportación de reportes en PDF y CSV vía lazy loading. Funciona como PWA instalable con Service Workers personalizados, internacionalización en PT/EN y cargas en sub-segundos a través de memoización y lazy loading."
         },
         "km": {
-            "description": "KM de Lucro es una plataforma web de gestión financiera simplificada desarrollada específicamente para conductores de carga autónomos. El proyecto nació para reemplazar hojas de cálculo complejas y notas manuales con una interfaz intuitiva y enfocada en el rendimiento."
-        },
-        "inDev": {
-            "title": "En Desarrollo",
-            "description": "Nuevas soluciones y laboratorios técnicos en desarrollo. Mantente atento a GitHub para actualizaciones."
+            "description": "Plataforma web de gestión financiera para conductores de carga autónomos, construida con Next.js 15, TypeScript y Supabase. Reemplaza las hojas de cálculo manuales con un dashboard que calcula el beneficio neto y el margen de rentabilidad por viaje en tiempo real, con historial mensual, identificación de las rutas más rentables y exportación de informes en PDF y CSV. Autenticación vía Magic Link (Supabase Auth) — sin contraseña, sin fricción."
         }
     },
     "about": {
