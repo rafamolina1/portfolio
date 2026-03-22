@@ -1,45 +1,54 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
-  FileCode,
-  Globe,
-  Server,
-  Database,
-  Box,
-  Terminal,
-  Layers,
-  ShieldCheck,
-  Cpu,
-} from "lucide-react";
+  SiCss,
+  SiDart,
+  SiDocker,
+  SiDotnet,
+  SiHtml5,
+  SiJavascript,
+  SiJsonwebtokens,
+  SiLaravel,
+  SiMysql,
+  SiNodedotjs,
+  SiPostgresql,
+  SiPostman,
+  SiReact,
+  SiTailwindcss,
+  SiTensorflow,
+  SiTypescript,
+} from "react-icons/si";
+import { FaLink } from "react-icons/fa6";
+
+const ICON_SIZE = 22;
 
 const SKILLS = [
-  { name: "Dart", icon: <Globe className="text-blue-400" size={16} /> },
-  { name: "HTML5", icon: <FileCode className="text-orange-500" size={16} /> },
-  { name: "CSS3", icon: <Layers className="text-blue-500" size={16} /> },
-  { name: ".NET", icon: <Cpu className="text-purple-500" size={16} /> },
+  { name: "Dart", icon: <SiDart className="text-blue-400" size={ICON_SIZE} /> },
+  { name: "HTML5", icon: <SiHtml5 className="text-orange-500" size={ICON_SIZE} /> },
+  { name: "CSS3", icon: <SiCss className="text-blue-500" size={ICON_SIZE} /> },
+  { name: ".NET", icon: <SiDotnet className="text-purple-500" size={ICON_SIZE} /> },
   {
     name: "TypeScript",
-    icon: <FileCode className="text-blue-600" size={16} />,
+    icon: <SiTypescript className="text-blue-600" size={ICON_SIZE} />,
   },
   {
     name: "JavaScript",
-    icon: <FileCode className="text-yellow-400" size={16} />,
+    icon: <SiJavascript className="text-yellow-400" size={ICON_SIZE} />,
   },
-  { name: "NodeJS", icon: <Server className="text-green-500" size={16} /> },
-  { name: "Docker", icon: <Box className="text-blue-400" size={16} /> },
-  { name: "Postman", icon: <Terminal className="text-orange-600" size={16} /> },
+  { name: "NodeJS", icon: <SiNodedotjs className="text-green-500" size={ICON_SIZE} /> },
+  { name: "Docker", icon: <SiDocker className="text-blue-400" size={ICON_SIZE} /> },
+  { name: "Postman", icon: <SiPostman className="text-orange-600" size={ICON_SIZE} /> },
   {
     name: "PostgreSQL",
-    icon: <Database className="text-blue-300" size={16} />,
+    icon: <SiPostgresql className="text-blue-300" size={ICON_SIZE} />,
   },
-  { name: "Tailwind", icon: <Layers className="text-cyan-400" size={16} /> },
-  { name: "React", icon: <Layers className="text-blue-400" size={16} /> },
-  { name: "Machine Learning", icon: <Cpu className="text-pink-400" size={16} /> },
-  { name: "LangChain", icon: <Globe className="text-emerald-400" size={16} /> },
-  { name: "JWT", icon: <ShieldCheck className="text-zinc-100" size={16} /> },
-  { name: "MySQL", icon: <Database className="text-blue-500" size={16} /> },
-  { name: "Laravel", icon: <Server className="text-red-500" size={16} /> },
+  { name: "Tailwind", icon: <SiTailwindcss className="text-cyan-400" size={ICON_SIZE} /> },
+  { name: "React", icon: <SiReact className="text-blue-400" size={ICON_SIZE} /> },
+  { name: "Machine Learning", icon: <SiTensorflow className="text-pink-400" size={ICON_SIZE} /> },
+  { name: "LangChain", icon: <FaLink className="text-emerald-400" size={ICON_SIZE} /> },
+  { name: "JWT", icon: <SiJsonwebtokens className="text-zinc-100" size={ICON_SIZE} /> },
+  { name: "MySQL", icon: <SiMysql className="text-blue-500" size={ICON_SIZE} /> },
+  { name: "Laravel", icon: <SiLaravel className="text-red-500" size={ICON_SIZE} /> },
 ];
 
 export default function InfiniteScrollSkills() {
@@ -50,31 +59,21 @@ export default function InfiniteScrollSkills() {
       <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10"></div>
       <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10"></div>
 
-      <motion.div
-        className="flex gap-4 w-max"
-        animate={{ x: [0, -1500] }}
-        transition={{
-          duration: 30,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
-        whileHover={{ animationPlayState: "paused" }}
-      >
+      <div className="animate-infinite-scroll flex w-max gap-5">
         {duplicatedSkills.map((skill, index) => (
           <div
             key={`${skill.name}-${index}`}
-            className="flex items-center gap-3 px-6 py-3 bg-zinc-900/50 border border-zinc-800 rounded-full whitespace-nowrap group hover:border-purple-500/50 transition-colors"
+            className="flex items-center gap-4 px-7 py-4 bg-zinc-900/50 border border-zinc-800 rounded-full whitespace-nowrap group hover:border-purple-500/50 transition-colors"
           >
-            <span className="group-hover:scale-110 transition-transform">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-zinc-800/70 border border-zinc-700 group-hover:scale-110 group-hover:border-purple-400/60 transition-transform">
               {skill.icon}
             </span>
-            <span className="text-sm font-medium text-zinc-300 group-hover:text-white">
+            <span className="text-base font-semibold text-zinc-200 group-hover:text-white">
               {skill.name}
             </span>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   );
 }
