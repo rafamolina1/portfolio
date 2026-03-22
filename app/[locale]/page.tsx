@@ -6,6 +6,8 @@ import ProjectCard from "@/components/ProjectCard";
 import AboutSection from "@/components/AboutSection";
 import InfiniteScrollSkills from "@/components/InfiniteScrollSkills";
 import ContactModal from "@/components/ContactModal";
+import LanguageSplash from "@/components/LanguageSplash";
+import EntrySplash from "@/components/EntrySplash";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,26 +20,24 @@ export default function Home() {
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden relative animate-gradient-shift">
+            <EntrySplash />
             <Header onOpenContact={() => setIsContactOpen(true)} />
             <ContactModal
                 isOpen={isContactOpen}
                 onClose={() => setIsContactOpen(false)}
             />
+            <LanguageSplash />
 
-            {/* Animated Mesh Gradient Background */}
             <div className="fixed inset-0 pointer-events-none z-0">
               <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-purple-950/20 to-[#0a0a0a] animate-gradient-shift" />
             </div>
 
-            {/* Main Background Orb */}
             <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0 animate-pulse" />
 
-            {/* Floating Color-Shifting Orbs */}
             <div className="fixed top-20 left-10 w-72 h-72 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-1 animate-color-cycle-1" />
             <div className="fixed top-1/3 right-20 w-96 h-96 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-2 animate-color-cycle-2" />
             <div className="fixed bottom-0 left-1/3 w-80 h-80 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-3 animate-color-cycle-3" />
             
-            {/* Additional Secondary Orbs */}
             <div className="fixed top-1/2 right-1/4 w-64 h-64 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-2 animate-color-cycle-1" />
             <div className="fixed bottom-1/3 left-1/4 w-72 h-72 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-1 animate-color-cycle-3" />
 
@@ -60,27 +60,53 @@ export default function Home() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.2 }}
+                            whileHover={{ y: -4, scale: 1.01 }}
                             className="text-5xl md:text-7xl font-extrabold tracking-tight"
                         >
-                            Rafael <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] via-[#8B5CF6] to-[#00C6FF] animate-shimmer">
+                            <motion.span
+                                animate={{
+                                    y: [0, -5, 0],
+                                    scale: [1, 1.02, 1],
+                                }}
+                                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+                                className="inline-block will-change-transform"
+                            >
+                                Rafael
+                            </motion.span>{" "}
+                            <br />
+                            <motion.span
+                                animate={{
+                                    y: [0, -4, 0],
+                                    scale: [1, 1.025, 1],
+                                }}
+                                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+                                className="inline-block will-change-transform text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] via-[#8B5CF6] to-[#00C6FF] animate-shimmer"
+                            >
                                 Molina.
-                            </span>
+                            </motion.span>
                         </motion.h1>
 
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.3 }}
+                            whileHover={{ y: -2 }}
                             className="text-xl text-zinc-400 max-w-lg mx-auto md:mx-0"
                         >
-                            {t("hero.tagline")}
+                            <motion.span
+                                animate={{ opacity: [0.75, 1, 0.75] }}
+                                transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
+                                className="inline-block"
+                            >
+                                {t("hero.tagline")}
+                            </motion.span>
                         </motion.p>
 
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             className="flex items-center justify-center md:justify-start gap-4 pt-4"
                         >
                             <SocialButton
@@ -94,8 +120,10 @@ export default function Home() {
                                 label="LinkedIn"
                             />
 
-                            <button
+                            <motion.button
                                 onClick={() => setIsContactOpen(true)}
+                                whileHover={{ y: -6, scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
                                 className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-purple-500/50 transition-all group"
                             >
                                 <span className="text-zinc-400 group-hover:text-purple-400 transition-colors">
@@ -104,7 +132,7 @@ export default function Home() {
                                 <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                     {t("hero.email")}
                                 </span>
-                            </button>
+                            </motion.button>
                         </motion.div>
                     </div>
 
@@ -234,15 +262,21 @@ function SocialButton({
     label: string;
 }) {
     return (
-        <Link
-            href={href}
-            target="_blank"
-            className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-[#00C6FF]/50 transition-all group"
+        <motion.div
+            whileHover={{ y: -6, scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300, damping: 18 }}
         >
-            <span className="text-zinc-400 group-hover:text-[#00C6FF] transition-colors">
-                {icon}
-            </span>
-            <span className="font-medium text-sm">{label}</span>
-        </Link>
+            <Link
+                href={href}
+                target="_blank"
+                className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-[#00C6FF]/50 transition-all group"
+            >
+                <span className="text-zinc-400 group-hover:text-[#00C6FF] transition-colors">
+                    {icon}
+                </span>
+                <span className="font-medium text-sm">{label}</span>
+            </Link>
+        </motion.div>
     );
 }
