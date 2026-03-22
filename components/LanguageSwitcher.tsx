@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
     };
 
     return (
-        <div className="flex items-center gap-1 ml-2">
+        <div className="flex shrink-0 items-center gap-1 ml-2">
             {LOCALES.map((l) => (
                 <button
                     key={l.code}

@@ -35,7 +35,10 @@ export default function Header({ onOpenContact }: HeaderProps) {
     >
       <nav
         className={`
-          flex items-center gap-1 px-2 py-2 rounded-full border transition-all duration-300
+          flex flex-nowrap items-center gap-1 px-2 py-2 rounded-full border transition-all duration-300
+          w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] sm:w-auto sm:max-w-none
+          overflow-x-auto overflow-y-hidden touch-pan-x whitespace-nowrap
+          [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden
           ${scrolled
             ? "bg-zinc-900/80 border-zinc-800 backdrop-blur-md shadow-lg shadow-purple-500/5"
             : "bg-transparent border-transparent"
@@ -52,7 +55,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
                 .querySelector(item.href)
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
-            className="relative px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-zinc-800/50"
+            className="relative shrink-0 px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-zinc-800/50 whitespace-nowrap"
           >
             {item.name}
           </Link>
@@ -60,7 +63,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
 
         <button
           onClick={onOpenContact}
-          className="ml-2 px-5 py-2 text-sm font-medium bg-zinc-100 text-zinc-900 rounded-full hover:bg-white hover:scale-105 transition-all cursor-pointer"
+          className="ml-2 shrink-0 px-5 py-2 text-sm font-medium bg-zinc-100 text-zinc-900 rounded-full hover:bg-white hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
         >
           {t("contact")}
         </button>
