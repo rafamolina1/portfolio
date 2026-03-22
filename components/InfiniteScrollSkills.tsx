@@ -35,6 +35,8 @@ const SKILLS = [
   },
   { name: "Tailwind", icon: <Layers className="text-cyan-400" size={16} /> },
   { name: "React", icon: <Layers className="text-blue-400" size={16} /> },
+  { name: "Machine Learning", icon: <Cpu className="text-pink-400" size={16} /> },
+  { name: "LangChain", icon: <Globe className="text-emerald-400" size={16} /> },
   { name: "JWT", icon: <ShieldCheck className="text-zinc-100" size={16} /> },
   { name: "MySQL", icon: <Database className="text-blue-500" size={16} /> },
   { name: "Laravel", icon: <Server className="text-red-500" size={16} /> },
