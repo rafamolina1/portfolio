@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import { Rocket, GraduationCap, Globe, Server } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -10,8 +11,24 @@ const TECH_STACK = [
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
   },
   {
+    name: "TypeScript",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+  },
+  {
+    name: "JavaScript",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+  },
+  {
+    name: "Tailwind CSS",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+  },
+  {
     name: "Node.js",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+  },
+  {
+    name: "Docker",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
   },
   {
     name: "C# / .NET",
@@ -29,10 +46,39 @@ const TECH_STACK = [
     name: "PostgreSQL",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
   },
+  {
+    name: "MySQL",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+  },
+  {
+    name: "Machine Learning",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
+  },
 ];
+
+const VISIBLE_TECHS = 4;
+const TECH_ROTATION_MS = 2800;
 
 export default function AboutSection() {
   const t = useTranslations("about");
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setOffset((current) => (current + 1) % TECH_STACK.length);
+    }, TECH_ROTATION_MS);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const visibleTechs = useMemo(
+    () =>
+      Array.from({ length: VISIBLE_TECHS }, (_, index) => {
+        const itemIndex = (offset + index) % TECH_STACK.length;
+        return TECH_STACK[itemIndex];
+      }),
+    [offset]
+  );
 
   return (
     <section className="mb-32" id="about">
@@ -167,35 +213,48 @@ export default function AboutSection() {
         >
           <div className="flex flex-col lg:flex-row gap-8 items-start lg:items-center justify-between">
             <div className="max-w-xl">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="bg-blue-500/10 p-2 rounded-lg">
-                  <Server className="text-blue-400" size={24} />
+              <div className="flex items-center gap-4 mb-4">
+                <div className="bg-blue-500/15 p-3 rounded-lg">
+                  <Server className="text-blue-300" size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-zinc-100">
+                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-zinc-100 to-zinc-200 bg-clip-text text-transparent">
                   {t("fullstack")}
                 </h3>
               </div>
-              <p className="text-zinc-400 text-sm leading-relaxed">
+              <p className="text-zinc-300 text-base leading-relaxed">
                 {t("fullstackDesc")}
               </p>
             </div>
 
-            <div className="flex flex-wrap gap-3 lg:justify-end max-w-2xl">
-              {TECH_STACK.map((tech) => (
-                <div
-                  key={tech.name}
-                  className="flex items-center gap-2 px-4 py-2 bg-zinc-950/50 border border-zinc-800 rounded-xl hover:border-purple-500/30 hover:bg-zinc-900 transition-all group/tag"
-                >
-                  <img
-                    src={tech.logo}
-                    alt={tech.name}
-                    className="w-5 h-5 object-contain grayscale group-hover/tag:grayscale-0 transition-all"
-                  />
-                  <span className="text-xs font-medium text-zinc-400 group-hover/tag:text-zinc-200 transition-colors">
-                    {tech.name}
-                  </span>
-                </div>
-              ))}
+            <div className="w-full max-w-[340px] lg:max-w-[360px]">
+              <div className="grid grid-cols-2 gap-3">
+                <AnimatePresence initial={false} mode="popLayout">
+                  {visibleTechs.map((tech, index) => (
+                    <motion.div
+                      key={tech.name}
+                      layout
+                      initial={{ opacity: 0, y: 20, scale: 0.94 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.94 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: index * 0.06,
+                        ease: "easeOut",
+                      }}
+                      className="aspect-square flex flex-col items-center justify-center gap-3 bg-zinc-950/50 border border-zinc-800 rounded-xl hover:border-purple-500/30 hover:bg-zinc-900 transition-all"
+                    >
+                      <img
+                        src={tech.logo}
+                        alt={tech.name}
+                        className="w-7 h-7 object-contain"
+                      />
+                      <span className="text-[11px] sm:text-xs font-medium text-zinc-200 text-center px-2 leading-tight">
+                        {tech.name}
+                      </span>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </div>
             </div>
           </div>
         </motion.div>

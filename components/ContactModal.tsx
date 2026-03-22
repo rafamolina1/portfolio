@@ -35,74 +35,111 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-zinc-900 border border-zinc-800 p-6 rounded-2xl shadow-2xl z-[70]"
+            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg bg-gradient-to-br from-zinc-900 via-zinc-900 to-zinc-800 border border-zinc-700 p-8 rounded-3xl shadow-2xl z-[70] backdrop-blur-xl"
           >
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-zinc-100">
-                {t("title")}
-              </h2>
-              <button
+            <div className="flex justify-between items-center mb-8">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-violet-400 bg-clip-text text-transparent animate-shimmer">
+                  {t("title")}
+                </h2>
+              </div>
+              <motion.button
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.95 }}
                 onClick={onClose}
-                className="p-2 hover:bg-zinc-800 rounded-full text-zinc-400 hover:text-white transition-colors"
+                className="p-3 hover:bg-zinc-800 rounded-full text-zinc-400 hover:text-white transition-colors"
               >
-                <X size={20} />
-              </button>
+                <X size={24} />
+              </motion.button>
             </div>
 
             <div className="space-y-4">
-              <div className="p-4 bg-zinc-950/50 border border-zinc-800 rounded-xl flex items-center justify-between group">
-                <div className="flex items-center gap-3">
-                  <div className="bg-purple-500/10 p-2 rounded-lg text-purple-400">
-                    <Mail size={20} />
-                  </div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 }}
+                className="p-5 bg-zinc-950/40 border border-purple-500/30 rounded-2xl flex items-center justify-between group hover:border-purple-500/60 transition-all hover:shadow-[0_0_20px_rgba(168,85,247,0.2)]"
+              >
+                <div className="flex items-center gap-4">
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    className="bg-purple-500/20 p-3 rounded-lg text-purple-300 border border-purple-500/30"
+                  >
+                    <Mail size={24} />
+                  </motion.div>
                   <div>
-                    <p className="text-sm font-medium text-zinc-200">Email</p>
-                    <p className="text-xs text-zinc-500">{email}</p>
+                    <p className="text-base font-semibold text-zinc-100">Email</p>
+                    <p className="text-sm text-zinc-400">{email}</p>
                   </div>
                 </div>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleCopyEmail}
-                  className="p-2 hover:bg-zinc-800 rounded-lg text-zinc-400 hover:text-purple-400 transition-colors relative"
+                  className="p-2 hover:bg-purple-500/20 rounded-lg text-zinc-400 hover:text-purple-300 transition-colors"
                 >
                   {copied ? (
-                    <Check size={18} className="text-green-500" />
+                    <Check size={20} className="text-green-400" />
                   ) : (
-                    <Copy size={18} />
+                    <Copy size={20} />
                   )}
-                </button>
-              </div>
+                </motion.button>
+              </motion.div>
 
               <Link
                 href="https://www.linkedin.com/in/rafael-molina-049a43247/"
                 target="_blank"
-                className="flex items-center gap-3 p-4 bg-zinc-950/50 border border-zinc-800 rounded-xl hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group"
+                className="flex"
               >
-                <div className="bg-blue-500/10 p-2 rounded-lg text-blue-400 group-hover:text-blue-300">
-                  <Linkedin size={20} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-zinc-200 group-hover:text-blue-300">
-                    LinkedIn
-                  </p>
-                  <p className="text-xs text-zinc-500">{t("linkedinSub")}</p>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.15 }}
+                  whileHover={{ y: -4 }}
+                  className="w-full flex items-center gap-4 p-5 bg-zinc-950/40 border border-blue-500/30 rounded-2xl hover:border-blue-500/60 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all group cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: -5 }}
+                    className="bg-blue-500/20 p-3 rounded-lg text-blue-300 border border-blue-500/30"
+                  >
+                    <Linkedin size={24} />
+                  </motion.div>
+                  <div>
+                    <p className="text-base font-semibold text-zinc-100 group-hover:text-blue-300 transition-colors">
+                      LinkedIn
+                    </p>
+                    <p className="text-sm text-zinc-400">{t("linkedinSub")}</p>
+                  </div>
+                </motion.div>
               </Link>
 
               <Link
                 href="https://github.com/rafamolina1"
                 target="_blank"
-                className="flex items-center gap-3 p-4 bg-zinc-950/50 border border-zinc-800 rounded-xl hover:border-white/20 hover:bg-white/5 transition-all group"
+                className="flex"
               >
-                <div className="bg-zinc-800 p-2 rounded-lg text-zinc-100">
-                  <Github size={20} />
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-zinc-200">GitHub</p>
-                  <p className="text-xs text-zinc-500">{t("githubSub")}</p>
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  whileHover={{ y: -4 }}
+                  className="w-full flex items-center gap-4 p-5 bg-zinc-950/40 border border-zinc-600/30 rounded-2xl hover:border-zinc-400/60 hover:shadow-[0_0_20px_rgba(229,231,235,0.1)] transition-all group cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    className="bg-zinc-800/60 p-3 rounded-lg text-zinc-200 border border-zinc-600/30"
+                  >
+                    <Github size={24} />
+                  </motion.div>
+                  <div>
+                    <p className="text-base font-semibold text-zinc-100 group-hover:text-zinc-300 transition-colors">GitHub</p>
+                    <p className="text-sm text-zinc-400">{t("githubSub")}</p>
+                  </div>
+                </motion.div>
               </Link>
             </div>
           </motion.div>

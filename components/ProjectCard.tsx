@@ -64,9 +64,10 @@ export default function ProjectCard({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -12, transition: { duration: 0.3 } }}
       viewport={{ once: true }}
       transition={{ duration: 0.3 }}
-      className="group bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 hover:shadow-2xl hover:shadow-purple-500/10 transition-all flex flex-col h-full pt-6"
+      className="group bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden hover:border-zinc-700 transition-all flex flex-col h-full pt-6 shadow-lg hover:shadow-[0_20px_60px_rgba(139,92,246,0.25)]"
     >
       <div className="relative w-full px-4 flex justify-center items-center">
         <div className="relative mx-auto w-[90%] md:w-[85%] perspective-1000 my-4 group-hover:-translate-y-2 transition-transform duration-500">

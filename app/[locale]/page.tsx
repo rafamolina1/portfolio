@@ -17,14 +17,29 @@ export default function Home() {
     const t = useTranslations();
 
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden">
+        <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden relative animate-gradient-shift">
             <Header onOpenContact={() => setIsContactOpen(true)} />
             <ContactModal
                 isOpen={isContactOpen}
                 onClose={() => setIsContactOpen(false)}
             />
 
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0" />
+            {/* Animated Mesh Gradient Background */}
+            <div className="fixed inset-0 pointer-events-none z-0">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-purple-950/20 to-[#0a0a0a] animate-gradient-shift" />
+            </div>
+
+            {/* Main Background Orb */}
+            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0 animate-pulse" />
+
+            {/* Floating Color-Shifting Orbs */}
+            <div className="fixed top-20 left-10 w-72 h-72 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-1 animate-color-cycle-1" />
+            <div className="fixed top-1/3 right-20 w-96 h-96 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-2 animate-color-cycle-2" />
+            <div className="fixed bottom-0 left-1/3 w-80 h-80 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-3 animate-color-cycle-3" />
+            
+            {/* Additional Secondary Orbs */}
+            <div className="fixed top-1/2 right-1/4 w-64 h-64 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-2 animate-color-cycle-1" />
+            <div className="fixed bottom-1/3 left-1/4 w-72 h-72 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-1 animate-color-cycle-3" />
 
             <div className="max-w-5xl mx-auto px-6 py-20 relative z-10">
                 <section
@@ -35,7 +50,7 @@ export default function Home() {
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/50 border border-zinc-800 text-sm text-zinc-400"
+                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/50 border border-zinc-800 text-sm text-zinc-400 animate-glow-pulse"
                         >
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             {t("hero.available")}
@@ -48,7 +63,7 @@ export default function Home() {
                             className="text-5xl md:text-7xl font-extrabold tracking-tight"
                         >
                             Rafael <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] to-[#8B5CF6]">
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] via-[#8B5CF6] to-[#00C6FF] animate-shimmer">
                                 Molina.
                             </span>
                         </motion.h1>
@@ -96,7 +111,7 @@ export default function Home() {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="relative"
+                        className="relative animate-float"
                     >
                         <div className="absolute inset-0 bg-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
                         <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-2 border-zinc-800 p-2 bg-zinc-900/50">
@@ -128,7 +143,7 @@ export default function Home() {
                         <h2 className="text-3xl font-bold">{t("projects.title")}</h2>
                         <Link
                             href="https://github.com/rafamolina1"
-                            className="text-sm text-purple-400 hover:underline"
+                            className="text-sm text-purple-400 underline-animate"
                         >
                             {t("projects.viewAll")}
                         </Link>
