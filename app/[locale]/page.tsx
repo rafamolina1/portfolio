@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectCard";
 import AboutSection from "@/components/AboutSection";
+import StartupSection from "@/components/StartupSection";
 import InfiniteScrollSkills from "@/components/InfiniteScrollSkills";
 import ContactModal from "@/components/ContactModal";
 import LanguageSplash from "@/components/LanguageSplash";
@@ -166,6 +167,8 @@ export default function Home() {
 
                 <AboutSection />
 
+                <StartupSection />
+
                 <section id="projects" className="pt-10">
                     <div className="flex items-center justify-between mb-12">
                         <h2 className="text-3xl font-bold">{t("projects.title")}</h2>
@@ -179,7 +182,7 @@ export default function Home() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                         <ProjectCard
-                            title="BarberManager SaaS"
+                            title="Barber Manager"
                             description={t("projects.barber.description")}
                             image="/barber-dashboard.png"
                             techs={[

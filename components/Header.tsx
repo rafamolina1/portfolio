@@ -18,6 +18,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
     { name: t("home"), href: "#home" },
     { name: t("techStack"), href: "#tech" },
     { name: t("about"), href: "#about" },
+    { name: t("startup"), href: "#startup" },
     { name: t("projects"), href: "#projects" },
   ];
 

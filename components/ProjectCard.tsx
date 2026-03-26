@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, Github } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 import LaptopFrame from "./LaptopFrame";
 
 const TECH_LOGOS: Record<string, string> = {
@@ -50,6 +51,96 @@ interface ProjectCardProps {
   deployUrl?: string;
 }
 
+const pageMotionVariants = {
+  enter: (direction: number) => ({
+    opacity: 0,
+    x: direction > 0 ? 22 : -22,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+  },
+  exit: (direction: number) => ({
+    opacity: 0,
+    x: direction > 0 ? -22 : 22,
+  }),
+};
+
+function splitDescriptionIntoPages(text: string, maxCharsPerPage = 250) {
+  const normalized = text.replace(/\r\n/g, "\n").trim();
+  if (!normalized) return [""];
+
+  const paragraphs = normalized
+    .split("\n\n")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const pages: string[] = [];
+  let current = "";
+
+  const pushCurrent = () => {
+    if (current.trim()) {
+      pages.push(current.trim());
+      current = "";
+    }
+  };
+
+  const addChunk = (chunk: string) => {
+    if (!chunk) return;
+
+    if (!current) {
+      if (chunk.length <= maxCharsPerPage) {
+        current = chunk;
+      } else {
+        let remaining = chunk;
+        while (remaining.length > maxCharsPerPage) {
+          let splitAt = remaining.lastIndexOf(" ", maxCharsPerPage);
+          if (splitAt < Math.floor(maxCharsPerPage * 0.6)) {
+            splitAt = maxCharsPerPage;
+          }
+          pages.push(remaining.slice(0, splitAt).trim());
+          remaining = remaining.slice(splitAt).trim();
+        }
+        if (remaining) {
+          current = remaining;
+        }
+      }
+      return;
+    }
+
+    const separator = "\n\n";
+    const candidate = `${current}${separator}${chunk}`;
+    if (candidate.length <= maxCharsPerPage) {
+      current = candidate;
+      return;
+    }
+
+    pushCurrent();
+    addChunk(chunk);
+  };
+
+  paragraphs.forEach(addChunk);
+  pushCurrent();
+
+  return pages.length > 0 ? pages : [normalized];
+}
+
+function isHighlightLine(line: string) {
+  return (
+    line.startsWith("🧠") ||
+    line.startsWith("🧩") ||
+    line.startsWith("💡") ||
+    line.startsWith("⚙") ||
+    line.startsWith("🚀") ||
+    line.startsWith("📈") ||
+    line.startsWith("💈") ||
+    line.startsWith("🚚") ||
+    line.startsWith("📊") ||
+    line.startsWith("✅") ||
+    line.startsWith("🧰")
+  );
+}
+
 export default function ProjectCard({
   title,
   description,
@@ -59,6 +150,30 @@ export default function ProjectCard({
   deployUrl,
 }: ProjectCardProps) {
   const isVideo = image.endsWith(".mp4");
+  const descriptionPages = useMemo(() => splitDescriptionIntoPages(description), [description]);
+  const [descriptionPage, setDescriptionPage] = useState(0);
+  const [pageDirection, setPageDirection] = useState(1);
+
+  useEffect(() => {
+    setDescriptionPage(0);
+    setPageDirection(1);
+  }, [description]);
+
+  const hasMultiplePages = descriptionPages.length > 1;
+
+  const goPrevPage = () => {
+    setPageDirection(-1);
+    setDescriptionPage((current) =>
+      current === 0 ? descriptionPages.length - 1 : current - 1
+    );
+  };
+
+  const goNextPage = () => {
+    setPageDirection(1);
+    setDescriptionPage((current) =>
+      current === descriptionPages.length - 1 ? 0 : current + 1
+    );
+  };
 
   return (
     <motion.div
@@ -126,9 +241,66 @@ export default function ProjectCard({
         <h3 className="text-xl font-bold text-zinc-100 mb-3 group-hover:text-purple-400 transition-colors">
           {title}
         </h3>
-        <p className="text-zinc-400 text-sm mb-6 leading-relaxed flex-1">
-          {description}
-        </p>
+
+        <div className="mb-6 flex-1 rounded-xl border border-zinc-800/70 bg-zinc-950/35 p-4 flex flex-col">
+          <div className="flex-1 min-h-[220px] space-y-2">
+            {descriptionPages[descriptionPage].split("\n").map((line, index) => {
+              const trimmed = line.trim();
+
+              if (!trimmed) {
+                return <div key={`space-${index}`} className="h-2" />;
+              }
+
+              if (trimmed.startsWith("•")) {
+                return (
+                  <p key={`bullet-${index}`} className="text-zinc-300 text-[13px] md:text-[13.5px] leading-6 pl-3">
+                    {trimmed}
+                  </p>
+                );
+              }
+
+              if (isHighlightLine(trimmed)) {
+                return (
+                  <p key={`highlight-${index}`} className="text-zinc-100 text-sm md:text-[15px] font-medium leading-6">
+                    {trimmed}
+                  </p>
+                );
+              }
+
+              return (
+                <p key={`line-${index}`} className="text-zinc-300 text-[13px] md:text-[14px] leading-6">
+                  {trimmed}
+                </p>
+              );
+            })}
+          </div>
+
+          {hasMultiplePages && (
+            <div className="mt-3 flex items-center justify-between border-t border-zinc-800/60 pt-3">
+              <span className="text-[11px] text-zinc-500">
+                {descriptionPage + 1}/{descriptionPages.length}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={goPrevPage}
+                  className="h-8 w-8 rounded-lg border border-zinc-700 bg-zinc-900/70 text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors flex items-center justify-center"
+                  aria-label="Ver parte anterior"
+                >
+                  <ChevronLeft size={15} />
+                </button>
+                <button
+                  type="button"
+                  onClick={goNextPage}
+                  className="h-8 w-8 rounded-lg border border-zinc-700 bg-zinc-900/70 text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors flex items-center justify-center"
+                  aria-label="Ver próxima parte"
+                >
+                  <ChevronRight size={15} />
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="flex items-center flex-wrap gap-3 mt-auto pt-4 border-t border-zinc-800/50">
           {techs.map((tech) => (
