@@ -142,7 +142,6 @@ export default function Home() {
                         animate={{ opacity: 1, scale: 1 }}
                         className="relative animate-float"
                     >
-                        <div className="absolute inset-0 bg-purple-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
                         <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-2 border-zinc-800 p-2 bg-zinc-900/50">
                             <div className="w-full h-full rounded-full overflow-hidden relative">
                                 <Image
