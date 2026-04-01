@@ -87,7 +87,7 @@ export default function AboutSection() {
         <span className="text-purple-400">{t("titleHighlight")}</span>
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:items-start">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -109,17 +109,24 @@ export default function AboutSection() {
             </h3>
           </div>
 
-          <p className="text-zinc-300 leading-relaxed mb-6">
-            {t("bio1")} <strong className="text-zinc-100">{t("bio2")}</strong>
-            {t("bio3")}
-            <br />
-            <br />
-            {t("bio4")} <strong className="text-zinc-100">{t("bio5")}</strong>
-            {t("bio6")}{" "}
-            <strong className="text-zinc-100">{t("bio7")}</strong>
-            {t("bio8")} <strong className="text-zinc-100">{t("bio9")}</strong>
-            {t("bio10")}
-          </p>
+          <div className="text-zinc-300 leading-relaxed mb-6 space-y-4">
+            <p>
+              {t("bio1")} <strong className="text-zinc-100">{t("bio2")}</strong>
+              {t("bio3")}
+            </p>
+
+            <p>
+              {t("bio4")} <strong className="text-zinc-100">{t("bio5")}</strong>
+              {t("bio6")} {" "}
+              <strong className="text-zinc-100">{t("bio7")}</strong>
+              {t("bio8")}
+            </p>
+
+            <p>
+              <strong className="text-zinc-100">{t("bio9")}</strong>
+              {t("bio10")}
+            </p>
+          </div>
 
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -136,7 +143,7 @@ export default function AboutSection() {
           whileHover={{ y: -8, transition: { duration: 0.3 } }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl hover:border-green-500/50 transition-all flex flex-col justify-center shadow-lg hover:shadow-[0_20px_60px_rgba(34,197,94,0.2)]"
+          className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl hover:border-green-500/50 transition-all flex flex-col justify-start h-full self-start shadow-lg hover:shadow-[0_20px_60px_rgba(34,197,94,0.2)]"
         >
           <div className="flex items-center gap-4 mb-6">
             <motion.div

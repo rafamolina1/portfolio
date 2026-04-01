@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Building2, ExternalLink, Newspaper, Rocket, Sparkles } from "lucide-react";
+import { Blocks, Building2, ExternalLink, GraduationCap, Newspaper, Rocket, Sparkles, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 
@@ -162,6 +162,88 @@ export default function StartupSection() {
                 <li>• {t("impact4")}</li>
               </ul>
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="md:col-span-3 bg-zinc-900/45 border border-zinc-800 rounded-2xl p-6 hover:border-emerald-500/40 transition-all"
+          >
+            <div className="flex items-start gap-3 mb-4">
+              <div className="bg-emerald-500/15 border border-emerald-500/35 p-2.5 rounded-lg">
+                <GraduationCap className="text-emerald-300" size={20} />
+              </div>
+              <div>
+                <h4 className="text-zinc-100 font-semibold">{t("educationImpactTitle")}</h4>
+                <p className="text-sm text-zinc-400 mt-1">{t("educationImpactSubtitle")}</p>
+              </div>
+            </div>
+
+            <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-4">
+              {t("educationImpactDesc")}
+            </p>
+
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-zinc-400 leading-relaxed">
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-emerald-300 mt-0.5" />
+                <span>{t("educationImpact1")}</span>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-emerald-300 mt-0.5" />
+                <span>{t("educationImpact2")}</span>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-emerald-300 mt-0.5" />
+                <span>{t("educationImpact3")}</span>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-emerald-300 mt-0.5" />
+                <span>{t("educationImpact4")}</span>
+              </li>
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.35 }}
+            className="md:col-span-3 bg-zinc-900/45 border border-zinc-800 rounded-2xl p-6 hover:border-amber-500/40 transition-all"
+          >
+            <div className="flex items-start gap-3 mb-4">
+              <div className="bg-amber-500/15 border border-amber-500/35 p-2.5 rounded-lg">
+                <Users className="text-amber-300" size={20} />
+              </div>
+              <div>
+                <h4 className="text-zinc-100 font-semibold">{t("cacompTitle")}</h4>
+                <p className="text-sm text-zinc-400 mt-1">{t("cacompSubtitle")}</p>
+              </div>
+            </div>
+
+            <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-4">
+              {t("cacompDesc")}
+            </p>
+
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-zinc-400 leading-relaxed">
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-amber-300 mt-0.5" />
+                <span>{t("cacomp1")}</span>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-amber-300 mt-0.5" />
+                <span>{t("cacomp2")}</span>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-amber-300 mt-0.5" />
+                <span>{t("cacomp3")}</span>
+              </li>
+              <li className="inline-flex items-start gap-2">
+                <Blocks size={14} className="text-amber-300 mt-0.5" />
+                <span>{t("cacomp4")}</span>
+              </li>
+            </ul>
           </motion.div>
         </div>
       ) : (
