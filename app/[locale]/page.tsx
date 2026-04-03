@@ -9,15 +9,16 @@ import InfiniteScrollSkills from "@/components/InfiniteScrollSkills";
 import ContactModal from "@/components/ContactModal";
 import LanguageSplash from "@/components/LanguageSplash";
 import EntrySplash from "@/components/EntrySplash";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Download, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Home() {
     const [isContactOpen, setIsContactOpen] = useState(false);
     const t = useTranslations();
+    const locale = useLocale();
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden relative animate-gradient-shift">
@@ -108,7 +109,7 @@ export default function Home() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            className="flex items-center justify-center md:justify-start gap-4 pt-4"
+                            className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4"
                         >
                             <SocialButton
                                 href="https://github.com/rafamolina1"
@@ -134,6 +135,38 @@ export default function Home() {
                                     {t("hero.email")}
                                 </span>
                             </motion.button>
+
+                            {locale === "pt-BR" ? (
+                                <motion.a
+                                    href="/curriculo-ptbr-rafael-molina.pdf"
+                                    download="Curriculo-PTBR-Rafael-Molina.pdf"
+                                    whileHover={{ y: -6, scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-cyan-500/50 transition-all group"
+                                >
+                                    <span className="text-zinc-400 group-hover:text-cyan-400 transition-colors">
+                                        <Download size={20} />
+                                    </span>
+                                    <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
+                                        Curriculo PT-BR
+                                    </span>
+                                </motion.a>
+                            ) : (
+                                <motion.a
+                                    href="/curriculo-ingles-rafael-molina.pdf"
+                                    download="Resume-EN-Rafael-Molina.pdf"
+                                    whileHover={{ y: -6, scale: 1.03 }}
+                                    whileTap={{ scale: 0.97 }}
+                                    className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-blue-500/50 transition-all group"
+                                >
+                                    <span className="text-zinc-400 group-hover:text-blue-400 transition-colors">
+                                        <Download size={20} />
+                                    </span>
+                                    <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
+                                        Resume EN
+                                    </span>
+                                </motion.a>
+                            )}
                         </motion.div>
                     </div>
 

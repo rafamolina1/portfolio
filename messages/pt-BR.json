@@ -2,7 +2,9 @@
     "hero": {
         "available": "Disponível para novos desafios",
         "tagline": "Desenvolvedor Fullstack focado em construir SaaS modernos, interfaces fluidas e código limpo.",
-        "email": "Email"
+        "ociBadge": "Certificado OCI",
+        "email": "Email",
+        "resume": "Baixar currículo"
     },
     "nav": {
         "home": "Home",
@@ -45,9 +47,13 @@
         "rocketLabel": "Rocket Startup Reality (Globo)",
         "education": "Educação",
         "degree": "Análise e Des. Sistemas",
-        "school": "Fundação Getúlio Vargas (FGV)",
+        "school": "Fundação Getúlio Vargas (FGV) • 2025 - 2027",
+        "degree2": "Bacharelado em Ciência da Computação (em andamento)",
+        "school2": "Universidade Tecnológica Federal do Paraná (UTFPR) • 2022 - 2026",
         "english": "Inglês Fluente (C2)",
         "englishCert": "Mundialmente certificado pela Universidade de Cambridge.",
+        "oci": "Oracle Cloud Infrastructure (OCI)",
+        "ociCert": "Certificação concluída em Oracle Cloud Infrastructure.",
         "fullstack": "Fullstack Developer",
         "fullstackDesc": "Construindo arquiteturas escaláveis e seguras, integrando bancos de dados modernos com interfaces fluidas e alta performance."
     },

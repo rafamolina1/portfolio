@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
-import { Rocket, GraduationCap, Globe, Server } from "lucide-react";
+import { Rocket, GraduationCap, Globe, Server, Award } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const TECH_STACK = [
@@ -35,8 +35,8 @@ const TECH_STACK = [
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
   },
   {
-    name: "Laravel",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg",
+    name: "Oracle Cloud",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg",
   },
   {
     name: "Dart / Flutter",
@@ -128,13 +128,31 @@ export default function AboutSection() {
             </p>
           </div>
 
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/40 text-sm text-purple-200 hover:border-purple-400/60 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all"
-          >
-            <Globe size={14} />
-            <span>{t("rocketLabel")}</span>
-          </motion.div>
+          <div className="flex flex-wrap items-center gap-3">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/20 border border-purple-500/40 text-sm text-purple-200 hover:border-purple-400/60 hover:shadow-[0_0_15px_rgba(168,85,247,0.3)] transition-all"
+            >
+              <Globe size={14} />
+              <span>{t("rocketLabel")}</span>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-sm text-cyan-200 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] transition-all"
+            >
+              <Award size={14} />
+              <span>{t("oci")}</span>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-sm text-emerald-200 hover:border-emerald-400/60 hover:shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all"
+            >
+              <Award size={14} />
+              <span>{t("english")}</span>
+            </motion.div>
+          </div>
         </motion.div>
 
         <motion.div
@@ -197,6 +215,33 @@ export default function AboutSection() {
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ delay: 0.35 }}
+              whileHover={{ x: 6 }}
+              className="flex items-start gap-3 group/item"
+            >
+              <div className="shrink-0 mt-1 h-6 w-6 rounded bg-white/90 p-[2px] flex items-center justify-center">
+                <img
+                  src="https://www.utfpr.edu.br/favicon.ico"
+                  alt="UTFPR"
+                  className="h-5 w-5 object-contain"
+                />
+              </div>
+              <div>
+                <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-green-300 transition-colors">
+                  {t("degree2")}
+                </p>
+                <p className="text-zinc-400 text-xs mt-1 leading-relaxed">
+                  {t("school2")}
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="w-full h-[1px] bg-gradient-to-r from-zinc-800/50 to-transparent"></div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ delay: 0.4 }}
               whileHover={{ x: 6 }}
               className="flex items-start gap-3 group/item"
@@ -230,6 +275,29 @@ export default function AboutSection() {
                 </p>
                 <p className="text-zinc-400 text-xs mt-1 leading-relaxed">
                   {t("englishCert")}
+                </p>
+              </div>
+            </motion.div>
+
+            <div className="w-full h-[1px] bg-gradient-to-r from-zinc-800/50 to-transparent"></div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              whileHover={{ x: 6 }}
+              className="flex items-start gap-3 group/item"
+            >
+              <div className="shrink-0 mt-1 text-cyan-300">
+                <Award size={20} />
+              </div>
+              <div>
+                <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-cyan-300 transition-colors">
+                  {t("oci")}
+                </p>
+                <p className="text-zinc-400 text-xs mt-1 leading-relaxed">
+                  {t("ociCert")}
                 </p>
               </div>
             </motion.div>
