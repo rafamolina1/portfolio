@@ -262,6 +262,21 @@ export default function Home() {
                             deployUrl="https://kmdelucro.vercel.app"
                         />
 
+                        <ProjectCard
+                            title="Watch Dog"
+                            description={t("projects.watchDog.description")}
+                            image="/dashboard-filled.png"
+                            techs={[
+                                "React",
+                                "TypeScript",
+                                "Vite",
+                                "Tailwind",
+                                "Node.js",
+                                "Docker",
+                            ]}
+                            githubUrl="https://github.com/rafamolina1/Watch-Dog"
+                        />
+
                     </div>
                 </section>
 

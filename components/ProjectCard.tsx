@@ -302,32 +302,34 @@ export default function ProjectCard({
           )}
         </div>
 
-        <div className="flex items-center flex-wrap gap-3 mt-auto pt-4 border-t border-zinc-800/50">
-          {techs.map((tech) => (
-            <div
-              key={tech}
-              className="relative group/icon flex justify-center items-center"
-            >
-              <div className="w-6 h-6 hover:scale-110 transition-transform grayscale-[0.4] hover:grayscale-0 cursor-help">
-                {TECH_LOGOS[tech] ? (
-                  <img
-                    src={TECH_LOGOS[tech]}
-                    alt={tech}
-                    className="w-full h-full object-contain drop-shadow-sm"
-                  />
-                ) : (
-                  <span className="text-[10px] bg-zinc-800 px-1 py-0.5 rounded text-zinc-400 font-mono border border-zinc-700">
-                    {tech.substring(0, 2)}
-                  </span>
-                )}
+        {techs.length > 0 && (
+          <div className="flex items-center flex-wrap gap-3 mt-auto pt-4 border-t border-zinc-800/50">
+            {techs.map((tech) => (
+              <div
+                key={tech}
+                className="relative group/icon flex justify-center items-center"
+              >
+                <div className="w-6 h-6 hover:scale-110 transition-transform grayscale-[0.4] hover:grayscale-0 cursor-help">
+                  {TECH_LOGOS[tech] ? (
+                    <img
+                      src={TECH_LOGOS[tech]}
+                      alt={tech}
+                      className="w-full h-full object-contain drop-shadow-sm"
+                    />
+                  ) : (
+                    <span className="text-[10px] bg-zinc-800 px-1 py-0.5 rounded text-zinc-400 font-mono border border-zinc-700">
+                      {tech.substring(0, 2)}
+                    </span>
+                  )}
+                </div>
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-200 text-xs font-medium rounded-md opacity-0 group-hover/icon:opacity-100 transition-all duration-200 translate-y-1 group-hover/icon:translate-y-0 pointer-events-none whitespace-nowrap z-50 shadow-xl">
+                  {tech}
+                  <div className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-zinc-950 border-r border-b border-zinc-800 rotate-45"></div>
+                </div>
               </div>
-              <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 bg-zinc-950 border border-zinc-800 text-zinc-200 text-xs font-medium rounded-md opacity-0 group-hover/icon:opacity-100 transition-all duration-200 translate-y-1 group-hover/icon:translate-y-0 pointer-events-none whitespace-nowrap z-50 shadow-xl">
-                {tech}
-                <div className="absolute -bottom-[5px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-zinc-950 border-r border-b border-zinc-800 rotate-45"></div>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </motion.div>
   );
