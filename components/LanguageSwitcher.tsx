@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -17,6 +18,16 @@ export default function LanguageSwitcher() {
     const pathname = usePathname();
 
     const switchLocale = (newLocale: string) => {
+        if (newLocale === locale) {
+            return;
+        }
+
+        track("locale_change", {
+            from_locale: locale,
+            to_locale: newLocale,
+            pathname,
+        });
+
         const segments = pathname.split("/");
         segments[1] = newLocale;
         router.push(segments.join("/"));

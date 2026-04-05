@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
@@ -59,6 +60,7 @@ export default async function LocaleLayout({
                 <NextIntlClientProvider messages={messages}>
                     {children}
                 </NextIntlClientProvider>
+                <Analytics />
             </body>
         </html>
     );

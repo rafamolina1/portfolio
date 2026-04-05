@@ -2,9 +2,9 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { useMemo, useState } from "react";
+import TrackedLink from "./TrackedLink";
 
 interface ProjectCardProps {
   title: string;
@@ -154,24 +154,28 @@ export default function ProjectCard({
 
         <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity z-30 pointer-events-none group-hover:pointer-events-auto">
           {githubUrl && (
-            <Link
+            <TrackedLink
               href={githubUrl}
               target="_blank"
               rel="noreferrer"
+              eventName="project_github_click"
+              eventProperties={{ location: "projects_grid", project: title }}
               className="p-3 bg-zinc-900/90 rounded-full text-white hover:bg-purple-600 transition-colors border border-zinc-700 shadow-lg backdrop-blur-sm scale-90 hover:scale-105 transition-transform"
             >
               <Github size={22} />
-            </Link>
+            </TrackedLink>
           )}
           {deployUrl && (
-            <Link
+            <TrackedLink
               href={deployUrl}
               target="_blank"
               rel="noreferrer"
+              eventName="project_demo_click"
+              eventProperties={{ location: "projects_grid", project: title }}
               className="p-3 bg-zinc-900/90 rounded-full text-white hover:bg-blue-600 transition-colors border border-zinc-700 shadow-lg backdrop-blur-sm scale-90 hover:scale-105 transition-transform"
             >
               <ExternalLink size={22} />
-            </Link>
+            </TrackedLink>
           )}
         </div>
       </div>

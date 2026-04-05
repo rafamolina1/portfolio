@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectCard";
+import TrackedLink from "@/components/TrackedLink";
 import AboutSection from "@/components/AboutSection";
 import StartupSection from "@/components/StartupSection";
 import InfiniteScrollSkills from "@/components/InfiniteScrollSkills";
@@ -76,15 +77,21 @@ export default async function Home({
                                 href="https://github.com/rafamolina1"
                                 icon={<Github size={20} />}
                                 label="GitHub"
+                                eventName="github_click"
+                                eventProperties={{ location: "hero", destination: "profile", locale }}
                             />
                             <SocialButton
                                 href="https://www.linkedin.com/in/rafael-molina-049a43247/"
                                 icon={<Linkedin size={20} />}
                                 label="LinkedIn"
+                                eventName="linkedin_click"
+                                eventProperties={{ location: "hero", locale }}
                             />
 
-                            <Link
+                            <TrackedLink
                                 href={contactHref}
+                                eventName="email_click"
+                                eventProperties={{ location: "hero", locale }}
                                 className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-purple-500/50 transition-all group"
                             >
                                 <span className="text-zinc-400 group-hover:text-purple-400 transition-colors">
@@ -93,12 +100,14 @@ export default async function Home({
                                 <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                     {t("hero.email")}
                                 </span>
-                            </Link>
+                            </TrackedLink>
 
                             {locale === "pt-BR" ? (
-                                <a
+                                <TrackedLink
                                     href="/curriculo-ptbr-rafael-molina.pdf"
                                     download="Curriculo-PTBR-Rafael-Molina.pdf"
+                                    eventName="resume_download"
+                                    eventProperties={{ locale, document: "curriculo-ptbr" }}
                                     className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-cyan-500/50 transition-all group"
                                 >
                                     <span className="text-zinc-400 group-hover:text-cyan-400 transition-colors">
@@ -107,11 +116,13 @@ export default async function Home({
                                     <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                         Curriculo PT-BR
                                     </span>
-                                </a>
+                                </TrackedLink>
                             ) : (
-                                <a
+                                <TrackedLink
                                     href="/curriculo-ingles-rafael-molina.pdf"
                                     download="Resume-EN-Rafael-Molina.pdf"
+                                    eventName="resume_download"
+                                    eventProperties={{ locale, document: "resume-en" }}
                                     className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-blue-500/50 transition-all group"
                                 >
                                     <span className="text-zinc-400 group-hover:text-blue-400 transition-colors">
@@ -120,7 +131,7 @@ export default async function Home({
                                     <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                         Resume EN
                                     </span>
-                                </a>
+                                </TrackedLink>
                             )}
                         </div>
                     </div>
@@ -166,12 +177,14 @@ export default async function Home({
                 <section id="projects" className="pt-10">
                     <div className="flex items-center justify-between mb-12">
                         <h2 className="text-3xl font-bold">{t("projects.title")}</h2>
-                        <Link
+                        <TrackedLink
                             href="https://github.com/rafamolina1"
+                            eventName="github_click"
+                            eventProperties={{ location: "projects_header", destination: "profile", locale }}
                             className="text-sm text-purple-400 underline-animate"
                         >
                             {t("projects.viewAll")}
-                        </Link>
+                        </TrackedLink>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -253,12 +266,14 @@ export default async function Home({
                         >
                             {t("footer.projects")}
                         </Link>
-                        <Link
+                        <TrackedLink
                             href={contactHref}
+                            eventName="email_click"
+                            eventProperties={{ location: "footer", locale }}
                             className="hover:text-zinc-300 transition-colors"
                         >
                             {t("footer.contact")}
-                        </Link>
+                        </TrackedLink>
                     </div>
                 </footer>
             </div>
@@ -270,22 +285,28 @@ function SocialButton({
     href,
     icon,
     label,
+    eventName,
+    eventProperties,
 }: {
     href: string;
     icon: React.ReactNode;
     label: string;
+    eventName: string;
+    eventProperties?: Record<string, string | number | boolean | null | undefined>;
 }) {
     return (
-        <Link
+        <TrackedLink
             href={href}
             target="_blank"
             rel="noreferrer"
+            eventName={eventName}
+            eventProperties={eventProperties}
             className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-[#00C6FF]/50 transition-all group"
         >
             <span className="text-zinc-400 group-hover:text-[#00C6FF] transition-colors">
                 {icon}
             </span>
             <span className="font-medium text-sm">{label}</span>
-        </Link>
+        </TrackedLink>
     );
 }

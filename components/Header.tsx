@@ -1,5 +1,6 @@
 "use client";
 
+import { track } from "@vercel/analytics";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -65,6 +66,7 @@ export default function Header({ contactHref }: HeaderProps) {
 
         <Link
           href={contactHref}
+          onClick={() => track("email_click", { location: "header" })}
           className="ml-2 shrink-0 px-5 py-2 text-sm font-medium bg-zinc-100 text-zinc-900 rounded-full hover:bg-white hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
         >
           {t("contact")}
