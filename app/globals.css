@@ -13,12 +13,30 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: inherit;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(circle at center, black 28%, transparent 88%);
+  opacity: 0.22;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
 }
 
 @keyframes infinite-scroll {
@@ -65,25 +83,6 @@ html {
   }
 }
 
-.animate-shimmer {
-  background-size: 1000px 100%;
-  animation: shimmer 3s infinite;
-}
-
-/* Glow Pulse Animation */
-@keyframes glow-pulse {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(34, 197, 94, 0.3), inset 0 0 5px rgba(34, 197, 94, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(34, 197, 94, 0.6), inset 0 0 10px rgba(34, 197, 94, 0.2);
-  }
-}
-
-.animate-glow-pulse {
-  animation: glow-pulse 2s ease-in-out infinite;
-}
-
 /* Floating Orbs */
 @keyframes float-slow-1 {
   0%, 100% {
@@ -115,31 +114,12 @@ html {
   }
 }
 
-@keyframes float-slow-3 {
-  0%, 100% {
-    transform: translate(0, 0);
-  }
-  25% {
-    transform: translate(25px, 45px);
-  }
-  50% {
-    transform: translate(-35px, -25px);
-  }
-  75% {
-    transform: translate(-20px, 40px);
-  }
-}
-
 .animate-float-slow-1 {
   animation: float-slow-1 15s ease-in-out infinite;
 }
 
 .animate-float-slow-2 {
   animation: float-slow-2 18s ease-in-out infinite;
-}
-
-.animate-float-slow-3 {
-  animation: float-slow-3 20s ease-in-out infinite;
 }
 
 /* Smooth Underline */
@@ -163,166 +143,16 @@ html {
   width: 100%;
 }
 
-/* Background Color Shift Animation */
-@keyframes gradient-shift {
-  0% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 25%, #0a0a0a 50%, #0a0a0a 100%);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  25% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #16213e 25%, #0f3460 50%, #0a0a0a 100%);
-  }
-  50% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #2d0a4e 25%, #1a0a2e 50%, #0a0a0a 100%);
-  }
-  75% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #0a2a3e 25%, #16213e 50%, #0a0a0a 100%);
-  }
-  100% {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a2e 25%, #0a0a0a 50%, #0a0a0a 100%);
-  }
-}
 
-.animate-gradient-shift {
-  animation: gradient-shift 8s ease-in-out infinite;
-}
-
-/* Orb Color Cycling */
-@keyframes color-cycle-1 {
-  0% {
-    background-color: rgb(139, 92, 246 / 0.15);
-    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
-  33% {
-    background-color: rgb(6, 182, 212 / 0.15);
-    box-shadow: 0 0 60px rgba(6, 182, 212, 0.4);
-  }
-  66% {
-    background-color: rgb(236, 72, 153 / 0.15);
-    box-shadow: 0 0 60px rgba(236, 72, 153, 0.4);
-  }
-  100% {
-    background-color: rgb(139, 92, 246 / 0.15);
-    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
-  }
-}
-
-@keyframes color-cycle-2 {
-  0% {
-    background-color: rgb(6, 182, 212 / 0.15);
-    box-shadow: 0 0 60px rgba(6, 182, 212, 0.4);
-  }
-  33% {
-    background-color: rgb(236, 72, 153 / 0.15);
-    box-shadow: 0 0 60px rgba(236, 72, 153, 0.4);
-  }
-  66% {
-    background-color: rgb(139, 92, 246 / 0.15);
-    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
-  }
-  100% {
-    background-color: rgb(6, 182, 212 / 0.15);
-    box-shadow: 0 0 60px rgba(6, 182, 212, 0.4);
-  }
-}
-
-@keyframes color-cycle-3 {
-  0% {
-    background-color: rgb(236, 72, 153 / 0.15);
-    box-shadow: 0 0 60px rgba(236, 72, 153, 0.4);
-  }
-  33% {
-    background-color: rgb(139, 92, 246 / 0.15);
-    box-shadow: 0 0 60px rgba(139, 92, 246, 0.4);
-  }
-  66% {
-    background-color: rgb(6, 182, 212 / 0.15);
-    box-shadow: 0 0 60px rgba(6, 182, 212, 0.4);
-  }
-  100% {
-    background-color: rgb(236, 72, 153 / 0.15);
-    box-shadow: 0 0 60px rgba(236, 72, 153, 0.4);
-  }
-}
-
-.animate-color-cycle-1 {
-  animation: color-cycle-1 9s ease-in-out infinite;
-}
-
-.animate-color-cycle-2 {
-  animation: color-cycle-2 9s ease-in-out infinite;
-  animation-delay: 3s;
-}
-
-.animate-color-cycle-3 {
-  animation: color-cycle-3 9s ease-in-out infinite;
-  animation-delay: 6s;
-}
-
-/* Color Shift Animations for Orbs */
-@keyframes color-shift-1 {
-  0%, 100% {
-    background-color: rgb(139, 92, 246, 0.08);
-  }
-  33% {
-    background-color: rgb(6, 182, 212, 0.08);
-  }
-  66% {
-    background-color: rgb(236, 72, 153, 0.08);
-  }
-}
-
-@keyframes color-shift-2 {
-  0%, 100% {
-    background-color: rgb(6, 182, 212, 0.08);
-  }
-  33% {
-    background-color: rgb(236, 72, 153, 0.08);
-  }
-  66% {
-    background-color: rgb(139, 92, 246, 0.08);
-  }
-}
-
-@keyframes color-shift-3 {
-  0%, 100% {
-    background-color: rgb(236, 72, 153, 0.08);
-  }
-  33% {
-    background-color: rgb(139, 92, 246, 0.08);
-  }
-  66% {
-    background-color: rgb(6, 182, 212, 0.08);
-  }
-}
-
-.animate-color-shift-1 {
-  animation: color-shift-1 8s ease-in-out infinite;
-}
-
-.animate-color-shift-2 {
-  animation: color-shift-2 8s ease-in-out infinite;
-  animation-delay: 2.67s;
-}
-
-.animate-color-shift-3 {
-  animation: color-shift-3 8s ease-in-out infinite;
-  animation-delay: 5.34s;
-}
-
-/* Mesh Gradient Background Shift */
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-gradient-shift {
-  background-size: 200% 200%;
-  animation: gradient-shift 15s ease infinite;
 }

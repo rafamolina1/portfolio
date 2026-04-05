@@ -1,7 +1,8 @@
 {
     "hero": {
         "available": "Disponível para novos desafios",
-        "tagline": "Desenvolvedor Fullstack focado em construir SaaS modernos, interfaces fluidas e código limpo.",
+        "tagline": "Desenvolvedor Fullstack júnior com experiência prática em produtos reais, do frontend ao backend.",
+        "focus": "Construo aplicações com React, Next.js, Node.js e bancos de dados, com atenção a experiência do usuário, lógica de negócio e entrega em produção.",
         "ociBadge": "Certificado OCI",
         "email": "Email",
         "resume": "Baixar currículo"
@@ -18,35 +19,35 @@
         "title": "Projetos",
         "viewAll": "Ver todos no GitHub →",
         "barber": {
-            "description": "💈 Problema: barbearias pequenas e médias têm dificuldade para organizar horários, evitar conflitos e manter histórico de clientes.\n\n✅ Solução: plataforma que centraliza\n• agendamentos em tempo real\n• cadastro de clientes\n• histórico de serviços\n• controle operacional do negócio\n• administração de conversas e atendimento via Chatwoot\n• IA para entender mensagens dos clientes e apoiar o fluxo de atendimento\n\n🧰 Stack: Next.js, TypeScript, PostgreSQL e Tailwind.\n⚙️ Diferenciais: arquitetura para múltiplos estabelecimentos, dados orientados à performance e separação clara entre frontend e backend."
+            "description": "💈 Sistema para gestão de barbearias com foco em operação diária, agendamento e relacionamento com clientes.\n\n🧩 Resolve problemas comuns de conflito de horários, histórico disperso e atendimento descentralizado.\n\n⚙️ Destaques:\n• agendamento em tempo real\n• cadastro de clientes e histórico de serviços\n• gestão de conversas via Chatwoot\n• apoio de IA para interpretar mensagens e acelerar o atendimento\n\n🧰 Stack: Next.js, TypeScript, PostgreSQL e Tailwind.\n🚀 Ponto forte: estrutura pensada para múltiplos estabelecimentos, com separação clara entre interface, regras de negócio e dados."
         },
         "habit": {
-            "description": "🧠 Aplicação inteligente que combina monitoramento de hábitos com inteligência artificial, ajudando usuários a identificar padrões e evoluir de forma consistente.\n\n🧩 Problema: aplicativos tradicionais de hábitos não oferecem acompanhamento personalizado, o que dificulta a identificação de padrões e a manutenção da consistência ao longo do tempo.\n\n💡 Solução: integração de tracking de hábitos com um assistente de IA, permitindo:\n• acompanhamento contínuo de hábitos\n• análise de comportamento do usuário\n• geração de orientações personalizadas\n• evolução baseada em contexto\n\n⚙️ Tecnologias:\n• React (frontend)\n• API de IA da Groq\n• banco de dados MongoDB\n• backend para gerenciamento de contexto e requisições\n\n🚀 Diferenciais técnicos:\n• persistência de histórico de hábitos e interações\n• integração com IA para respostas em tempo real\n• estrutura de prompts para personalização do coaching\n• gerenciamento de contexto por usuário\n• base para análise comportamental contínua\n\n📈 Impacto:\n• orientação personalizada para cada usuário\n• maior consistência no acompanhamento de hábitos\n• possibilidade de evolução contínua com base em dados"
+            "description": "🧠 Aplicação de acompanhamento de hábitos com camada de IA para gerar contexto e orientação mais personalizada.\n\n🧩 A proposta foi sair do checklist simples e criar uma experiência que ajudasse o usuário a entender padrões de comportamento.\n\n⚙️ Destaques:\n• registro contínuo de hábitos\n• histórico persistido por usuário\n• respostas em tempo real com IA\n• contexto acumulado para recomendações mais relevantes\n\n🧰 Stack: React, MongoDB, backend próprio e API da Groq.\n🚀 Ponto forte: integração entre tracking, contexto e prompts para entregar uma experiência menos genérica."
         },
         "market": {
-            "description": "📊 Plataforma de análise financeira em tempo real, desenvolvida para oferecer uma experiência moderna e performática na visualização e gestão de ativos.\n\n🧩 Problema: investidores precisam acompanhar múltiplos ativos em tempo real, mas as ferramentas disponíveis costumam ser lentas, complexas ou fragmentadas.\n\n💡 Solução: dashboard financeiro que centraliza dados de mercado em uma interface rápida e intuitiva, permitindo:\n• acompanhamento de portfólio em tempo real\n• visualização de lucros e prejuízos (P&L)\n• análise de ativos como criptomoedas, moedas e commodities\n\n⚙️ Tecnologias:\n• React 18 (Hooks + Context API)\n• WebSocket (integração com dados em tempo real)\n• Chart.js (visualização de dados)\n• Vite (build e performance)\n• PWA (Progressive Web App)\n\n🚀 Diferenciais técnicos:\n• atualização de dados em tempo real via WebSocket\n• arquitetura multi-contexto para gerenciamento de estado\n• otimizações de performance (lazy loading, memoization)\n• exportação de relatórios em PDF e CSV\n• suporte a múltiplos idiomas e moedas\n• estrutura resiliente com tratamento de erros\n\n📈 Impacto:\n• permite tomada de decisão mais rápida baseada em dados\n• centraliza informações financeiras em uma única interface\n• oferece experiência fluida mesmo com dados em tempo real"
+            "description": "📊 Dashboard financeiro em tempo real para acompanhar ativos, portfólio e variação de mercado em uma interface única.\n\n🧩 O foco do projeto foi lidar com atualização frequente de dados sem comprometer a experiência de uso.\n\n⚙️ Destaques:\n• dados em tempo real com WebSocket\n• visualização de P&L e acompanhamento de ativos\n• arquitetura de estado organizada por contexto\n• exportação de relatórios e suporte a múltiplas moedas\n\n🧰 Stack: React 18, Chart.js, WebSocket e Vite.\n🚀 Ponto forte: equilíbrio entre interface responsiva e fluxo contínuo de dados."
         },
         "km": {
-            "description": "🚚 Plataforma de gestão financeira desenvolvida para motoristas autônomos, permitindo o cálculo de rentabilidade de fretes e acompanhamento da saúde financeira em tempo real.\n\n🧩 Problema: motoristas de carga frequentemente dependem de cálculos manuais ou planilhas complexas para entender a lucratividade de suas viagens, o que dificulta a tomada de decisão e o controle financeiro.\n\n💡 Solução: aplicação que automatiza o cálculo de rentabilidade, permitindo:\n• cálculo instantâneo de lucro líquido por frete\n• visualização da margem de lucro percentual\n• organização do fluxo financeiro por período\n• análise de desempenho da operação\n\n⚙️ Tecnologias:\n• Next.js (App Router)\n• TypeScript\n• Tailwind CSS\n• Supabase (banco de dados e autenticação)\n• jsPDF (geração de relatórios)\n\n🚀 Diferenciais técnicos:\n• autenticação segura via Magic Link\n• persistência de dados em tempo real com backend integrado\n• estrutura pensada para escalabilidade e uso contínuo\n• geração de relatórios profissionais em PDF e CSV\n• interface otimizada para uso rápido em ambiente real\n\n📈 Impacto:\n• substitui planilhas e cálculos manuais\n• permite decisões mais rápidas e assertivas\n• ajuda motoristas a identificar rotas mais lucrativas\n• melhora o controle financeiro da operação"
+            "description": "🚚 Aplicação para cálculo de rentabilidade de fretes e acompanhamento financeiro de motoristas autônomos.\n\n🧩 O problema central era substituir planilhas e contas manuais por uma ferramenta simples para tomada de decisão no dia a dia.\n\n⚙️ Destaques:\n• cálculo de lucro líquido por frete\n• leitura rápida de margem percentual\n• organização financeira por período\n• relatórios em PDF e CSV\n\n🧰 Stack: Next.js, TypeScript, Tailwind, Supabase e jsPDF.\n🚀 Ponto forte: interface objetiva para uso operacional, com autenticação e persistência integradas."
         },
         "watchDog": {
-            "description": "👀 Plataforma full stack de monitoramento de uptime construída para cadastrar endpoints, executar checagens agendadas, persistir estado em Redis e disparar alertas automatizados de indisponibilidade via n8n.\n\n🧩 Solução:\n• dashboard em React para gerenciamento dos monitores\n• API Fastify com tipagem estrita em TypeScript\n• fluxo de monitoramento com Redis\n• proteção contra execução duplicada do worker\n• infraestrutura local com Docker\n• pipelines de CI/CD e deploy validado no Railway\n• notificações por e-mail via Brevo integradas ao n8n\n\n⚙️ Stack:\n• Frontend: React, TypeScript, Vite e Tailwind CSS\n• Backend: Node.js, Fastify e TypeScript\n• Persistência de estado: Redis com ioredis\n• Agendamento: node-cron\n• Automação: n8n via Webhook\n• Infraestrutura: Docker, Docker Compose e Railway"
+            "description": "👀 Plataforma full stack de monitoramento de uptime para cadastro de endpoints, execução de checagens agendadas e disparo de alertas automatizados.\n\n🧩 O projeto foi construído para exercitar backend orientado a jobs, persistência em Redis e integração entre serviços.\n\n⚙️ Destaques:\n• dashboard em React para gerenciamento dos monitores\n• API em Fastify com TypeScript\n• workers protegidos contra execução duplicada\n• alertas por e-mail via Brevo e n8n\n• infraestrutura local com Docker e deploy validado no Railway\n\n🧰 Stack: React, Node.js, Fastify, Redis, n8n e Docker.\n🚀 Ponto forte: fluxo completo de monitoramento com automação e separação clara de responsabilidades."
         }
     },
     "about": {
         "title": "Sobre",
         "titleHighlight": "mim",
         "experience": "Experiência",
-        "bio1": "Desenvolvedor Fullstack com foco em criação de produtos, automação e integrações com IA, utilizando tecnologias como",
-        "bio2": "Flutter, React, Node.js e Laravel",
-        "bio3": ".",
-        "bio4": "Cofundador da",
+        "bio1": "Desenvolvedor Fullstack júnior com experiência prática em",
+        "bio2": "React, Next.js, Node.js, Flutter e Laravel",
+        "bio3": ", construindo aplicações completas com foco em produto, integrações e base técnica consistente.",
+        "bio4": "Também sou cofundador da",
         "bio5": "Autonomus",
-        "bio6": ", startup de marketplace mobile que conecta clientes a prestadores de serviço, onde liderei o desenvolvimento completo da aplicação com Flutter e backend em Laravel, incluindo publicação nas lojas ",
+        "bio6": ", startup de marketplace mobile em que participei do desenvolvimento ponta a ponta: aplicativo em Flutter, backend em Laravel e publicação nas lojas ",
         "bio7": "App Store e Google Play",
-        "bio8": ", e o projeto foi semifinalista no reality show Rocket, da Globo, com episódio disponível na Globoplay e matéria publicada pela emissora, validando seu potencial de impacto e inovação.",
-        "bio9": "Experiência prática construindo aplicações completas, do backend ao mobile",
-        "bio10": ", com integração a APIs externas e foco em lógica de negócio. Já desenvolvi sistemas voltados à tomada de decisão, como cálculo de viabilidade de fretes e automações com IA aplicadas a atendimento via WhatsApp. Também atuei em ambiente internacional remoto utilizando Node.js, desenvolvendo soluções para otimização operacional e trabalhando em inglês no dia a dia. Possuo certificação C2 (proficiente) pela Universidade de Cambridge. Busco sempre entender profundamente o problema antes de desenvolver a solução, com foco em eficiência, simplicidade e impacto real.",
+        "bio8": ". O projeto foi semifinalista no Rocket, da Globo, o que trouxe validação pública para a proposta.",
+        "bio9": "Além da startup, já desenvolvi projetos próprios e acadêmicos voltados a operação, automação e tomada de decisão",
+        "bio10": ", incluindo monitoramento, gestão financeira e fluxos com IA. Também atuei em contexto remoto internacional usando Node.js e inglês no dia a dia. Tenho certificação C2 pela Universidade de Cambridge e sigo evoluindo como engenheiro com foco em clareza, consistência e entrega.",
         "rocketLabel": "Rocket Startup Reality (Globo)",
         "education": "Educação",
         "degree": "Análise e Des. Sistemas",
@@ -58,7 +59,7 @@
         "oci": "Oracle Cloud Infrastructure (OCI)",
         "ociCert": "Certificação concluída em Oracle Cloud Infrastructure.",
         "fullstack": "Fullstack Developer",
-        "fullstackDesc": "Construindo arquiteturas escaláveis e seguras, integrando bancos de dados modernos com interfaces fluidas e alta performance."
+        "fullstackDesc": "Desenvolvendo aplicações completas com boas decisões de arquitetura, preocupação com manutenção e foco em resolver problemas reais."
     },
     "contact": {
         "title": "Vamos conversar?",
@@ -71,15 +72,15 @@
         "tabStartup": "Autonomus",
         "tabMedia": "Destaque",
         "startupHeader": "Autonomus (Startup)",
-        "startupSubtitle": "Minha startup: plataforma completa para conexão entre clientes e prestadores de serviço, com foco em segurança, eficiência e escalabilidade.",
+        "startupSubtitle": "Startup de marketplace mobile em que atuei no desenvolvimento do produto e da base técnica, conectando clientes e prestadores de serviço.",
         "startupStatus": "Em desenvolvimento ativo",
         "problemTitle": "Problema",
         "problemDesc": "A contratação de serviços autônomos ainda é fragmentada, insegura e pouco eficiente. Clientes enfrentam dificuldades para encontrar profissionais confiáveis, enquanto prestadores têm pouca visibilidade e acesso a oportunidades.",
         "solutionTitle": "Solução",
         "solution1": "conexão direta entre clientes e prestadores",
-        "solution2": "sistema organizado de contratação de serviços",
-        "solution3": "maior segurança no processo",
-        "solution4": "experiência simples e acessível",
+        "solution2": "fluxo mais organizado para contratação",
+        "solution3": "camada digital para dar mais segurança ao processo",
+        "solution4": "experiência simples para quem contrata e para quem presta",
         "architectureTitle": "Arquitetura do sistema",
         "architecture1": "Aplicativo do cliente",
         "architecture2": "Aplicativo do prestador",
@@ -92,16 +93,16 @@
         "tech4": "APIs REST",
         "tech5": "Docker para ambiente local",
         "diffTitle": "Diferenciais técnicos",
-        "diff1": "arquitetura cliente-servidor bem definida",
-        "diff2": "separação de responsabilidades entre aplicações",
-        "diff3": "sistema preparado para crescimento",
-        "diff4": "comunicação entre múltiplos serviços",
-        "diff5": "base sólida para escalabilidade",
+        "diff1": "aplicativos separados para cliente e prestador",
+        "diff2": "backend centralizando regras de negócio e API",
+        "diff3": "painel web para operação e administração",
+        "diff4": "ambiente local com Docker para desenvolvimento consistente",
+        "diff5": "estrutura pensada para evoluir sem acoplamento excessivo",
         "impactTitle": "Impacto",
         "impact1": "facilita a contratação de serviços",
         "impact2": "aumenta a visibilidade de trabalhadores autônomos",
-        "impact3": "melhora a organização e segurança das contratações",
-        "impact4": "cria base para expansão como plataforma real",
+        "impact3": "organiza melhor a operação dos dois lados do marketplace",
+        "impact4": "cria base para validação e evolução do produto",
         "educationImpactTitle": "Impacto educacional e social",
         "educationImpactSubtitle": "Professor de robótica pela UTFPR",
         "educationImpactDesc": "Atuei como professor de robótica pela UTFPR, ensinando lógica de programação e pensamento computacional para crianças de escolas públicas. Planejei e conduzi atividades práticas com LEGO e Scratch focadas em resolução de problemas.",
@@ -117,7 +118,7 @@
         "cacomp3": "incentivo a aprendizado prático e networking entre estudantes",
         "cacomp4": "fortalecimento do engajamento estudantil em Ciência da Computação",
         "recognitionTitle": "Reconhecimento",
-        "recognitionDesc": "A Autonomus foi destaque na mídia nacional.",
+        "recognitionDesc": "A Autonomus foi apresentada na RPC/Globo no programa Rocket Startup.",
         "recognitionCta": "Ver mais na aba Destaque",
         "mediaTitle": "Destaque na mídia",
         "mediaBadge1": "Featured on Globo",
@@ -131,7 +132,7 @@
         "media4": "digitalização de um mercado ainda pouco estruturado",
         "mediaButton": "Ver matéria completa na Globo",
         "mediaCardTitle": "Cartão de Autoridade",
-        "mediaCardDesc": "Essa aparição reforça tração, validação pública e potencial real de mercado para a Autonomus.",
+        "mediaCardDesc": "A participação trouxe validação pública para o projeto e reforçou o potencial da proposta.",
         "mediaCardBack": "Voltar para aba Autonomus"
     },
     "footer": {

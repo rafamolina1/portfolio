@@ -4,11 +4,11 @@ import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 
 const LOCALES = [
-    { code: "pt-BR", flag: "br", name: "Português" },
-    { code: "en", flag: "us", name: "English" },
-    { code: "it", flag: "it", name: "Italiano" },
-    { code: "es", flag: "es", name: "Español" },
-    { code: "fr", flag: "fr", name: "Français" },
+    { code: "pt-BR", short: "PT", name: "Português" },
+    { code: "en", short: "EN", name: "English" },
+    { code: "it", short: "IT", name: "Italiano" },
+    { code: "es", short: "ES", name: "Español" },
+    { code: "fr", short: "FR", name: "Français" },
 ];
 
 export default function LanguageSwitcher() {
@@ -29,16 +29,14 @@ export default function LanguageSwitcher() {
                     key={l.code}
                     onClick={() => switchLocale(l.code)}
                     title={l.name}
-                    className={`w-6 h-4 rounded-sm overflow-hidden transition-all cursor-pointer ${locale === l.code
-                            ? "opacity-100 scale-110 ring-1 ring-zinc-500"
+                    aria-label={l.name}
+                    aria-pressed={locale === l.code}
+                    className={`flex h-8 min-w-8 items-center justify-center rounded-full border px-2 text-[10px] font-semibold tracking-[0.16em] transition-all cursor-pointer ${locale === l.code
+                            ? "border-zinc-500 bg-zinc-100 text-zinc-900"
                             : "opacity-35 hover:opacity-80 hover:scale-105"
                         }`}
                 >
-                    <img
-                        src={`https://flagcdn.com/${l.flag}.svg`}
-                        alt={l.name}
-                        className="w-full h-full object-cover"
-                    />
+                    {l.short}
                 </button>
             ))}
         </div>

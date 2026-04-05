@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
 const inter = Inter({ subsets: ["latin"] });
+export const dynamicParams = false;
 
 export async function generateMetadata({
     params,
@@ -49,7 +50,8 @@ export default async function LocaleLayout({
         notFound();
     }
 
-    const messages = await getMessages();
+    setRequestLocale(locale);
+    const messages = await getMessages({ locale });
 
     return (
         <html lang={locale} className="scroll-smooth">

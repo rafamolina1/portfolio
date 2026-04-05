@@ -1,116 +1,77 @@
-"use client";
-
-import { useState } from "react";
 import Header from "@/components/Header";
 import ProjectCard from "@/components/ProjectCard";
 import AboutSection from "@/components/AboutSection";
 import StartupSection from "@/components/StartupSection";
 import InfiniteScrollSkills from "@/components/InfiniteScrollSkills";
-import ContactModal from "@/components/ContactModal";
-import LanguageSplash from "@/components/LanguageSplash";
-import EntrySplash from "@/components/EntrySplash";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default function Home() {
-    const [isContactOpen, setIsContactOpen] = useState(false);
-    const t = useTranslations();
-    const locale = useLocale();
+const CORE_STACK = ["React", "Next.js", "Node.js", "TypeScript", "Docker", "IA"];
+const CONTACT_EMAIL = "rafaeloliveiramolina@gmail.com";
+const PROFILE_IMAGE_SRC = "/profilepic.jpeg";
+
+export default async function Home({
+    params,
+}: {
+    params: Promise<{ locale: string }>;
+}) {
+    const { locale } = await params;
+    setRequestLocale(locale);
+    const t = await getTranslations({ locale });
+    const contactHref = `mailto:${CONTACT_EMAIL}`;
 
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden relative animate-gradient-shift">
-            <EntrySplash />
-            <Header onOpenContact={() => setIsContactOpen(true)} />
-            <ContactModal
-                isOpen={isContactOpen}
-                onClose={() => setIsContactOpen(false)}
-            />
-            <LanguageSplash />
+        <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden relative">
+            <Header contactHref={contactHref} />
 
             <div className="fixed inset-0 pointer-events-none z-0">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a0a] via-purple-950/20 to-[#0a0a0a] animate-gradient-shift" />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.08),transparent_28%),radial-gradient(circle_at_top_right,rgba(249,115,22,0.08),transparent_25%),linear-gradient(180deg,#09090b_0%,#0a0a0a_45%,#09090b_100%)]" />
             </div>
 
-            <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-[1000px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0 animate-pulse" />
-
-            <div className="fixed top-20 left-10 w-72 h-72 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-1 animate-color-cycle-1" />
-            <div className="fixed top-1/3 right-20 w-96 h-96 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-2 animate-color-cycle-2" />
-            <div className="fixed bottom-0 left-1/3 w-80 h-80 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-3 animate-color-cycle-3" />
-            
-            <div className="fixed top-1/2 right-1/4 w-64 h-64 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-2 animate-color-cycle-1" />
-            <div className="fixed bottom-1/3 left-1/4 w-72 h-72 blur-3xl rounded-full pointer-events-none z-0 animate-float-slow-1 animate-color-cycle-3" />
+            <div className="fixed top-8 left-[8%] h-64 w-64 rounded-full bg-cyan-500/10 blur-[110px] pointer-events-none z-0 motion-safe:animate-float-slow-1" />
+            <div className="fixed bottom-10 right-[10%] h-72 w-72 rounded-full bg-orange-500/10 blur-[120px] pointer-events-none z-0 motion-safe:animate-float-slow-2" />
 
             <div className="max-w-5xl mx-auto px-6 py-20 relative z-10">
                 <section
                     id="home"
                     className="flex flex-col-reverse md:flex-row items-center gap-12 mb-32 pt-20"
                 >
-                    <div className="flex-1 space-y-6 text-center md:text-left">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/50 border border-zinc-800 text-sm text-zinc-400 animate-glow-pulse"
-                        >
+                    <div className="flex-1 space-y-7 text-center md:text-left">
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/70 border border-zinc-800 text-sm text-zinc-300">
                             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
                             {t("hero.available")}
-                        </motion.div>
+                        </div>
 
-                        <motion.h1
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
-                            whileHover={{ y: -4, scale: 1.01 }}
-                            className="text-5xl md:text-7xl font-extrabold tracking-tight"
-                        >
-                            <motion.span
-                                animate={{
-                                    y: [0, -5, 0],
-                                    scale: [1, 1.02, 1],
-                                }}
-                                transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-                                className="inline-block will-change-transform"
-                            >
-                                Rafael
-                            </motion.span>{" "}
+                        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance">
+                            <span className="inline-block">Rafael</span>{" "}
                             <br />
-                            <motion.span
-                                animate={{
-                                    y: [0, -4, 0],
-                                    scale: [1, 1.025, 1],
-                                }}
-                                transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-                                className="inline-block will-change-transform text-transparent bg-clip-text bg-gradient-to-r from-[#00C6FF] via-[#8B5CF6] to-[#00C6FF] animate-shimmer"
-                            >
+                            <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-white to-orange-300">
                                 Molina.
-                            </motion.span>
-                        </motion.h1>
+                            </span>
+                        </h1>
 
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.3 }}
-                            whileHover={{ y: -2 }}
-                            className="text-xl text-zinc-400 max-w-lg mx-auto md:mx-0"
-                        >
-                            <motion.span
-                                animate={{ opacity: [0.75, 1, 0.75] }}
-                                transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-                                className="inline-block"
-                            >
-                                {t("hero.tagline")}
-                            </motion.span>
-                        </motion.p>
+                        <p className="text-xl text-zinc-300 max-w-2xl mx-auto md:mx-0">
+                            {t("hero.tagline")}
+                        </p>
 
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.4 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4"
-                        >
+                        <p className="max-w-2xl mx-auto md:mx-0 text-sm md:text-base text-zinc-400 leading-7">
+                            {t("hero.focus")}
+                        </p>
+
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                            {CORE_STACK.map((item) => (
+                                <span
+                                    key={item}
+                                    className="rounded-full border border-zinc-800 bg-zinc-900/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.16em] text-zinc-300"
+                                >
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-4">
                             <SocialButton
                                 href="https://github.com/rafamolina1"
                                 icon={<Github size={20} />}
@@ -122,10 +83,8 @@ export default function Home() {
                                 label="LinkedIn"
                             />
 
-                            <motion.button
-                                onClick={() => setIsContactOpen(true)}
-                                whileHover={{ y: -6, scale: 1.03 }}
-                                whileTap={{ scale: 0.97 }}
+                            <Link
+                                href={contactHref}
                                 className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-purple-500/50 transition-all group"
                             >
                                 <span className="text-zinc-400 group-hover:text-purple-400 transition-colors">
@@ -134,14 +93,12 @@ export default function Home() {
                                 <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                     {t("hero.email")}
                                 </span>
-                            </motion.button>
+                            </Link>
 
                             {locale === "pt-BR" ? (
-                                <motion.a
+                                <a
                                     href="/curriculo-ptbr-rafael-molina.pdf"
                                     download="Curriculo-PTBR-Rafael-Molina.pdf"
-                                    whileHover={{ y: -6, scale: 1.03 }}
-                                    whileTap={{ scale: 0.97 }}
                                     className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-cyan-500/50 transition-all group"
                                 >
                                     <span className="text-zinc-400 group-hover:text-cyan-400 transition-colors">
@@ -150,13 +107,11 @@ export default function Home() {
                                     <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                         Curriculo PT-BR
                                     </span>
-                                </motion.a>
+                                </a>
                             ) : (
-                                <motion.a
+                                <a
                                     href="/curriculo-ingles-rafael-molina.pdf"
                                     download="Resume-EN-Rafael-Molina.pdf"
-                                    whileHover={{ y: -6, scale: 1.03 }}
-                                    whileTap={{ scale: 0.97 }}
                                     className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-blue-500/50 transition-all group"
                                 >
                                     <span className="text-zinc-400 group-hover:text-blue-400 transition-colors">
@@ -165,28 +120,35 @@ export default function Home() {
                                     <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                         Resume EN
                                     </span>
-                                </motion.a>
+                                </a>
                             )}
-                        </motion.div>
+                        </div>
                     </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        className="relative animate-float"
-                    >
-                        <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full border-2 border-zinc-800 p-2 bg-zinc-900/50">
-                            <div className="w-full h-full rounded-full overflow-hidden relative">
+                    <div className="relative animate-float">
+                        <div className="relative w-[260px] md:w-[320px]">
+                            <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-cyan-500/12 via-transparent to-orange-500/10 blur-2xl" />
+                            <div className="relative overflow-hidden rounded-[2rem] border border-zinc-800/80 bg-zinc-950/80 p-3 shadow-[0_30px_80px_rgba(0,0,0,0.45)]">
+                                <div className="mb-3 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-zinc-500">
+                                    <span>Rafael Molina</span>
+                                    <span>Fullstack</span>
+                                </div>
+                                <div className="relative aspect-[4/5] overflow-hidden rounded-[1.4rem] border border-zinc-800 bg-zinc-900">
                                 <Image
-                                    src="https://github.com/rafamolina1.png"
+                                    src={PROFILE_IMAGE_SRC}
                                     alt="Rafael Molina"
                                     fill
                                     className="object-cover"
                                     priority
                                 />
+                                </div>
+                                <div className="mt-3 flex items-center justify-between rounded-[1rem] border border-zinc-800/80 bg-zinc-900/70 px-4 py-3 text-xs text-zinc-400">
+                                    <span>{t("hero.available")}</span>
+                                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
+                                </div>
                             </div>
                         </div>
-                    </motion.div>
+                    </div>
                 </section>
 
                 <section id="tech" className="mb-32 pt-10">
@@ -213,6 +175,22 @@ export default function Home() {
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <ProjectCard
+                            title="Watch Dog"
+                            description={t("projects.watchDog.description")}
+                            image="/dashboard-filled.png"
+                            techs={[
+                                "React",
+                                "TypeScript",
+                                "Vite",
+                                "Tailwind",
+                                "Node.js",
+                                "Docker",
+                            ]}
+                            githubUrl="https://github.com/rafamolina1/Watch-Dog"
+                            className="md:col-span-2"
+                        />
+
                         <ProjectCard
                             title="Barber Manager"
                             description={t("projects.barber.description")}
@@ -262,21 +240,6 @@ export default function Home() {
                             deployUrl="https://kmdelucro.vercel.app"
                         />
 
-                        <ProjectCard
-                            title="Watch Dog"
-                            description={t("projects.watchDog.description")}
-                            image="/dashboard-filled.png"
-                            techs={[
-                                "React",
-                                "TypeScript",
-                                "Vite",
-                                "Tailwind",
-                                "Node.js",
-                                "Docker",
-                            ]}
-                            githubUrl="https://github.com/rafamolina1/Watch-Dog"
-                        />
-
                     </div>
                 </section>
 
@@ -289,12 +252,12 @@ export default function Home() {
                         >
                             {t("footer.projects")}
                         </Link>
-                        <button
-                            onClick={() => setIsContactOpen(true)}
+                        <Link
+                            href={contactHref}
                             className="hover:text-zinc-300 transition-colors"
                         >
                             {t("footer.contact")}
-                        </button>
+                        </Link>
                     </div>
                 </footer>
             </div>
@@ -312,21 +275,16 @@ function SocialButton({
     label: string;
 }) {
     return (
-        <motion.div
-            whileHover={{ y: -6, scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            transition={{ type: "spring", stiffness: 300, damping: 18 }}
+        <Link
+            href={href}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-[#00C6FF]/50 transition-all group"
         >
-            <Link
-                href={href}
-                target="_blank"
-                className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-[#00C6FF]/50 transition-all group"
-            >
-                <span className="text-zinc-400 group-hover:text-[#00C6FF] transition-colors">
-                    {icon}
-                </span>
-                <span className="font-medium text-sm">{label}</span>
-            </Link>
-        </motion.div>
+            <span className="text-zinc-400 group-hover:text-[#00C6FF] transition-colors">
+                {icon}
+            </span>
+            <span className="font-medium text-sm">{label}</span>
+        </Link>
     );
 }

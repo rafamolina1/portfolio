@@ -1,7 +1,8 @@
 {
     "hero": {
         "available": "Available for new challenges",
-        "tagline": "Fullstack Developer focused on building modern SaaS, fluid interfaces and clean code.",
+        "tagline": "Junior Fullstack Developer with hands-on experience building real products from frontend to backend.",
+        "focus": "I build applications with React, Next.js, Node.js, and databases, with attention to user experience, business logic, and production delivery.",
         "ociBadge": "OCI Certified",
         "email": "Email",
         "resume": "Download resume"
@@ -18,35 +19,35 @@
         "title": "Projects",
         "viewAll": "View all on GitHub →",
         "barber": {
-            "description": "💈 Problem: small and medium barbershops struggle to organize schedules, avoid booking conflicts, and keep customer history.\n\n✅ Solution: platform that centralizes\n• real-time scheduling\n• customer records\n• service history\n• business operations control\n• conversation and support management via Chatwoot\n• AI to understand customer messages and support the service flow\n\n🧰 Stack: Next.js, TypeScript, PostgreSQL, and Tailwind.\n⚙️ Technical highlights: architecture ready for multiple establishments, performance-oriented data design, and clear frontend/backend separation."
+            "description": "💈 Management system for barbershops focused on daily operations, scheduling, and customer relationships.\n\n🧩 It addresses common problems such as booking conflicts, scattered customer history, and fragmented communication.\n\n⚙️ Highlights:\n• real-time scheduling\n• customer records and service history\n• conversation management with Chatwoot\n• AI support to interpret messages and speed up service flow\n\n🧰 Stack: Next.js, TypeScript, PostgreSQL, and Tailwind.\n🚀 Strong point: structure designed for multiple locations, with clear separation between interface, business logic, and data."
         },
         "habit": {
-            "description": "🧠 Intelligent app that combines habit tracking with AI, helping users identify patterns and improve consistency over time.\n\n🧩 Problem: traditional habit apps do not offer personalized follow-up, making it harder to identify behavior patterns and sustain consistency.\n\n💡 Solution: app that integrates habit tracking with an AI assistant, enabling:\n• continuous habit tracking\n• user behavior analysis\n• personalized guidance generation\n• context-based progress\n\n⚙️ Technologies:\n• React (frontend)\n• Groq AI API\n• MongoDB database\n• backend for context and request management\n\n🚀 Technical highlights:\n• persistence of habit and interaction history\n• AI integration for real-time responses\n• prompt structure for personalized coaching\n• per-user context management\n• foundation for continuous behavioral analysis\n\n📈 Impact:\n• personalized guidance for each user\n• better consistency in habit tracking\n• continuous evolution based on data"
+            "description": "🧠 Habit tracking application with an AI layer designed to provide more contextual and personalized guidance.\n\n🧩 The goal was to move beyond a simple checklist and build an experience that helps users understand behavior patterns.\n\n⚙️ Highlights:\n• continuous habit tracking\n• persistent per-user history\n• real-time AI responses\n• accumulated context for more relevant recommendations\n\n🧰 Stack: React, MongoDB, custom backend, and the Groq API.\n🚀 Strong point: integration between tracking, context, and prompts to create a less generic experience."
         },
         "market": {
-            "description": "📊 Real-time financial analytics platform built to deliver a modern and high-performance experience for asset visualization and management.\n\n🧩 Problem: investors need to track multiple assets in real time, but existing tools are often slow, complex, or fragmented.\n\n💡 Solution: financial dashboard that centralizes market data in a fast and intuitive interface, enabling:\n• real-time portfolio tracking\n• profit and loss (P&L) visualization\n• analysis of assets such as crypto, currencies, and commodities\n\n⚙️ Technologies:\n• React 18 (Hooks + Context API)\n• WebSocket (real-time data integration)\n• Chart.js (data visualization)\n• Vite (build and performance)\n• PWA (Progressive Web App)\n\n🚀 Technical highlights:\n• real-time updates through WebSocket\n• multi-context architecture for state management\n• performance optimizations (lazy loading, memoization)\n• PDF and CSV report export\n• multi-language and multi-currency support\n• resilient structure with error handling\n\n📈 Impact:\n• faster data-driven decision making\n• centralized financial information in one interface\n• smooth experience even with real-time updates"
+            "description": "📊 Real-time financial dashboard for tracking assets, portfolio, and market movement in a single interface.\n\n🧩 The main challenge was handling frequent updates without hurting usability.\n\n⚙️ Highlights:\n• real-time data through WebSocket\n• P&L visualization and asset tracking\n• state architecture organized with multiple contexts\n• report export and multi-currency support\n\n🧰 Stack: React 18, Chart.js, WebSocket, and Vite.\n🚀 Strong point: balance between responsive UI and continuous data flow."
         },
         "km": {
-            "description": "🚚 Financial management platform for independent truck drivers, enabling freight profitability calculations and real-time financial health tracking.\n\n🧩 Problem: cargo drivers often rely on manual calculations or complex spreadsheets to understand trip profitability, which hurts decision making and financial control.\n\n💡 Solution: app that automates profitability calculation, enabling:\n• instant net profit calculation per freight\n• profit margin percentage visualization\n• financial flow organization by period\n• operation performance analysis\n\n⚙️ Technologies:\n• Next.js (App Router)\n• TypeScript\n• Tailwind CSS\n• Supabase (database and authentication)\n• jsPDF (report generation)\n\n🚀 Technical highlights:\n• secure authentication via Magic Link\n• real-time data persistence with integrated backend\n• structure designed for scalability and continuous usage\n• professional PDF and CSV report generation\n• interface optimized for quick usage in real-world conditions\n\n📈 Impact:\n• replaces spreadsheets and manual calculations\n• enables faster and more assertive decisions\n• helps drivers identify more profitable routes\n• improves financial control of operations"
+            "description": "🚚 Financial application for independent truck drivers to calculate freight profitability and track operation results.\n\n🧩 The core problem was replacing spreadsheets and manual calculations with a simple decision-making tool.\n\n⚙️ Highlights:\n• net profit calculation per freight\n• quick margin visualization\n• financial organization by period\n• PDF and CSV reports\n\n🧰 Stack: Next.js, TypeScript, Tailwind, Supabase, and jsPDF.\n🚀 Strong point: objective interface for operational usage, with integrated authentication and persistence."
         },
         "watchDog": {
-            "description": "👀 Full stack uptime monitoring platform built to register endpoints, run scheduled checks, persist state in Redis, and trigger automated downtime alerts through n8n.\n\n🧩 Solution:\n• React dashboard for monitor management\n• Fastify API with strict TypeScript typing\n• monitoring flow backed by Redis\n• protection against duplicate worker execution\n• local infrastructure with Docker\n• CI/CD pipelines and validated Railway deployment\n• email notifications through Brevo integrated with n8n\n\n⚙️ Stack:\n• Frontend: React, TypeScript, Vite, and Tailwind CSS\n• Backend: Node.js, Fastify, and TypeScript\n• State storage: Redis with ioredis\n• Scheduling: node-cron\n• Automation: n8n via Webhook\n• Infrastructure: Docker, Docker Compose, and Railway"
+            "description": "👀 Full stack uptime monitoring platform for registering endpoints, running scheduled checks, and sending automated alerts.\n\n🧩 The project was built to exercise job-oriented backend flows, Redis state handling, and service integration.\n\n⚙️ Highlights:\n• React dashboard for monitor management\n• Fastify API with TypeScript\n• workers protected against duplicate execution\n• email alerts through Brevo and n8n\n• local Docker setup and validated Railway deployment\n\n🧰 Stack: React, Node.js, Fastify, Redis, n8n, and Docker.\n🚀 Strong point: complete monitoring flow with automation and clear separation of responsibilities."
         }
     },
     "about": {
         "title": "About",
         "titleHighlight": "me",
         "experience": "Experience",
-        "bio1": "Fullstack Developer focused on product building, automation, and AI integrations, using technologies such as",
-        "bio2": "Flutter, React, Node.js, and Laravel",
-        "bio3": ".",
-        "bio4": "Co-founder of",
+        "bio1": "Junior Fullstack Developer with hands-on experience in",
+        "bio2": "React, Next.js, Node.js, Flutter, and Laravel",
+        "bio3": ", building end-to-end applications with focus on product, integrations, and solid technical foundations.",
+        "bio4": "I am also co-founder of",
         "bio5": "Autonomus",
-        "bio6": ", a mobile marketplace startup that connects clients and service providers, where I led the complete product development with Flutter and Laravel backend, including store publishing on",
+        "bio6": ", a mobile marketplace startup where I worked across the product stack: Flutter app, Laravel backend, and store publishing on",
         "bio7": "App Store and Google Play",
-        "bio8": ", and the project became a semifinalist in Globo's Rocket reality show, with episode available on Globoplay and official media coverage validating its innovation and market impact.",
-        "bio9": "Hands-on experience building full applications, from backend to mobile",
-        "bio10": ", including third-party API integrations and business logic focus. I have also built decision-support systems, such as freight feasibility calculation and AI automations for WhatsApp support workflows. I worked in an international remote environment using Node.js, delivering solutions for operational optimization and collaborating daily in English. I hold a C2 proficiency certification from the University of Cambridge. I always focus on deeply understanding the problem before building the solution, prioritizing efficiency, simplicity, and real impact.",
+        "bio8": ". The project became a semifinalist on Globo's Rocket show, which brought public validation to the idea.",
+        "bio9": "Beyond the startup, I have built personal and academic projects around operations, automation, and decision support",
+        "bio10": ", including monitoring, financial management, and AI-based workflows. I also worked in an international remote context using Node.js and English in daily collaboration. I hold a C2 certification from the University of Cambridge and I keep evolving as an engineer with focus on clarity, consistency, and delivery.",
         "rocketLabel": "Rocket Startup Reality (Globo)",
         "education": "Education",
         "degree": "Systems Analysis & Dev.",
@@ -58,7 +59,7 @@
         "oci": "Oracle Cloud Infrastructure (OCI)",
         "ociCert": "Oracle Cloud Infrastructure certification completed.",
         "fullstack": "Fullstack Developer",
-        "fullstackDesc": "Building scalable and secure architectures, integrating modern databases with fluid interfaces and high performance."
+        "fullstackDesc": "Building complete applications with sound architectural decisions, maintainability in mind, and focus on solving real problems."
     },
     "contact": {
         "title": "Let's talk?",
@@ -71,15 +72,15 @@
         "tabStartup": "Autonomus",
         "tabMedia": "Media",
         "startupHeader": "Autonomus (Startup)",
-        "startupSubtitle": "Complete platform connecting clients and service providers, focused on security, efficiency, and scalability.",
+        "startupSubtitle": "Mobile marketplace startup where I contributed to product development and technical foundations, connecting clients and service providers.",
         "startupStatus": "Under active development",
         "problemTitle": "Problem",
         "problemDesc": "Hiring independent services is still fragmented, unsafe, and inefficient. Clients struggle to find trusted professionals, while workers have low visibility and limited access to opportunities.",
         "solutionTitle": "Solution",
         "solution1": "direct connection between clients and service providers",
-        "solution2": "organized service hiring workflow",
-        "solution3": "more security throughout the process",
-        "solution4": "simple and accessible experience",
+        "solution2": "more organized service hiring flow",
+        "solution3": "digital layer to make the process safer",
+        "solution4": "simple experience for both sides of the marketplace",
         "architectureTitle": "System Architecture",
         "architecture1": "Client mobile app",
         "architecture2": "Service provider mobile app",
@@ -92,16 +93,16 @@
         "tech4": "REST APIs",
         "tech5": "Docker for local environment",
         "diffTitle": "Technical Differentiators",
-        "diff1": "well-defined client-server architecture",
-        "diff2": "clear separation of responsibilities across applications",
-        "diff3": "system prepared for growth",
-        "diff4": "communication across multiple services",
-        "diff5": "solid foundation for scalability",
+        "diff1": "separate apps for clients and service providers",
+        "diff2": "backend centralizing business rules and API logic",
+        "diff3": "admin dashboard for operations and support",
+        "diff4": "Docker-based local setup for consistent development",
+        "diff5": "structure designed to evolve without excessive coupling",
         "impactTitle": "Impact",
         "impact1": "simplifies service hiring",
         "impact2": "increases visibility for independent workers",
-        "impact3": "improves organization and hiring safety",
-        "impact4": "creates a foundation for platform expansion",
+        "impact3": "improves operational clarity for both sides of the marketplace",
+        "impact4": "creates a foundation for product validation and future evolution",
         "educationImpactTitle": "Educational and social impact",
         "educationImpactSubtitle": "Robotics instructor at UTFPR",
         "educationImpactDesc": "I worked as a robotics instructor at UTFPR, teaching programming logic and computational thinking to children from public schools. I planned and led hands-on activities with LEGO and Scratch focused on problem solving.",
@@ -117,7 +118,7 @@
         "cacomp3": "encouragement of hands-on learning and student networking",
         "cacomp4": "strengthening student engagement in Computer Science",
         "recognitionTitle": "Recognition",
-        "recognitionDesc": "Autonomus was featured in national media.",
+        "recognitionDesc": "Autonomus was featured by RPC/Globo on the Rocket Startup program.",
         "recognitionCta": "See more in the Media tab",
         "mediaTitle": "Media Highlight",
         "mediaBadge1": "Featured on Globo",
@@ -131,7 +132,7 @@
         "media4": "digitalization of a still understructured market",
         "mediaButton": "See full article on Globo",
         "mediaCardTitle": "Authority Card",
-        "mediaCardDesc": "This media appearance reinforces traction, public validation, and real market potential for Autonomus.",
+        "mediaCardDesc": "The media appearance brought public validation and reinforced the project's potential.",
         "mediaCardBack": "Back to Autonomus tab"
     },
     "footer": {

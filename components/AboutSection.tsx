@@ -1,84 +1,26 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { Rocket, GraduationCap, Globe, Server, Award } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const TECH_STACK = [
-  {
-    name: "React & Next.js",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg",
-  },
-  {
-    name: "TypeScript",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
-  },
-  {
-    name: "JavaScript",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
-  },
-  {
-    name: "Tailwind CSS",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
-  },
-  {
-    name: "Node.js",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
-  },
-  {
-    name: "Docker",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
-  },
-  {
-    name: "C# / .NET",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg",
-  },
-  {
-    name: "Oracle Cloud",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg",
-  },
-  {
-    name: "Dart / Flutter",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flutter/flutter-original.svg",
-  },
-  {
-    name: "PostgreSQL",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
-  },
-  {
-    name: "MySQL",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
-  },
-  {
-    name: "Machine Learning",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg",
-  },
+  "React & Next.js",
+  "TypeScript",
+  "JavaScript",
+  "Tailwind CSS",
+  "Node.js",
+  "Docker",
+  "C# / .NET",
+  "Oracle Cloud",
+  "Dart / Flutter",
+  "PostgreSQL",
+  "MySQL",
+  "Machine Learning",
 ];
-
-const VISIBLE_TECHS = 4;
-const TECH_ROTATION_MS = 2800;
 
 export default function AboutSection() {
   const t = useTranslations("about");
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setOffset((current) => (current + 1) % TECH_STACK.length);
-    }, TECH_ROTATION_MS);
-
-    return () => clearInterval(timer);
-  }, []);
-
-  const visibleTechs = useMemo(
-    () =>
-      Array.from({ length: VISIBLE_TECHS }, (_, index) => {
-        const itemIndex = (offset + index) % TECH_STACK.length;
-        return TECH_STACK[itemIndex];
-      }),
-    [offset]
-  );
 
   return (
     <section className="mb-32" id="about">
@@ -220,11 +162,7 @@ export default function AboutSection() {
               className="flex items-start gap-3 group/item"
             >
               <div className="shrink-0 mt-1 h-6 w-6 rounded bg-white/90 p-[2px] flex items-center justify-center">
-                <img
-                  src="https://www.utfpr.edu.br/favicon.ico"
-                  alt="UTFPR"
-                  className="h-5 w-5 object-contain"
-                />
+                <span className="text-[9px] font-bold tracking-[0.18em] text-zinc-900">UTF</span>
               </div>
               <div>
                 <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-green-300 transition-colors">
@@ -332,32 +270,20 @@ export default function AboutSection() {
 
             <div className="w-full max-w-[340px] lg:max-w-[360px]">
               <div className="grid grid-cols-2 gap-3">
-                <AnimatePresence initial={false} mode="popLayout">
-                  {visibleTechs.map((tech, index) => (
-                    <motion.div
-                      key={tech.name}
-                      layout
-                      initial={{ opacity: 0, y: 20, scale: 0.94 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: -20, scale: 0.94 }}
-                      transition={{
-                        duration: 0.35,
-                        delay: index * 0.06,
-                        ease: "easeOut",
-                      }}
-                      className="aspect-square flex flex-col items-center justify-center gap-3 bg-zinc-950/50 border border-zinc-800 rounded-xl hover:border-purple-500/30 hover:bg-zinc-900 transition-all"
-                    >
-                      <img
-                        src={tech.logo}
-                        alt={tech.name}
-                        className="w-7 h-7 object-contain"
-                      />
-                      <span className="text-[11px] sm:text-xs font-medium text-zinc-200 text-center px-2 leading-tight">
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
+                {TECH_STACK.map((tech, index) => (
+                  <motion.div
+                    key={tech}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.03, duration: 0.25 }}
+                    className="min-h-20 flex items-center justify-center bg-zinc-950/50 border border-zinc-800 rounded-xl px-3 py-4 text-center hover:border-purple-500/30 hover:bg-zinc-900 transition-all"
+                  >
+                    <span className="text-[11px] sm:text-xs font-medium text-zinc-200 leading-tight">
+                      {tech}
+                    </span>
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>

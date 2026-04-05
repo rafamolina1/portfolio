@@ -7,10 +7,10 @@ import { useTranslations } from "next-intl";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 interface HeaderProps {
-  onOpenContact: () => void;
+  contactHref: string;
 }
 
-export default function Header({ onOpenContact }: HeaderProps) {
+export default function Header({ contactHref }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations("nav");
 
@@ -24,7 +24,7 @@ export default function Header({ onOpenContact }: HeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -56,18 +56,19 @@ export default function Header({ onOpenContact }: HeaderProps) {
                 .querySelector(item.href)
                 ?.scrollIntoView({ behavior: "smooth" });
             }}
+            aria-label={item.name}
             className="relative shrink-0 px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors rounded-full hover:bg-zinc-800/50 whitespace-nowrap"
           >
             {item.name}
           </Link>
         ))}
 
-        <button
-          onClick={onOpenContact}
+        <Link
+          href={contactHref}
           className="ml-2 shrink-0 px-5 py-2 text-sm font-medium bg-zinc-100 text-zinc-900 rounded-full hover:bg-white hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
         >
           {t("contact")}
-        </button>
+        </Link>
 
         <LanguageSwitcher />
       </nav>

@@ -2,17 +2,78 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Blocks, Building2, ExternalLink, GraduationCap, Newspaper, Rocket, Sparkles, Users } from "lucide-react";
+import {
+  Blocks,
+  Building2,
+  ExternalLink,
+  GraduationCap,
+  Newspaper,
+  Rocket,
+  Sparkles,
+  Users,
+} from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function StartupSection() {
   const t = useTranslations("startup");
   const [activeTab, setActiveTab] = useState<"startup" | "media">("startup");
-  const mediaUrl = "https://redeglobo.globo.com/rpc/realities/rocket-startup/vida/noticia/autonomus-a-startup-que-conecta-trabalhadores-autonomos-e-clientes-na-busca-de-servicos.ghtml";
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const mediaUrl =
+    "https://redeglobo.globo.com/rpc/realities/rocket-startup/vida/noticia/autonomus-a-startup-que-conecta-trabalhadores-autonomos-e-clientes-na-busca-de-servicos.ghtml";
+
+  const switchTab = (tab: "startup" | "media") => {
+    setActiveTab(tab);
+
+    requestAnimationFrame(() => {
+      sectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+  };
+
+  const architectureItems = [
+    t("architecture1"),
+    t("architecture2"),
+    t("architecture3"),
+    t("architecture4"),
+  ];
+
+  const technologyItems = [
+    t("tech1"),
+    t("tech2"),
+    t("tech3"),
+    t("tech4"),
+    t("tech5"),
+  ];
+
+  const differentials = [
+    t("diff1"),
+    t("diff2"),
+    t("diff3"),
+    t("diff4"),
+    t("diff5"),
+  ];
+
+  const impactItems = [
+    t("impact1"),
+    t("impact2"),
+    t("impact3"),
+    t("impact4"),
+  ];
+
+  const educationItems = [
+    t("educationImpact1"),
+    t("educationImpact2"),
+    t("educationImpact3"),
+    t("educationImpact4"),
+  ];
+
+  const cacompItems = [t("cacomp1"), t("cacomp2"), t("cacomp3"), t("cacomp4")];
 
   return (
-    <section id="startup" className="mb-32 pt-10">
+    <section ref={sectionRef} id="startup" className="mb-32 pt-10">
       <div className="flex items-center gap-4 mb-10">
         <h2 className="text-3xl font-bold text-zinc-100">
           {t("title")} <span className="text-cyan-400">{t("titleHighlight")}</span>
@@ -23,7 +84,8 @@ export default function StartupSection() {
       <div className="flex items-center gap-3 mb-8">
         <button
           type="button"
-          onClick={() => setActiveTab("startup")}
+          onClick={() => switchTab("startup")}
+          aria-pressed={activeTab === "startup"}
           className={`px-4 py-2 rounded-full border text-sm font-medium transition-all ${
             activeTab === "startup"
               ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-200"
@@ -34,7 +96,8 @@ export default function StartupSection() {
         </button>
         <button
           type="button"
-          onClick={() => setActiveTab("media")}
+          onClick={() => switchTab("media")}
+          aria-pressed={activeTab === "media"}
           className={`px-4 py-2 rounded-full border text-sm font-medium transition-all ${
             activeTab === "media"
               ? "bg-purple-500/20 border-purple-500/50 text-purple-200"
@@ -46,53 +109,43 @@ export default function StartupSection() {
       </div>
 
       {activeTab === "startup" ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             viewport={{ once: true }}
-            className="md:col-span-2 bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl hover:border-cyan-500/50 transition-all relative overflow-hidden group shadow-lg hover:shadow-[0_20px_60px_rgba(6,182,212,0.18)]"
+            className="md:col-span-7 bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl relative overflow-hidden shadow-lg"
           >
-            <div className="absolute top-0 right-0 w-44 h-44 bg-cyan-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-cyan-500/35 transition-all" />
+            <div className="absolute top-0 right-0 w-44 h-44 bg-cyan-500/15 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
-            <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 bg-clip-text text-transparent mb-2">
-              {t("startupHeader")}
-            </h3>
-            <p className="text-zinc-300 leading-relaxed mb-4">{t("startupSubtitle")}</p>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-500/35 text-sm text-amber-200 mb-6">
-              <Rocket size={14} />
-              {t("startupStatus")}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
+              <h3 className="text-2xl md:text-3xl font-bold text-zinc-100">
+                {t("startupHeader")}
+              </h3>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/15 border border-amber-500/35 text-sm text-amber-200">
+                <Rocket size={14} />
+                {t("startupStatus")}
+              </span>
             </div>
 
-            <div className="space-y-6 text-zinc-300">
-              <div>
-                <h4 className="text-zinc-100 font-semibold mb-2">{t("problemTitle")}</h4>
-                <p className="leading-relaxed">{t("problemDesc")}</p>
+            <p className="text-zinc-300 leading-relaxed mb-8 max-w-2xl">
+              {t("startupSubtitle")}
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-5">
+                <h4 className="text-zinc-100 font-semibold mb-3">{t("problemTitle")}</h4>
+                <p className="text-sm text-zinc-400 leading-7">{t("problemDesc")}</p>
               </div>
 
-              <div>
-                <h4 className="text-zinc-100 font-semibold mb-2">{t("solutionTitle")}</h4>
-                <ul className="space-y-2 text-sm md:text-base">
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-950/40 p-5">
+                <h4 className="text-zinc-100 font-semibold mb-3">{t("solutionTitle")}</h4>
+                <ul className="space-y-2 text-sm text-zinc-400 leading-7">
                   <li>• {t("solution1")}</li>
                   <li>• {t("solution2")}</li>
                   <li>• {t("solution3")}</li>
                   <li>• {t("solution4")}</li>
                 </ul>
-              </div>
-
-              <div className="bg-zinc-950/45 border border-zinc-800 rounded-xl p-4">
-                <h4 className="text-zinc-100 font-semibold mb-3">{t("recognitionTitle")}</h4>
-                <p className="text-sm text-zinc-400 mb-3">{t("recognitionDesc")}</p>
-                <button
-                  type="button"
-                  onClick={() => setActiveTab("media")}
-                  className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
-                >
-                  <Newspaper size={14} />
-                  {t("recognitionCta")}
-                </button>
               </div>
             </div>
           </motion.div>
@@ -100,32 +153,68 @@ export default function StartupSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-            className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl hover:border-violet-500/50 transition-all shadow-lg hover:shadow-[0_20px_60px_rgba(139,92,246,0.18)]"
+            transition={{ delay: 0.08 }}
+            className="md:col-span-5 bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl shadow-lg"
           >
             <div className="flex items-center gap-3 mb-5">
               <div className="bg-violet-500/20 p-3 rounded-lg border border-violet-500/30">
-                <Building2 className="text-violet-300" size={24} />
+                <Building2 className="text-violet-300" size={22} />
               </div>
               <h3 className="text-lg font-semibold text-zinc-100">{t("architectureTitle")}</h3>
             </div>
 
-            <ul className="space-y-3 text-sm text-zinc-300 leading-relaxed mb-7">
-              <li>• {t("architecture1")}</li>
-              <li>• {t("architecture2")}</li>
-              <li>• {t("architecture3")}</li>
-              <li>• {t("architecture4")}</li>
-            </ul>
+            <div className="space-y-3 mb-6">
+              {architectureItems.map((item) => (
+                <div
+                  key={item}
+                  className="rounded-xl border border-zinc-800 bg-zinc-950/30 px-4 py-3 text-sm text-zinc-300"
+                >
+                  {item}
+                </div>
+              ))}
+            </div>
 
             <h4 className="text-zinc-100 font-semibold mb-3">{t("techTitle")}</h4>
-            <ul className="space-y-2 text-sm text-zinc-400">
-              <li>• {t("tech1")}</li>
-              <li>• {t("tech2")}</li>
-              <li>• {t("tech3")}</li>
-              <li>• {t("tech4")}</li>
-              <li>• {t("tech5")}</li>
+            <div className="flex flex-wrap gap-2">
+              {technologyItems.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-zinc-800 bg-zinc-950/40 px-3 py-1.5 text-xs font-medium text-zinc-300"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.12 }}
+            className="md:col-span-4 rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6"
+          >
+            <h4 className="text-zinc-100 font-semibold mb-3">{t("diffTitle")}</h4>
+            <ul className="space-y-2 text-sm text-zinc-400 leading-7">
+              {differentials.map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
+            </ul>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.16 }}
+            className="md:col-span-4 rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6"
+          >
+            <h4 className="text-zinc-100 font-semibold mb-3">{t("impactTitle")}</h4>
+            <ul className="space-y-2 text-sm text-zinc-400 leading-7">
+              {impactItems.map((item) => (
+                <li key={item}>• {item}</li>
+              ))}
             </ul>
           </motion.div>
 
@@ -134,42 +223,26 @@ export default function StartupSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-4"
+            className="md:col-span-4 rounded-2xl border border-zinc-800 bg-gradient-to-br from-cyan-500/10 to-transparent p-6"
           >
-            <motion.div
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="bg-zinc-900/45 border border-zinc-800 rounded-2xl p-6 hover:border-cyan-500/40 transition-all"
+            <h4 className="text-zinc-100 font-semibold mb-3">{t("recognitionTitle")}</h4>
+            <p className="text-sm text-zinc-400 leading-7 mb-4">{t("recognitionDesc")}</p>
+            <button
+              type="button"
+              onClick={() => switchTab("media")}
+              className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
             >
-              <h4 className="text-zinc-100 font-semibold mb-3">{t("diffTitle")}</h4>
-              <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>• {t("diff1")}</li>
-                <li>• {t("diff2")}</li>
-                <li>• {t("diff3")}</li>
-                <li>• {t("diff4")}</li>
-                <li>• {t("diff5")}</li>
-              </ul>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -6, transition: { duration: 0.25 } }}
-              className="bg-zinc-900/45 border border-zinc-800 rounded-2xl p-6 hover:border-cyan-500/40 transition-all"
-            >
-              <h4 className="text-zinc-100 font-semibold mb-3">{t("impactTitle")}</h4>
-              <ul className="space-y-2 text-sm text-zinc-400 leading-relaxed">
-                <li>• {t("impact1")}</li>
-                <li>• {t("impact2")}</li>
-                <li>• {t("impact3")}</li>
-                <li>• {t("impact4")}</li>
-              </ul>
-            </motion.div>
+              <Newspaper size={14} />
+              {t("recognitionCta")}
+            </button>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="md:col-span-3 bg-zinc-900/45 border border-zinc-800 rounded-2xl p-6 hover:border-emerald-500/40 transition-all"
+            transition={{ delay: 0.24 }}
+            className="md:col-span-6 rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6"
           >
             <div className="flex items-start gap-3 mb-4">
               <div className="bg-emerald-500/15 border border-emerald-500/35 p-2.5 rounded-lg">
@@ -181,27 +254,17 @@ export default function StartupSection() {
               </div>
             </div>
 
-            <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-4">
+            <p className="text-sm md:text-base text-zinc-300 leading-7 mb-4">
               {t("educationImpactDesc")}
             </p>
 
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-zinc-400 leading-relaxed">
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-emerald-300 mt-0.5" />
-                <span>{t("educationImpact1")}</span>
-              </li>
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-emerald-300 mt-0.5" />
-                <span>{t("educationImpact2")}</span>
-              </li>
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-emerald-300 mt-0.5" />
-                <span>{t("educationImpact3")}</span>
-              </li>
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-emerald-300 mt-0.5" />
-                <span>{t("educationImpact4")}</span>
-              </li>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-zinc-400 leading-7">
+              {educationItems.map((item) => (
+                <li key={item} className="inline-flex items-start gap-2">
+                  <Blocks size={14} className="text-emerald-300 mt-1 shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </motion.div>
 
@@ -209,8 +272,8 @@ export default function StartupSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.35 }}
-            className="md:col-span-3 bg-zinc-900/45 border border-zinc-800 rounded-2xl p-6 hover:border-amber-500/40 transition-all"
+            transition={{ delay: 0.28 }}
+            className="md:col-span-6 rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6"
           >
             <div className="flex items-start gap-3 mb-4">
               <div className="bg-amber-500/15 border border-amber-500/35 p-2.5 rounded-lg">
@@ -222,40 +285,29 @@ export default function StartupSection() {
               </div>
             </div>
 
-            <p className="text-sm md:text-base text-zinc-300 leading-relaxed mb-4">
+            <p className="text-sm md:text-base text-zinc-300 leading-7 mb-4">
               {t("cacompDesc")}
             </p>
 
-            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-zinc-400 leading-relaxed">
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-amber-300 mt-0.5" />
-                <span>{t("cacomp1")}</span>
-              </li>
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-amber-300 mt-0.5" />
-                <span>{t("cacomp2")}</span>
-              </li>
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-amber-300 mt-0.5" />
-                <span>{t("cacomp3")}</span>
-              </li>
-              <li className="inline-flex items-start gap-2">
-                <Blocks size={14} className="text-amber-300 mt-0.5" />
-                <span>{t("cacomp4")}</span>
-              </li>
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-zinc-400 leading-7">
+              {cacompItems.map((item) => (
+                <li key={item} className="inline-flex items-start gap-2">
+                  <Blocks size={14} className="text-amber-300 mt-1 shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </motion.div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             viewport={{ once: true }}
-            className="md:col-span-2 bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl hover:border-purple-500/50 transition-all relative overflow-hidden group shadow-lg hover:shadow-[0_20px_60px_rgba(139,92,246,0.18)]"
+            className="md:col-span-8 bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl relative overflow-hidden shadow-lg"
           >
-            <div className="absolute top-0 right-0 w-44 h-44 bg-purple-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-purple-500/35 transition-all" />
+            <div className="absolute top-0 right-0 w-44 h-44 bg-purple-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
 
             <h3 className="text-2xl md:text-3xl font-bold text-zinc-100 mb-3">{t("mediaTitle")}</h3>
 
@@ -275,10 +327,10 @@ export default function StartupSection() {
             <div className="space-y-5 text-zinc-300">
               <div>
                 <h5 className="text-zinc-100 font-semibold mb-2">{t("mediaAboutTitle")}</h5>
-                <p className="leading-relaxed">{t("mediaAboutDesc")}</p>
+                <p className="leading-7">{t("mediaAboutDesc")}</p>
               </div>
 
-              <ul className="space-y-2 text-sm md:text-base">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm md:text-base">
                 <li>• {t("media1")}</li>
                 <li>• {t("media2")}</li>
                 <li>• {t("media3")}</li>
@@ -289,6 +341,7 @@ export default function StartupSection() {
             <Link
               href={mediaUrl}
               target="_blank"
+              rel="noreferrer"
               className="mt-7 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-100 text-zinc-900 hover:bg-white transition-all"
             >
               {t("mediaButton")}
@@ -299,16 +352,15 @@ export default function StartupSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -8, transition: { duration: 0.3 } }}
             viewport={{ once: true }}
-            transition={{ delay: 0.15 }}
-            className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl hover:border-cyan-500/50 transition-all shadow-lg hover:shadow-[0_20px_60px_rgba(6,182,212,0.18)]"
+            transition={{ delay: 0.08 }}
+            className="md:col-span-4 bg-zinc-900/50 border border-zinc-800 p-6 rounded-2xl shadow-lg"
           >
             <h4 className="text-zinc-100 font-semibold mb-4">{t("mediaCardTitle")}</h4>
-            <p className="text-zinc-400 text-sm leading-relaxed mb-5">{t("mediaCardDesc")}</p>
+            <p className="text-zinc-400 text-sm leading-7 mb-5">{t("mediaCardDesc")}</p>
             <button
               type="button"
-              onClick={() => setActiveTab("startup")}
+              onClick={() => switchTab("startup")}
               className="inline-flex items-center gap-2 text-sm text-cyan-300 hover:text-cyan-200 transition-colors"
             >
               <Sparkles size={14} />

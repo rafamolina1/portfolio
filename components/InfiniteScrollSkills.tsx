@@ -46,16 +46,7 @@ const SKILLS = [
   { name: "React", icon: <SiReact className="text-blue-400" size={ICON_SIZE} /> },
   { name: "Machine Learning", icon: <SiTensorflow className="text-pink-400" size={ICON_SIZE} /> },
   { name: "LangChain", icon: <FaLink className="text-emerald-400" size={ICON_SIZE} /> },
-  {
-    name: "Oracle Cloud",
-    icon: (
-      <img
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/oracle/oracle-original.svg"
-        alt="Oracle"
-        className="w-[22px] h-[22px] object-contain"
-      />
-    ),
-  },
+  { name: "Oracle Cloud", icon: <span className="text-[10px] font-bold tracking-[0.16em] text-rose-300">OCI</span> },
   { name: "JWT", icon: <SiJsonwebtokens className="text-zinc-100" size={ICON_SIZE} /> },
   { name: "MySQL", icon: <SiMysql className="text-blue-500" size={ICON_SIZE} /> },
   { name: "Laravel", icon: <SiLaravel className="text-red-500" size={ICON_SIZE} /> },
