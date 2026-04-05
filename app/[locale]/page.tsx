@@ -209,16 +209,17 @@ export default async function Home({
                         <ProjectCard
                             title="Habit Breaker"
                             description={t("projects.habit.description")}
-                            image="/habit-breaker.png"
+                            image="/habit-breaker-20260405.png"
                             techs={["JavaScript", "React", "Vite"]}
                             githubUrl="https://github.com/rafamolina1/Habit-Breaker"
                             deployUrl="https://habitbreaker.vercel.app"
+                            previewClassName="aspect-[205/100] bg-[#efe8dc]"
                         />
 
                         <ProjectCard
                             title="Market Pulse"
                             description={t("projects.market.description")}
-                            image="/marketpulse.png"
+                            image="/marketpulse-20260405.png"
                             techs={["JavaScript", "React", "Vite", "CSS"]}
                             githubUrl="https://github.com/rafamolina1/Market-Pulse"
                             deployUrl="https://market-pulse-rho-beryl.vercel.app"
@@ -227,7 +228,7 @@ export default async function Home({
                         <ProjectCard
                             title="Km De Lucro"
                             description={t("projects.km.description")}
-                            image="/dashkm.png"
+                            image="/dashkm-20260405.png"
                             techs={[
                                 "Next.js",
                                 "React",
