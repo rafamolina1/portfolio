@@ -1,8 +1,8 @@
 {
     "hero": {
         "available": "Disponible para nuevos desafíos",
-        "tagline": "Desarrollador Fullstack junior con experiencia práctica en productos reales, desde frontend hasta backend.",
-        "focus": "Construyo aplicaciones con React, Next.js, Node.js y bases de datos, con atención a experiencia de usuario, lógica de negocio y entrega en producción.",
+        "tagline": "Desarrollador Fullstack junior con experiencia práctica en productos reales, desde el frontend hasta el backend.",
+        "focus": "Construyo aplicaciones con React, Next.js, Node.js y bases de datos, con atención a la experiencia de usuario, la lógica de negocio y la entrega en producción.",
         "ociBadge": "Certificado OCI",
         "email": "Email",
         "resume": "Descargar currículum"
@@ -47,7 +47,7 @@
         "bio7": "App Store y Google Play",
         "bio8": ". El proyecto fue semifinalista en Rocket, de Globo, lo que aportó validación pública a la propuesta.",
         "bio9": "Además de la startup, desarrollé proyectos propios y académicos orientados a operación, automatización y soporte a decisiones",
-        "bio10": ", incluyendo monitoreo, gestión financiera y flujos con IA. También trabajé en contexto remoto internacional usando Node.js y colaborando en inglés en el día a día. Tengo certificación C2 de la Universidad de Cambridge y sigo evolucionando como ingeniero con foco en claridad, consistencia y entrega.",
+        "bio10": ", incluyendo monitoreo, gestión financiera y flujos con IA. También trabajé en contexto remoto internacional usando Node.js y colaborando en inglés en el día a día. Tengo certificación C2 en inglés de la Universidad de Cambridge y sigo evolucionando como ingeniero con foco en claridad, consistencia y entrega.",
         "rocketLabel": "Rocket Startup Reality (Globo)",
         "education": "Educación",
         "degree": "Análisis y Des. de Sistemas",

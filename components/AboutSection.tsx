@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Rocket, GraduationCap, Globe, Server, Award } from "lucide-react";
+import Image from "next/image";
+import { Rocket, GraduationCap, Globe, Server } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const TECH_STACK = [
@@ -81,17 +82,31 @@ export default function AboutSection() {
 
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-sm text-cyan-200 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.25)] transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/10 border border-red-500/35 text-sm text-red-100 hover:border-red-400/60 hover:shadow-[0_0_15px_rgba(239,68,68,0.18)] transition-all"
             >
-              <Award size={14} />
+              <BrandMark
+                src="/oracle-logo.jpg"
+                alt="Oracle"
+                width={133}
+                height={18}
+                className="h-5 w-[54px] px-1"
+                imageClassName="w-[42px]"
+              />
               <span>{t("oci")}</span>
             </motion.div>
 
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-sm text-emerald-200 hover:border-emerald-400/60 hover:shadow-[0_0_15px_rgba(16,185,129,0.25)] transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8b1e1e]/10 border border-[#8b1e1e]/35 text-sm text-rose-100 hover:border-[#b63737]/60 hover:shadow-[0_0_15px_rgba(139,30,30,0.2)] transition-all"
             >
-              <Award size={14} />
+              <BrandMark
+                src="/cambridge-logo.png"
+                alt="University of Cambridge"
+                width={2362}
+                height={491}
+                className="h-5 w-[62px] px-1"
+                imageClassName="w-[54px]"
+              />
               <span>{t("english")}</span>
             </motion.div>
           </div>
@@ -122,26 +137,17 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
               whileHover={{ x: 6 }}
-              className="flex items-start gap-3 group/item"
+              className="flex items-start gap-4 group/item"
             >
-              <div className="shrink-0 mt-1">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M4 18L12 6L20 18H4Z"
-                    fill="#2563EB"
-                    fillOpacity="0.8"
-                  />
-                  <path d="M12 6V18" stroke="#0a0a0a" strokeWidth="1.5" />
-                  <path d="M8 12H16" stroke="#0a0a0a" strokeWidth="1.5" />
-                </svg>
-              </div>
-              <div>
+              <BrandMark
+                src="/fgv-logo.svg"
+                alt="Fundação Getulio Vargas"
+                width={249}
+                height={44}
+                className="mt-1 h-8 w-[82px] px-2.5"
+                imageClassName="w-[50px]"
+              />
+              <div className="pt-0.5">
                 <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-blue-300 transition-colors">
                   {t("degree")}
                 </p>
@@ -159,12 +165,12 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.35 }}
               whileHover={{ x: 6 }}
-              className="flex items-start gap-3 group/item"
+              className="flex items-start gap-4 group/item"
             >
-              <div className="shrink-0 mt-1 h-6 w-6 rounded bg-white/90 p-[2px] flex items-center justify-center">
-                <span className="text-[9px] font-bold tracking-[0.18em] text-zinc-900">UTF</span>
-              </div>
-              <div>
+              <BrandTextMark className="mt-1 h-8 w-[82px]" textClassName="text-[8px] tracking-[0.16em]">
+                UTFPR
+              </BrandTextMark>
+              <div className="pt-0.5">
                 <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-green-300 transition-colors">
                   {t("degree2")}
                 </p>
@@ -182,32 +188,17 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
               whileHover={{ x: 6 }}
-              className="flex items-start gap-3 group/item"
+              className="flex items-start gap-4 group/item"
             >
-              <div className="shrink-0 mt-1">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M6 4h12v7c0 4-3 7-6 9-3-2-6-5-6-9V4z"
-                    fill="#9B1C1C"
-                  />
-                  <path
-                    d="M11 4v16M6 10h12"
-                    stroke="#F9FAFB"
-                    strokeWidth="1.5"
-                  />
-                  <circle cx="8.5" cy="7.5" r="0.7" fill="#F9FAFB" />
-                  <circle cx="15.5" cy="7.5" r="0.7" fill="#F9FAFB" />
-                  <circle cx="8.5" cy="13.5" r="0.7" fill="#F9FAFB" />
-                  <circle cx="15.5" cy="13.5" r="0.7" fill="#F9FAFB" />
-                </svg>
-              </div>
-              <div>
+              <BrandMark
+                src="/cambridge-logo.png"
+                alt="University of Cambridge"
+                width={2362}
+                height={491}
+                className="mt-1 h-8 w-[82px] px-2"
+                imageClassName="w-[72px]"
+              />
+              <div className="pt-0.5">
                 <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-red-300 transition-colors">
                   {t("english")}
                 </p>
@@ -225,13 +216,18 @@ export default function AboutSection() {
               viewport={{ once: true }}
               transition={{ delay: 0.5 }}
               whileHover={{ x: 6 }}
-              className="flex items-start gap-3 group/item"
+              className="flex items-start gap-4 group/item"
             >
-              <div className="shrink-0 mt-1 text-cyan-300">
-                <Award size={20} />
-              </div>
-              <div>
-                <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-cyan-300 transition-colors">
+              <BrandMark
+                src="/oracle-logo.jpg"
+                alt="Oracle"
+                width={133}
+                height={18}
+                className="mt-1 h-8 w-[82px] px-2"
+                imageClassName="w-[60px]"
+              />
+              <div className="pt-0.5">
+                <p className="text-zinc-100 font-semibold text-sm group-hover/item:text-red-300 transition-colors">
                   {t("oci")}
                 </p>
                 <p className="text-zinc-400 text-xs mt-1 leading-relaxed">
@@ -290,5 +286,54 @@ export default function AboutSection() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function BrandMark({
+  src,
+  alt,
+  width,
+  height,
+  className,
+  imageClassName,
+}: {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  className?: string;
+  imageClassName?: string;
+}) {
+  return (
+    <div
+      className={`shrink-0 inline-flex items-center justify-center rounded-[0.55rem] bg-white/95 shadow-sm ring-1 ring-black/10 ${className ?? ""}`}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        unoptimized={src.endsWith(".svg")}
+        className={`h-auto w-auto max-w-full object-contain ${imageClassName ?? ""}`}
+      />
+    </div>
+  );
+}
+
+function BrandTextMark({
+  children,
+  className,
+  textClassName,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  textClassName?: string;
+}) {
+  return (
+    <div
+      className={`shrink-0 inline-flex items-center justify-center rounded-[0.55rem] bg-white/95 shadow-sm ring-1 ring-black/10 ${className ?? ""}`}
+    >
+      <span className={`font-bold text-zinc-900 ${textClassName ?? ""}`}>{children}</span>
+    </div>
   );
 }

@@ -40,11 +40,6 @@ export default async function Home({
                     className="flex flex-col-reverse md:flex-row items-center gap-12 mb-32 pt-20"
                 >
                     <div className="flex-1 space-y-7 text-center md:text-left">
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900/70 border border-zinc-800 text-sm text-zinc-300">
-                            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                            {t("hero.available")}
-                        </div>
-
                         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-balance">
                             <span className="inline-block">Rafael</span>{" "}
                             <br />
