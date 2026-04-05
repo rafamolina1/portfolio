@@ -63,6 +63,12 @@
     },
     "contact": {
         "title": "¿Hablamos?",
+        "description": "Usa el correo de abajo para hablar conmigo. Si prefieres, también puedes abrir tu app de correo.",
+        "emailLabel": "Correo",
+        "copyEmail": "Copiar correo",
+        "copied": "Correo copiado",
+        "openMail": "Abrir app de correo",
+        "close": "Cerrar",
         "linkedinSub": "Conectar profesionalmente",
         "githubSub": "Ver código fuente"
     },

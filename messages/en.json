@@ -63,6 +63,12 @@
     },
     "contact": {
         "title": "Let's talk?",
+        "description": "Use the email below to reach me. If you prefer, you can also open your email app.",
+        "emailLabel": "Email",
+        "copyEmail": "Copy email",
+        "copied": "Email copied",
+        "openMail": "Open email app",
+        "close": "Close",
         "linkedinSub": "Connect professionally",
         "githubSub": "View source code"
     },

@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import ContactDialogTrigger from "@/components/ContactDialogTrigger";
 import ProjectCard from "@/components/ProjectCard";
 import TrackedLink from "@/components/TrackedLink";
 import AboutSection from "@/components/AboutSection";
@@ -21,11 +22,10 @@ export default async function Home({
     const { locale } = await params;
     setRequestLocale(locale);
     const t = await getTranslations({ locale });
-    const contactHref = `mailto:${CONTACT_EMAIL}`;
 
     return (
         <main className="min-h-screen bg-[#0a0a0a] text-zinc-100 selection:bg-purple-500/30 overflow-hidden relative">
-            <Header contactHref={contactHref} />
+            <Header contactEmail={CONTACT_EMAIL} />
 
             <div className="fixed inset-0 pointer-events-none z-0">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.08),transparent_28%),radial-gradient(circle_at_top_right,rgba(249,115,22,0.08),transparent_25%),linear-gradient(180deg,#09090b_0%,#0a0a0a_45%,#09090b_100%)]" />
@@ -76,17 +76,16 @@ export default async function Home({
                                 eventProperties={{ location: "hero", destination: "profile", locale }}
                             />
                             <SocialButton
-                                href="https://www.linkedin.com/in/rafael-molina-049a43247/"
+                                href="https://www.linkedin.com/in/rafaelmolinadev/"
                                 icon={<Linkedin size={20} />}
                                 label="LinkedIn"
                                 eventName="linkedin_click"
                                 eventProperties={{ location: "hero", locale }}
                             />
 
-                            <TrackedLink
-                                href={contactHref}
-                                eventName="email_click"
-                                eventProperties={{ location: "hero", locale }}
+                            <ContactDialogTrigger
+                                email={CONTACT_EMAIL}
+                                location="hero"
                                 className="flex items-center gap-2 px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-800 hover:border-purple-500/50 transition-all group"
                             >
                                 <span className="text-zinc-400 group-hover:text-purple-400 transition-colors">
@@ -95,7 +94,7 @@ export default async function Home({
                                 <span className="font-medium text-sm text-zinc-400 group-hover:text-white">
                                     {t("hero.email")}
                                 </span>
-                            </TrackedLink>
+                            </ContactDialogTrigger>
 
                             {locale === "pt-BR" ? (
                                 <TrackedLink
@@ -261,14 +260,13 @@ export default async function Home({
                         >
                             {t("footer.projects")}
                         </Link>
-                        <TrackedLink
-                            href={contactHref}
-                            eventName="email_click"
-                            eventProperties={{ location: "footer", locale }}
+                        <ContactDialogTrigger
+                            email={CONTACT_EMAIL}
+                            location="footer"
                             className="hover:text-zinc-300 transition-colors"
                         >
                             {t("footer.contact")}
-                        </TrackedLink>
+                        </ContactDialogTrigger>
                     </div>
                 </footer>
             </div>

@@ -62,7 +62,13 @@
         "fullstackDesc": "Costruisco applicazioni complete con buone decisioni architetturali, attenzione alla manutenzione e focus su problemi reali."
     },
     "contact": {
-        "title": "Parliamoci?",
+        "title": "Parliamone?",
+        "description": "Usa l'e-mail qui sotto per contattarmi. Se preferisci, puoi anche aprire la tua app di posta.",
+        "emailLabel": "E-mail",
+        "copyEmail": "Copia e-mail",
+        "copied": "E-mail copiata",
+        "openMail": "Apri app e-mail",
+        "close": "Chiudi",
         "linkedinSub": "Connetti professionalmente",
         "githubSub": "Visualizza codice sorgente"
     },

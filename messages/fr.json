@@ -63,6 +63,12 @@
     },
     "contact": {
         "title": "On discute ?",
+        "description": "Utilisez l'e-mail ci-dessous pour me contacter. Si vous préférez, vous pouvez aussi ouvrir votre application mail.",
+        "emailLabel": "E-mail",
+        "copyEmail": "Copier l'e-mail",
+        "copied": "E-mail copié",
+        "openMail": "Ouvrir l'app mail",
+        "close": "Fermer",
         "linkedinSub": "Se connecter professionnellement",
         "githubSub": "Voir le code source"
     },

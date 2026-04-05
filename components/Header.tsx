@@ -1,17 +1,17 @@
 "use client";
 
-import { track } from "@vercel/analytics";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import ContactDialogTrigger from "./ContactDialogTrigger";
 import LanguageSwitcher from "./LanguageSwitcher";
 
 interface HeaderProps {
-  contactHref: string;
+  contactEmail: string;
 }
 
-export default function Header({ contactHref }: HeaderProps) {
+export default function Header({ contactEmail }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations("nav");
 
@@ -64,13 +64,13 @@ export default function Header({ contactHref }: HeaderProps) {
           </Link>
         ))}
 
-        <Link
-          href={contactHref}
-          onClick={() => track("email_click", { location: "header" })}
+        <ContactDialogTrigger
+          email={contactEmail}
+          location="header"
           className="ml-2 shrink-0 px-5 py-2 text-sm font-medium bg-zinc-100 text-zinc-900 rounded-full hover:bg-white hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
         >
           {t("contact")}
-        </Link>
+        </ContactDialogTrigger>
 
         <LanguageSwitcher />
       </nav>
