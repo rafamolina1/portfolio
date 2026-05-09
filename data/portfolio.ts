@@ -64,6 +64,28 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    title: "IAgora",
+    category: "IA generativa / Comunidade",
+    summary:
+      "Plataforma web para gerar receitas com IA a partir dos ingredientes disponíveis e publicar pratos em uma comunidade com feed, perfis e interações sociais.",
+    problem:
+      "Ajudar pessoas a decidir o que preparar com o que têm em casa e transformar receitas criadas em conteúdo compartilhável e descobrível.",
+    contribution:
+      "Desenvolvi a aplicação com Next.js App Router, Route Handlers, Supabase Auth, PostgreSQL com RLS, Storage com URLs assinadas e integração Groq para geração estruturada em JSON.",
+    highlights: [
+      "Geração de receitas por IA com modos doce, salgado ou livre",
+      "Feed público, exploração, perfis, seguidores, curtidas, salvamentos e comentários",
+      "Validação Zod e autorização server-side em Route Handlers",
+      "Supabase RLS, triggers, notificações e painel de Web Vitals",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Groq", "Zod"],
+    image: "/img_gerador.png",
+    github: "https://github.com/rafamolina1/ia-gora",
+    deploy: "https://ia-gora-teal.vercel.app/",
+    status: "AI recipe community",
+    accent: "green",
+  },
+  {
     title: "Watch Dog",
     category: "Observabilidade / Full Stack",
     summary:

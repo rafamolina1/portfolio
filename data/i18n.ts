@@ -180,7 +180,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       email: "E-mail",
       contact: "Contato",
       stats: [
-        { value: "5", label: "sistemas selecionados" },
+        { value: "6", label: "sistemas selecionados" },
         { value: "2", label: "apps mobile em produção" },
         { value: "C2", label: "inglês Cambridge" },
       ],
@@ -246,7 +246,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
     },
     systems: {
       kicker: "Selected Systems",
-      title: "Cinco cases tratados como sistemas reais.",
+      title: "Seis cases tratados como sistemas reais.",
       description:
         "Todos os projetos recebem a mesma profundidade: problema, contribuição, arquitetura, highlights técnicos, stack, GitHub e deploy quando existe.",
       problem: "Problema",
@@ -254,6 +254,28 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       github: "GitHub",
       deploy: "Deploy",
       projects: [
+        {
+          title: "IAgora",
+          category: "IA generativa / Comunidade",
+          summary:
+            "Plataforma web para gerar receitas com IA a partir dos ingredientes disponíveis e publicar pratos em uma comunidade com feed, perfis e interações sociais.",
+          problem:
+            "Ajudar pessoas a decidir o que preparar com o que têm em casa e transformar receitas criadas em conteúdo compartilhável e descobrível.",
+          contribution:
+            "Desenvolvi a aplicação com Next.js App Router, Route Handlers, Supabase Auth, PostgreSQL com RLS, Storage com URLs assinadas e integração Groq para geração estruturada em JSON.",
+          highlights: [
+            "Geração de receitas por IA com modos doce, salgado ou livre",
+            "Feed público, exploração, perfis, seguidores, curtidas, salvamentos e comentários",
+            "Validação Zod e autorização server-side em Route Handlers",
+            "Supabase RLS, triggers, notificações e painel de Web Vitals",
+          ],
+          stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Groq", "Zod"],
+          image: "/img_gerador.png",
+          github: "https://github.com/rafamolina1/ia-gora",
+          deploy: "https://ia-gora-teal.vercel.app/",
+          status: "AI recipe community",
+          accent: "green",
+        },
         {
           title: "Watch Dog",
           category: "Observabilidade / Full Stack",
@@ -565,7 +587,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       email: "Email",
       contact: "Contact",
       stats: [
-        { value: "5", label: "selected systems" },
+        { value: "6", label: "selected systems" },
         { value: "2", label: "mobile apps in production" },
         { value: "C2", label: "Cambridge English" },
       ],
@@ -631,7 +653,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
     },
     systems: {
       kicker: "Selected Systems",
-      title: "Five cases treated as real systems.",
+      title: "Six cases treated as real systems.",
       description:
         "Each project receives the same depth: problem, contribution, architecture, technical highlights, stack, GitHub, and deployment when available.",
       problem: "Problem",
@@ -639,6 +661,28 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       github: "GitHub",
       deploy: "Deploy",
       projects: [
+        {
+          title: "IAgora",
+          category: "Generative AI / Recipe community",
+          summary:
+            "Web platform for generating recipes with AI from available ingredients and publishing dishes in a community with feeds, profiles, and social interactions.",
+          problem:
+            "Help people decide what to cook with what they have at home and turn generated recipes into shareable, discoverable content.",
+          contribution:
+            "I built the application with Next.js App Router, Route Handlers, Supabase Auth, PostgreSQL with RLS, signed Storage URLs, and Groq integration for structured JSON generation.",
+          highlights: [
+            "AI recipe generation with sweet, savory, or free modes",
+            "Public feed, exploration, profiles, followers, likes, saves, and comments",
+            "Zod validation and server-side authorization in Route Handlers",
+            "Supabase RLS, triggers, notifications, and a Web Vitals dashboard",
+          ],
+          stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Groq", "Zod"],
+          image: "/img_gerador.png",
+          github: "https://github.com/rafamolina1/ia-gora",
+          deploy: "https://ia-gora-teal.vercel.app/",
+          status: "AI recipe community",
+          accent: "green",
+        },
         {
           title: "Watch Dog",
           category: "Observability / Full Stack",
@@ -949,7 +993,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       email: "E-mail",
       contact: "Contacto",
       stats: [
-        { value: "5", label: "sistemas seleccionados" },
+        { value: "6", label: "sistemas seleccionados" },
         { value: "2", label: "apps mobile en producción" },
         { value: "C2", label: "inglés Cambridge" },
       ],
@@ -1015,7 +1059,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
     },
     systems: {
       kicker: "Selected Systems",
-      title: "Cinco casos tratados como sistemas reales.",
+      title: "Seis casos tratados como sistemas reales.",
       description:
         "Cada proyecto recibe la misma profundidad: problema, contribución, arquitectura, puntos técnicos, stack, GitHub y deploy cuando existe.",
       problem: "Problema",
@@ -1023,6 +1067,28 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       github: "GitHub",
       deploy: "Deploy",
       projects: [
+        {
+          title: "IAgora",
+          category: "IA generativa / Comunidad de recetas",
+          summary:
+            "Plataforma web para generar recetas con IA a partir de ingredientes disponibles y publicar platos en una comunidad con feed, perfiles e interacciones sociales.",
+          problem:
+            "Ayudar a las personas a decidir qué cocinar con lo que tienen en casa y transformar recetas generadas en contenido compartible y descubrible.",
+          contribution:
+            "Desarrollé la aplicación con Next.js App Router, Route Handlers, Supabase Auth, PostgreSQL con RLS, Storage con URLs firmadas e integración con Groq para generación estructurada en JSON.",
+          highlights: [
+            "Generación de recetas con IA con modos dulce, salado o libre",
+            "Feed público, exploración, perfiles, seguidores, likes, guardados y comentarios",
+            "Validación con Zod y autorización server-side en Route Handlers",
+            "Supabase RLS, triggers, notificaciones y panel de Web Vitals",
+          ],
+          stack: ["Next.js", "React", "TypeScript", "Supabase", "PostgreSQL", "Groq", "Zod"],
+          image: "/img_gerador.png",
+          github: "https://github.com/rafamolina1/ia-gora",
+          deploy: "https://ia-gora-teal.vercel.app/",
+          status: "AI recipe community",
+          accent: "green",
+        },
         {
           title: "Watch Dog",
           category: "Observabilidad / Full Stack",
