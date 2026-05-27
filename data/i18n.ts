@@ -164,7 +164,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
     },
     navItems: [
       { href: "#signals", label: "Signals" },
-      { href: "#systems", label: "Systems" },
+      /* { href: "#systems", label: "Systems" }, */
       { href: "#autonomus", label: "Autonomus" },
       { href: "#capabilities", label: "Capabilities" },
       { href: "#about", label: "Narrative" },
@@ -571,7 +571,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
     },
     navItems: [
       { href: "#signals", label: "Signals" },
-      { href: "#systems", label: "Systems" },
+      /* { href: "#systems", label: "Systems" }, */
       { href: "#autonomus", label: "Autonomus" },
       { href: "#capabilities", label: "Capabilities" },
       { href: "#about", label: "Narrative" },

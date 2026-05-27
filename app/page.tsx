@@ -24,7 +24,7 @@ import {
   Workflow,
 } from "lucide-react";
 import { EmailContact } from "@/components/EmailContact";
-import { dictionary, languageOptions, type Locale, type LocalizedProject, type PortfolioContent } from "@/data/i18n";
+import { dictionary, languageOptions, type Locale, type PortfolioContent } from "@/data/i18n";
 import { profile } from "@/data/portfolio";
 
 export default function Home() {
@@ -42,7 +42,7 @@ export default function Home() {
       <Header t={t} locale={locale} onSelectLocale={selectLocale} />
       <Hero t={t} resumeHref={resumeHref} />
       <TrustSignals t={t} />
-      <SelectedSystems t={t} />
+      {/* <SelectedSystems t={t} /> */}
       <AutonomusCase t={t} />
       <CapabilityMap t={t} />
       <AboutSection t={t} />
@@ -269,7 +269,7 @@ function TrustSignals({ t }: { t: PortfolioContent }) {
   );
 }
 
-function SelectedSystems({ t }: { t: PortfolioContent }) {
+/* function SelectedSystems({ t }: { t: PortfolioContent }) {
   return (
     <section className="section-shell" id="systems">
       <SectionHeading
@@ -285,9 +285,9 @@ function SelectedSystems({ t }: { t: PortfolioContent }) {
       </div>
     </section>
   );
-}
+} */
 
-function ProjectFeature({ project, index, t }: { project: LocalizedProject; index: number; t: PortfolioContent }) {
+/* function ProjectFeature({ project, index, t }: { project: LocalizedProject; index: number; t: PortfolioContent }) {
   return (
     <article className={`system-feature accent-${project.accent}`}>
       <div className="system-visual">
@@ -344,7 +344,7 @@ function ProjectFeature({ project, index, t }: { project: LocalizedProject; inde
       </div>
     </article>
   );
-}
+} */
 
 function AutonomusCase({ t }: { t: PortfolioContent }) {
   return (
@@ -613,7 +613,7 @@ function TechRail({ items }: { items: string[] }) {
   );
 }
 
-function ProjectLinks({ project, t }: { project: LocalizedProject; t: PortfolioContent }) {
+/* function ProjectLinks({ project, t }: { project: LocalizedProject; t: PortfolioContent }) {
   return (
     <div className="project-links">
       <a
@@ -638,8 +638,8 @@ function ProjectLinks({ project, t }: { project: LocalizedProject; t: PortfolioC
       ) : null}
     </div>
   );
-}
+} */
 
-function getPrimaryProjectHref(project: LocalizedProject) {
+/* function getPrimaryProjectHref(project: LocalizedProject) {
   return project.deploy ?? project.github;
-}
+} */
