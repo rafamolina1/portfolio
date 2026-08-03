@@ -3,25 +3,25 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rafamolinadev.vercel.app"),
-  title: "Rafael Molina | Full Stack Command Center",
+  title: "Rafael Oliveira Molina | Desenvolvedor Backend Pleno",
   description:
-    "Portfolio V2 de Rafael Molina: sistemas full stack, produtos web e mobile, APIs, integrações e Autonomus semifinalista no Rocket da Globo.",
+    "Desenvolvedor Backend e Full Stack Pleno com PHP, Laravel, Node.js, TypeScript, APIs REST, microsserviços e SaaS multi-tenant.",
   authors: [{ name: "Rafael Molina" }],
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
   openGraph: {
-    title: "Rafael Molina | Full Stack Command Center",
+    title: "Rafael Oliveira Molina | Desenvolvedor Backend Pleno",
     description:
-      "Desenvolvedor Full Stack focado em produtos web e mobile, APIs e integrações. Cofundador da Autonomus, semifinalista no Rocket da Globo.",
+      "Backend Pleno com PHP/Laravel, Node.js/TypeScript, PostgreSQL, Redis, Docker, testes e observabilidade.",
     type: "website",
     images: [
       {
-        url: "/dashboard-filled.png",
-        width: 1200,
-        height: 630,
-        alt: "Sistema full stack desenvolvido por Rafael Molina",
+        url: "/profilepic.jpeg",
+        width: 800,
+        height: 800,
+        alt: "Rafael Oliveira Molina, Desenvolvedor Backend Pleno",
       },
     ],
   },
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#071011",
-  colorScheme: "dark",
+  themeColor: "#f5f7f2",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
