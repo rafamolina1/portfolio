@@ -1,6 +1,6 @@
 export const profile = {
-  name: "Rafael Molina",
-  role: "Desenvolvedor Full Stack",
+  name: "Rafael Oliveira Molina",
+  role: "Desenvolvedor Backend / Full Stack Pleno",
   email: "rafaeloliveiramolina@gmail.com",
   github: "https://github.com/rafamolina1",
   linkedin: "https://www.linkedin.com/in/rafaelmolinadev/",

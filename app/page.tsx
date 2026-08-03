@@ -1,645 +1,113 @@
 "use client";
 
 import Image from "next/image";
-import { useState, type CSSProperties } from "react";
-import {
-  Activity,
-  ArrowUpRight,
-  BadgeCheck,
-  Boxes,
-  CheckCircle2,
-  Code2,
-  Database,
-  Download,
-  ExternalLink,
-  Github,
-  GraduationCap,
-  Layers3,
-  Linkedin,
-  MonitorCheck,
-  RadioTower,
-  Server,
-  Sparkles,
-  Users,
-  Workflow,
-} from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, Check, Download, ExternalLink, Github, Linkedin, Mail, Server, ShieldCheck, Workflow } from "lucide-react";
 import { EmailContact } from "@/components/EmailContact";
-import { dictionary, languageOptions, type Locale, type PortfolioContent } from "@/data/i18n";
+import { dictionary, globoHref, languageOptions, type Locale, type PortfolioContent } from "@/data/i18n";
 import { profile } from "@/data/portfolio";
 
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("pt-BR");
   const t = dictionary[locale];
-  const resumeHref = locale === "pt-BR" ? profile.resumePt : profile.resumeEn;
+  const resume = locale === "pt-BR" ? profile.resumePt : profile.resumeEn;
 
-  function selectLocale(nextLocale: Locale) {
-    setLocale(nextLocale);
-    document.documentElement.lang = nextLocale;
-  }
+  const changeLocale = (next: Locale) => {
+    setLocale(next);
+    document.documentElement.lang = next;
+  };
 
-  return (
-    <main>
-      <Header t={t} locale={locale} onSelectLocale={selectLocale} />
-      <Hero t={t} resumeHref={resumeHref} />
-      <TrustSignals t={t} />
-      {/* <SelectedSystems t={t} /> */}
-      <AutonomusCase t={t} />
-      <CapabilityMap t={t} />
-      <AboutSection t={t} />
-      <CredentialsSection t={t} />
-      <EducationLeadership t={t} />
-      <FinalCta t={t} resumeHref={resumeHref} />
-      <Footer t={t} />
-    </main>
-  );
+  return <main>
+    <Header t={t} locale={locale} changeLocale={changeLocale} />
+    <Hero t={t} resume={resume} />
+    <Experience t={t} />
+    <Expertise t={t} />
+    <Autonomus t={t} />
+    <Credentials t={t} />
+    <Contact t={t} resume={resume} />
+    <footer><span>© {new Date().getFullYear()} Rafael Oliveira Molina</span><span>Backend / Full Stack Developer</span></footer>
+  </main>;
 }
 
-function Header({
-  t,
-  locale,
-  onSelectLocale,
-}: {
-  t: PortfolioContent;
-  locale: Locale;
-  onSelectLocale: (locale: Locale) => void;
-}) {
-  return (
-    <header className="site-header" aria-label={t.aria.mainNav}>
-      <a className="brand-mark" href="#top" aria-label="Rafael Molina Command Center">
-        <span>RM</span>
-      </a>
-
-      <nav className="desktop-nav" aria-label={t.aria.sectionsNav}>
-        {t.navItems.map((item) => (
-          <a key={item.href} href={item.href}>
-            {item.label}
-          </a>
-        ))}
-      </nav>
-
-      <div className="header-tools">
-        <LanguageSwitcher t={t} locale={locale} onSelectLocale={onSelectLocale} />
-        <EmailContact email={profile.email} label={t.hero.contact} className="header-action" iconSize={16} messages={t.emailModal} />
+function Header({ t, locale, changeLocale }: { t: PortfolioContent; locale: Locale; changeLocale: (locale: Locale) => void }) {
+  return <header className="site-header">
+    <a className="brand" href="#top" aria-label="Rafael Oliveira Molina">RM<span>.</span></a>
+    <nav aria-label={t.aria.mainNav}>
+      <a href="#experience">{t.nav.experience}</a><a href="#expertise">{t.nav.expertise}</a>
+      <a href="#autonomus">{t.nav.autonomus}</a><a href="#credentials">{t.nav.credentials}</a>
+    </nav>
+    <div className="header-actions">
+      <div className="language" aria-label={t.aria.language}>
+        {languageOptions.map(option => <button key={option.locale} type="button" onClick={() => changeLocale(option.locale)} aria-pressed={locale === option.locale} title={option.label}>{option.short}</button>)}
       </div>
-    </header>
-  );
-}
-
-function LanguageSwitcher({
-  t,
-  locale,
-  onSelectLocale,
-}: {
-  t: PortfolioContent;
-  locale: Locale;
-  onSelectLocale: (locale: Locale) => void;
-}) {
-  return (
-    <div className="language-switcher" aria-label={t.aria.languageSwitcher}>
-      {languageOptions.map((option) => (
-        <button
-          key={option.locale}
-          type="button"
-          className={option.locale === locale ? "active" : undefined}
-          onClick={() => onSelectLocale(option.locale)}
-          aria-pressed={option.locale === locale}
-          title={option.label}
-        >
-          {option.short}
-        </button>
-      ))}
+      <a className="icon-button" href="#contact" aria-label={t.nav.contact}><Mail size={18} /></a>
     </div>
-  );
+  </header>;
 }
 
-function Hero({ t, resumeHref }: { t: PortfolioContent; resumeHref: string }) {
-  return (
-    <section className="hero-section" id="top">
-      <div className="hero-grid">
-        <div className="hero-copy reveal">
-          <div className="eyebrow">
-            <span className="status-dot" aria-hidden="true" />
-            {t.hero.availability}
-          </div>
-
-          <h1>{profile.name}</h1>
-          <p className="hero-role">{t.hero.role}</p>
-          <p className="hero-lead">{t.hero.lead}</p>
-          <p className="hero-support">{t.hero.support}</p>
-
-          <div className="hero-actions" aria-label={t.aria.heroActions}>
-            <a className="button primary" href={resumeHref} download>
-              <Download size={18} aria-hidden="true" />
-              {t.hero.resume}
-            </a>
-            <EmailContact email={profile.email} label={t.hero.email} messages={t.emailModal} />
-            <a className="icon-button" href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-              <Github size={19} aria-hidden="true" />
-            </a>
-            <a
-              className="icon-button"
-              href={profile.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={19} aria-hidden="true" />
-            </a>
-          </div>
-
-          <div className="hero-stats" aria-label={t.aria.heroSummary}>
-            {t.hero.stats.map((stat) => (
-              <div key={stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <CommandPanel t={t} />
+function Hero({ t, resume }: { t: PortfolioContent; resume: string }) {
+  return <section className="hero" id="top">
+    <div className="hero-copy">
+      <p className="eyebrow"><span />{t.hero.status}</p>
+      <h1>Rafael Oliveira<br /><strong>Molina</strong></h1>
+      <p className="role">{t.hero.role}</p>
+      <h2>{t.hero.lead}</h2>
+      <p className="hero-text">{t.hero.support}</p>
+      <div className="button-row" aria-label={t.aria.heroActions}>
+        <EmailContact email={profile.email} label={t.hero.contact} className="button primary" messages={t.emailModal} />
+        <a className="button" href={resume} download><Download size={18} />{t.hero.resume}</a>
+        <a className="icon-button" href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={19} /></a>
+        <a className="icon-button" href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={19} /></a>
       </div>
-    </section>
-  );
-}
-
-function CommandPanel({ t }: { t: PortfolioContent }) {
-  return (
-    <aside className="command-shell reveal reveal-delay-1" aria-label={t.aria.commandPanel}>
-      <div className="shell-topbar">
-        <span className="window-dot cyan" />
-        <span className="window-dot amber" />
-        <span className="window-dot green" />
-        <span className="shell-title">command-center/live</span>
-      </div>
-
-      <div className="identity-strip">
-        <div className="avatar-frame">
-          <Image
-            src="/profilepic.jpeg"
-            alt="Foto de Rafael Molina"
-            fill
-            sizes="112px"
-            priority
-          />
-        </div>
-        <div>
-          <span className="mini-label">{t.command.operatorLabel}</span>
-          <strong>Rafael Molina</strong>
-          <p>{t.command.operatorDescription}</p>
-        </div>
-      </div>
-
-      <div className="telemetry-stack">
-        <div className="telemetry-module production">
-          <div className="module-header">
-            <RadioTower size={17} aria-hidden="true" />
-            <span>{t.command.productionTitle}</span>
-          </div>
-          <ul className="signal-list">
-            {t.command.productionSignals.map((signal) => (
-              <li key={signal}>
-                <CheckCircle2 size={15} aria-hidden="true" />
-                {signal}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="telemetry-module">
-          <div className="module-header">
-            <Code2 size={17} aria-hidden="true" />
-            <span>{t.command.coreStackTitle}</span>
-          </div>
-          <div className="stack-grid">
-            {t.command.coreStack.map((tech) => (
-              <span key={tech}>{tech}</span>
-            ))}
-          </div>
-        </div>
-
-        <div className="telemetry-module">
-          <div className="module-header">
-            <Activity size={17} aria-hidden="true" />
-            <span>{t.command.focusTitle}</span>
-          </div>
-          <div className="focus-radar">
-            {t.command.focusItems.map((item, index) => (
-              <span key={item} style={{ "--delay": `${index * 130}ms` } as CSSProperties}>
-                {item}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+      <div className="proof-row">{t.hero.proof.map(item => <div key={item.label}><strong>{item.value}</strong><span>{item.label}</span></div>)}</div>
+    </div>
+    <aside className="profile-panel" aria-label={t.aria.profile}>
+      <div className="profile-head"><div className="portrait"><Image src="/profilepic.jpeg" alt="Rafael Oliveira Molina" fill priority sizes="104px" /></div><div><span>{t.snapshot.label}</span><h2>{t.snapshot.title}</h2><p>{t.snapshot.subtitle}</p></div></div>
+      <div className="signal-grid">{t.snapshot.signals.map(signal => <div key={signal}><Check size={16} /><span>{signal}</span></div>)}</div>
+      <div className="stack"><span>{t.snapshot.stackLabel}</span><div>{t.snapshot.stack.map(item => <b key={item}>{item}</b>)}</div></div>
     </aside>
-  );
+  </section>;
 }
 
-function TrustSignals({ t }: { t: PortfolioContent }) {
-  return (
-    <section className="section-shell" id="signals">
-      <SectionHeading
-        kicker={t.trust.kicker}
-        title={t.trust.title}
-        description={t.trust.description}
-      />
-
-      <div className="trust-grid">
-        {t.trust.signals.map((signal, index) => (
-          <a
-            className="trust-card"
-            key={signal.label}
-            href={signal.href ?? "#credentials"}
-            target={signal.href ? "_blank" : undefined}
-            rel={signal.href ? "noreferrer" : undefined}
-            style={{ "--delay": `${index * 60}ms` } as CSSProperties}
-          >
-            <span className="trust-index">{String(index + 1).padStart(2, "0")}</span>
-            <div>
-              <strong>{signal.label}</strong>
-              <span>{signal.value}</span>
-              <p>{signal.detail}</p>
-            </div>
-            {signal.href ? <ArrowUpRight size={18} aria-hidden="true" /> : <BadgeCheck size={18} aria-hidden="true" />}
-          </a>
-        ))}
-      </div>
-    </section>
-  );
+function Heading({ kicker, title, description }: { kicker: string; title: string; description: string }) {
+  return <div className="section-heading"><span>{kicker}</span><h2>{title}</h2><p>{description}</p></div>;
 }
 
-/* function SelectedSystems({ t }: { t: PortfolioContent }) {
-  return (
-    <section className="section-shell" id="systems">
-      <SectionHeading
-        kicker={t.systems.kicker}
-        title={t.systems.title}
-        description={t.systems.description}
-      />
-
-      <div className="featured-systems">
-        {t.systems.projects.map((project, index) => (
-          <ProjectFeature key={project.title} project={project} index={index} t={t} />
-        ))}
-      </div>
-    </section>
-  );
-} */
-
-/* function ProjectFeature({ project, index, t }: { project: LocalizedProject; index: number; t: PortfolioContent }) {
-  return (
-    <article className={`system-feature accent-${project.accent}`}>
-      <div className="system-visual">
-        <a
-          className="visual-link"
-          href={getPrimaryProjectHref(project)}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${t.aria.openProject} ${project.title}`}
-        >
-          <Image
-            src={project.image}
-            alt={`${t.aria.projectImage} ${project.title}`}
-            fill
-            sizes="(max-width: 900px) 100vw, 50vw"
-          />
-        </a>
-        <span className="system-status">
-          <span aria-hidden="true" />
-          {project.status}
-        </span>
-      </div>
-
-      <div className="system-content">
-        <div className="case-meta">
-          <span>{String(index + 1).padStart(2, "0")}</span>
-          <span>{project.category}</span>
-        </div>
-        <h3>{project.title}</h3>
-        <p className="system-summary">{project.summary}</p>
-
-        <div className="case-columns">
-          <div>
-            <span className="mini-label">{t.systems.problem}</span>
-            <p>{project.problem}</p>
-          </div>
-          <div>
-            <span className="mini-label">{t.systems.contribution}</span>
-            <p>{project.contribution}</p>
-          </div>
-        </div>
-
-        <ul className="highlight-list">
-          {project.highlights.map((highlight) => (
-            <li key={highlight}>
-              <CheckCircle2 size={15} aria-hidden="true" />
-              {highlight}
-            </li>
-          ))}
-        </ul>
-
-        <TechRail items={project.stack} />
-        <ProjectLinks project={project} t={t} />
-      </div>
-    </article>
-  );
-} */
-
-function AutonomusCase({ t }: { t: PortfolioContent }) {
-  return (
-    <section className="autonomus-section" id="autonomus">
-      <div className="section-shell autonomus-grid">
-        <div>
-          <SectionHeading
-            kicker={t.autonomus.kicker}
-            title={t.autonomus.title}
-            description={t.autonomus.description}
-          />
-
-          <p className="autonomus-lead">{t.autonomus.lead}</p>
-
-          <div className="narrative-steps">
-            {t.autonomus.steps.map(([title, text]) => (
-              <article key={title}>
-                <span>{title}</span>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
-
-          <a
-            className="button primary autonomus-link"
-            href="https://redeglobo.globo.com/rpc/realities/rocket-startup/vida/noticia/autonomus-a-startup-que-conecta-trabalhadores-autonomos-e-clientes-na-busca-de-servicos.ghtml"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <ExternalLink size={18} aria-hidden="true" />
-            {t.autonomus.mediaButton}
-          </a>
-        </div>
-
-        <div className="system-map" aria-label={t.aria.autonomusMap}>
-          <div className="map-header">
-            <Workflow size={18} aria-hidden="true" />
-            <span>{t.autonomus.mapTitle}</span>
-          </div>
-          <div className="map-flow">
-            {t.autonomus.nodes.map((node, index) => (
-              <div className="map-node" key={node}>
-                <span className="node-index">{String(index + 1).padStart(2, "0")}</span>
-                <strong>{node}</strong>
-                {index < t.autonomus.nodes.length - 1 ? <span className="flow-line" aria-hidden="true" /> : null}
-              </div>
-            ))}
-          </div>
-          <div className="map-footer">
-            {t.autonomus.footerTags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+function Experience({ t }: { t: PortfolioContent }) {
+  return <section className="section" id="experience"><Heading kicker={t.experience.kicker} title={t.experience.title} description={t.experience.description} />
+    <div className="experience-list">{t.experience.items.map((item, index) => <article className={item.featured ? "experience featured" : "experience"} key={item.company}>
+      <div className="experience-meta"><span>0{index + 1}</span><p>{item.period === "Atual" || item.period === "Current" ? <b>{t.experience.current}</b> : item.period}</p></div>
+      <div className="experience-body"><div className="job-heading"><div><h3>{item.company}</h3><h4>{item.role}</h4></div><span>{item.location}</span></div><p className="summary">{item.summary}</p>
+        <ul>{item.highlights.map(text => <li key={text}><Check size={16} />{text}</li>)}</ul><Tags items={item.stack} /></div>
+    </article>)}</div>
+  </section>;
 }
 
-function CapabilityMap({ t }: { t: PortfolioContent }) {
-  const icons = [Layers3, Server, Database, Workflow, Sparkles, MonitorCheck];
-
-  return (
-    <section className="section-shell" id="capabilities">
-      <SectionHeading
-        kicker={t.capabilities.kicker}
-        title={t.capabilities.title}
-        description={t.capabilities.description}
-      />
-
-      <div className="capability-grid">
-        {t.capabilities.groups.map((group, index) => {
-          const Icon = icons[index] ?? Boxes;
-          return (
-            <article className="capability-card" key={group.title}>
-              <div className="capability-heading">
-                <Icon size={19} aria-hidden="true" />
-                <h3>{group.title}</h3>
-              </div>
-              <p>{group.description}</p>
-              <TechRail items={group.items} />
-            </article>
-          );
-        })}
-      </div>
-    </section>
-  );
+function Expertise({ t }: { t: PortfolioContent }) {
+  const icons = [Server, Workflow, ShieldCheck];
+  return <section className="expertise-band" id="expertise"><div className="section"><Heading kicker={t.expertise.kicker} title={t.expertise.title} description={t.expertise.description} />
+    <div className="expertise-grid">{t.expertise.groups.map((group, index) => { const Icon = icons[index]; return <article key={group.title}><Icon size={22} /><h3>{group.title}</h3><p>{group.description}</p><Tags items={group.items} /></article>; })}</div>
+    <div className="secondary"><span>{t.expertise.secondary}</span><div><p>{t.expertise.secondaryText}</p><Tags items={["Java", "C# / .NET"]} /></div></div>
+  </div></section>;
 }
 
-function AboutSection({ t }: { t: PortfolioContent }) {
-  return (
-    <section className="about-section" id="about">
-      <div className="section-shell about-grid">
-        <div>
-          <SectionHeading
-            kicker={t.about.kicker}
-            title={t.about.title}
-            description={t.about.description}
-          />
-        </div>
-
-        <div className="about-copy">
-          {t.about.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-
-          <div className="work-principles">
-            {t.about.principles.map((principle) => (
-              <div key={principle}>
-                <CheckCircle2 size={16} aria-hidden="true" />
-                <span>{principle}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
+function Autonomus({ t }: { t: PortfolioContent }) {
+  return <section className="section autonomus" id="autonomus"><div><Heading kicker={t.autonomus.kicker} title={t.autonomus.title} description={t.autonomus.description} />
+    <ul>{t.autonomus.highlights.map(item => <li key={item}><Check size={17} />{item}</li>)}</ul><blockquote>{t.autonomus.recognition}</blockquote>
+    <a className="button primary" href={globoHref} target="_blank" rel="noreferrer"><ExternalLink size={18} />{t.autonomus.media}</a></div>
+    <div className="architecture"><div className="architecture-title"><Workflow size={18} /><span>PRODUCT / ARCHITECTURE</span></div>{t.autonomus.architecture.map((item, index) => <div className="architecture-node" key={item}><span>0{index + 1}</span><strong>{item}</strong>{index < t.autonomus.architecture.length - 1 && <ArrowUpRight size={16} />}</div>)}</div>
+  </section>;
 }
 
-function CredentialsSection({ t }: { t: PortfolioContent }) {
-  return (
-    <section className="section-shell" id="credentials">
-      <SectionHeading
-        kicker={t.credentials.kicker}
-        title={t.credentials.title}
-        description={t.credentials.description}
-      />
-
-      <div className="credentials-grid">
-        {t.credentials.items.map((credential, index) => (
-          <article className="credential-card" key={credential.title}>
-            <span className="credential-number">{String(index + 1).padStart(2, "0")}</span>
-            <div>
-              <h3>{credential.title}</h3>
-              <p>{credential.description}</p>
-              {credential.href ? (
-                <a href={credential.href} target="_blank" rel="noreferrer">
-                  {t.credentials.verify}
-                  <ArrowUpRight size={15} aria-hidden="true" />
-                </a>
-              ) : (
-                <span className="credential-note">{t.credentials.note}</span>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
+function Credentials({ t }: { t: PortfolioContent }) {
+  return <section className="section" id="credentials"><Heading kicker={t.credentials.kicker} title={t.credentials.title} description={t.credentials.description} />
+    <div className="credentials">{t.credentials.items.map((item, index) => { const body = <><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.issuer}</p></div>{item.href && <ArrowUpRight size={18} />}</>; return item.href ? <a href={item.href} target="_blank" rel="noreferrer" key={item.title}>{body}</a> : <div key={item.title}>{body}</div>; })}</div>
+    <div className="education"><div><span>{t.education.kicker}</span><h3>{t.education.title}</h3><p>{t.education.degree}</p></div><div><strong>{t.education.period}</strong><span>{t.education.note}</span></div></div>
+  </section>;
 }
 
-function EducationLeadership({ t }: { t: PortfolioContent }) {
-  return (
-    <section className="section-shell education-section" id="education">
-      <SectionHeading
-        kicker={t.education.kicker}
-        title={t.education.title}
-        description={t.education.description}
-      />
-
-      <div className="education-grid">
-        <article className="timeline-card">
-          <div className="timeline-heading">
-            <GraduationCap size={20} aria-hidden="true" />
-            <h3>{t.education.educationTitle}</h3>
-          </div>
-          <div className="timeline-list">
-            {t.education.items.map((item) => (
-              <div key={item.title}>
-                <span>{item.period}</span>
-                <strong>{item.title}</strong>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </article>
-
-        <article className="timeline-card">
-          <div className="timeline-heading">
-            <Users size={20} aria-hidden="true" />
-            <h3>{t.education.leadershipTitle}</h3>
-          </div>
-          <div className="timeline-list">
-            {t.education.leadership.map((item) => (
-              <div key={item.title}>
-                <span>{item.period}</span>
-                <strong>{item.title}</strong>
-                <p>{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </article>
-      </div>
-    </section>
-  );
+function Contact({ t, resume }: { t: PortfolioContent; resume: string }) {
+  return <section className="contact" id="contact"><span>{t.contact.kicker}</span><h2>{t.contact.title}</h2><p>{t.contact.description}</p><div className="button-row"><EmailContact email={profile.email} label={t.contact.email} className="button primary" messages={t.emailModal} /><a className="button" href={resume} download><Download size={18} />{t.contact.resume}</a><a className="button" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} />LinkedIn</a></div></section>;
 }
 
-function FinalCta({ t, resumeHref }: { t: PortfolioContent; resumeHref: string }) {
-  return (
-    <section className="final-cta" id="contact">
-      <div className="cta-panel">
-        <span className="eyebrow">
-          <span className="status-dot" aria-hidden="true" />
-          {t.finalCta.status}
-        </span>
-        <h2>{t.finalCta.title}</h2>
-        <p>{t.finalCta.description}</p>
-
-        <div className="hero-actions">
-          <EmailContact email={profile.email} label={t.finalCta.email} className="button primary" messages={t.emailModal} />
-          <a className="button" href={profile.linkedin} target="_blank" rel="noreferrer">
-            <Linkedin size={18} aria-hidden="true" />
-            LinkedIn
-          </a>
-          <a className="button" href={profile.github} target="_blank" rel="noreferrer">
-            <Github size={18} aria-hidden="true" />
-            GitHub
-          </a>
-          <a className="button" href={resumeHref} download>
-            <Download size={18} aria-hidden="true" />
-            {t.finalCta.resume}
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Footer({ t }: { t: PortfolioContent }) {
-  return (
-    <footer className="footer">
-      <span>Rafael Molina Command Center</span>
-      <a href={profile.resumeEn} download>
-        {t.footer.resumeEn}
-      </a>
-    </footer>
-  );
-}
-
-function SectionHeading({
-  kicker,
-  title,
-  description,
-}: {
-  kicker: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="section-heading">
-      <span className="kicker">{kicker}</span>
-      <h2>{title}</h2>
-      <p>{description}</p>
-    </div>
-  );
-}
-
-function TechRail({ items }: { items: string[] }) {
-  return (
-    <div className="tech-rail">
-      {items.map((item) => (
-        <span key={item}>{item}</span>
-      ))}
-    </div>
-  );
-}
-
-/* function ProjectLinks({ project, t }: { project: LocalizedProject; t: PortfolioContent }) {
-  return (
-    <div className="project-links">
-      <a
-        href={project.github}
-        target="_blank"
-        rel="noreferrer"
-        aria-label={`${t.aria.openGithub} ${project.title}`}
-      >
-        <Github size={16} aria-hidden="true" />
-        {t.systems.github}
-      </a>
-      {project.deploy ? (
-        <a
-          href={project.deploy}
-          target="_blank"
-          rel="noreferrer"
-          aria-label={`${t.aria.openDeploy} ${project.title}`}
-        >
-          <ArrowUpRight size={16} aria-hidden="true" />
-          {t.systems.deploy}
-        </a>
-      ) : null}
-    </div>
-  );
-} */
-
-/* function getPrimaryProjectHref(project: LocalizedProject) {
-  return project.deploy ?? project.github;
-} */
+function Tags({ items }: { items: string[] }) { return <div className="tags">{items.map(item => <span key={item}>{item}</span>)}</div>; }
