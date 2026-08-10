@@ -48,6 +48,8 @@ const globo = "https://redeglobo.globo.com/rpc/realities/rocket-startup/vida/not
 const oracle = "https://catalog-education.oracle.com/ords/certview/sharebadge?id=BDFB9AB79C56F27589ACAF192371337C6018A7054703F016272EF03BB4A76141";
 const ibmPrivacy = "https://courses.skillsbuild.skillsnetwork.site/certificates/bb448a693e31473baa6fb78158bcc8f7";
 const ibmMl = "https://courses.skillsbuild.skillsnetwork.site/certificates/3fb5ed10feed4d168371f409380546a7";
+const googleCybersecurity = "https://www.coursera.org/account/accomplishments/specialization/9YKAIC5LL3K3";
+const googleDataAnalytics = "https://www.coursera.org/account/accomplishments/specialization/P4JTCGE443Z7";
 
 export const dictionary: Record<Locale, PortfolioContent> = {
   "pt-BR": {
@@ -125,8 +127,10 @@ export const dictionary: Record<Locale, PortfolioContent> = {
     },
     credentials: {
       kicker: "Credenciais", title: "Formação contínua e comunicação internacional.",
-      description: "Certificações em cloud, dados, privacidade e desenvolvimento, somadas ao inglês C2 com uso profissional.",
+      description: "Certificações em segurança cibernética, cloud, dados, privacidade e desenvolvimento, somadas ao inglês C2 com uso profissional.",
       items: [
+        { title: "Google Cybersecurity", issuer: "Google", href: googleCybersecurity },
+        { title: "Google Data Analytics", issuer: "Google", href: googleDataAnalytics },
         { title: "Cambridge English C2 Proficiency", issuer: "University of Cambridge" },
         { title: "Oracle Cloud Infrastructure Associate", issuer: "Oracle", href: oracle },
         { title: "Machine Learning with Python", issuer: "IBM", href: ibmMl },
@@ -167,7 +171,7 @@ export const dictionary: Record<Locale, PortfolioContent> = {
       secondary: "Full Stack breadth", secondaryText: "Product experience with React and Flutter; additional familiarity with .NET/C#, Java, Go, and Angular to collaborate beyond backend boundaries.",
     },
     autonomus: { kicker: "Featured product", title: "Autonomus: from idea to app stores.", description: "As co-founder, Rafael worked across the entire lifecycle of a service marketplace: product, architecture, backend, mobile, and release.", highlights: ["Two Flutter apps: client and provider", "Published on the App Store and Google Play", "Laravel backend with asynchronous Redis processing"], recognition: "Semifinalist on Rocket, Grupo Globo's startup reality show; validated by Globo, Itaipu Technology Park, and UTFPR.", media: "View Globo coverage", architecture: ["Flutter apps", "Laravel API", "Domains", "Redis queues", "Persistence"] },
-    credentials: { kicker: "Credentials", title: "Continuous learning and international communication.", description: "Credentials spanning cloud, data, privacy, and development, plus C2 English used professionally.", items: [{ title: "Cambridge English C2 Proficiency", issuer: "University of Cambridge" }, { title: "Oracle Cloud Infrastructure Associate", issuer: "Oracle", href: oracle }, { title: "Machine Learning with Python", issuer: "IBM", href: ibmMl }, { title: "Data Privacy", issuer: "IBM", href: ibmPrivacy }, { title: "Java Santander Bootcamp", issuer: "Santander", href: "https://www.dio.me/certificate/KM1AIKT5/share" }] },
+    credentials: { kicker: "Credentials", title: "Continuous learning and international communication.", description: "Credentials spanning cybersecurity, cloud, data, privacy, and development, plus C2 English used professionally.", items: [{ title: "Google Cybersecurity", issuer: "Google", href: googleCybersecurity }, { title: "Google Data Analytics", issuer: "Google", href: googleDataAnalytics }, { title: "Cambridge English C2 Proficiency", issuer: "University of Cambridge" }, { title: "Oracle Cloud Infrastructure Associate", issuer: "Oracle", href: oracle }, { title: "Machine Learning with Python", issuer: "IBM", href: ibmMl }, { title: "Data Privacy", issuer: "IBM", href: ibmPrivacy }, { title: "Java Santander Bootcamp", issuer: "Santander", href: "https://www.dio.me/certificate/KM1AIKT5/share" }] },
     education: { kicker: "Education", title: "Systems Analysis and Development", degree: "Fundação Getulio Vargas (FGV)", period: "Apr. 2025 - Dec. 2027", note: "Associate degree | Remote" },
     contact: { kicker: "Contact", title: "Let's talk about backend and product.", description: "Open to mid-level Backend or Full Stack opportunities in Brazil or international teams.", email: "Send email", resume: "Download resume" },
     emailModal: { kicker: "Direct contact", title: "How would you like to continue?", description: "Open your email app or copy the address.", addressLabel: "Contact email", open: "Open email", copy: "Copy email", copied: "Copied", close: "Close", closeWindow: "Close window" },
