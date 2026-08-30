@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowDownRight, ArrowUpRight, Download, Mail } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Check, Copy, Download, Mail, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -24,6 +24,16 @@ const content = {
     intro: "Rafael Molina é um desenvolvedor Backend Pleno com experiência internacional. Ele transforma regras de negócio complexas em sistemas claros, testáveis e preparados para operar.",
     status: "DISPONÍVEL PARA NOVAS OPORTUNIDADES",
     contact: "Conversar com Rafael",
+    contactDialog: {
+      eyebrow: "CANAL DIRETO / CONTATO",
+      title: "Como você prefere conversar?",
+      description: "Copie o endereço para usar onde quiser ou abra seu aplicativo de e-mail.",
+      emailLabel: "E-mail profissional",
+      copy: "Copiar e-mail",
+      copied: "E-mail copiado",
+      openMail: "Abrir no e-mail",
+      close: "Fechar",
+    },
     resume: "Currículo atualizado",
     portraitAlt: "Rafael Molina",
     portraitNote: "RAFAEL MOLINA / 2026",
@@ -128,6 +138,16 @@ const content = {
     intro: "Rafael Molina is a Mid-level Backend Developer with international experience. He turns complex business rules into clear, testable systems built to operate.",
     status: "OPEN TO NEW OPPORTUNITIES",
     contact: "Talk to Rafael",
+    contactDialog: {
+      eyebrow: "DIRECT CHANNEL / CONTACT",
+      title: "How would you like to connect?",
+      description: "Copy the address to use anywhere or open your email application.",
+      emailLabel: "Professional email",
+      copy: "Copy email",
+      copied: "Email copied",
+      openMail: "Open email app",
+      close: "Close",
+    },
     resume: "Updated résumé",
     portraitAlt: "Rafael Molina",
     portraitNote: "RAFAEL MOLINA / 2026",
@@ -232,6 +252,7 @@ export default function Home() {
   const [reality, setReality] = useState<Reality>(1);
   const [targetReality, setTargetReality] = useState<Reality>(2);
   const [isShifting, setIsShifting] = useState(false);
+  const [contactOpen, setContactOpen] = useState(false);
   const timers = useRef<number[]>([]);
   const t = content[locale];
 
@@ -292,9 +313,10 @@ export default function Home() {
   return (
     <div className={"reality-root reality-active-" + reality}>
       <RealitySplash active={isShifting} target={targetReality} />
+      <ContactDialog open={contactOpen} onOpenChange={setContactOpen} t={t} reality={reality} />
       {reality === 1
-        ? <EditorialReality t={t} toggleLocale={toggleLocale} switchReality={switchReality} />
-        : <SystemReality t={t} toggleLocale={toggleLocale} switchReality={switchReality} />}
+        ? <EditorialReality t={t} toggleLocale={toggleLocale} switchReality={switchReality} openContact={() => setContactOpen(true)} />
+        : <SystemReality t={t} toggleLocale={toggleLocale} switchReality={switchReality} openContact={() => setContactOpen(true)} />}
     </div>
   );
 }
@@ -313,14 +335,86 @@ function RealitySplash({ active, target }: { active: boolean; target: Reality })
   );
 }
 
+function ContactDialog({
+  open,
+  onOpenChange,
+  t,
+  reality,
+}: {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  t: PortfolioContent;
+  reality: Reality;
+}) {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    if (open && !dialog.open) dialog.showModal();
+    if (!open && dialog.open) dialog.close();
+  }, [open]);
+
+  function handleOpenChange(next: boolean) {
+    if (!next) setCopied(false);
+    onOpenChange(next);
+  }
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(profile.email);
+      setCopied(true);
+    } catch {
+      const field = document.createElement("textarea");
+      field.value = profile.email;
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      document.execCommand("copy");
+      field.remove();
+      setCopied(true);
+    }
+  }
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className={"contact-dialog contact-dialog-native contact-dialog-" + reality}
+      onCancel={(event) => { event.preventDefault(); handleOpenChange(false); }}
+      onClick={(event) => { if (event.target === event.currentTarget) handleOpenChange(false); }}
+    >
+      <button className="contact-dialog-close" type="button" onClick={() => handleOpenChange(false)} aria-label={t.contactDialog.close}><X /></button>
+      <header className="contact-dialog-header">
+        <span>{t.contactDialog.eyebrow}</span>
+        <h2 className="contact-dialog-title">{t.contactDialog.title}</h2>
+        <p className="contact-dialog-description">{t.contactDialog.description}</p>
+      </header>
+      <div className="contact-email-card">
+        <span>{t.contactDialog.emailLabel}</span>
+        <strong>{profile.email}</strong>
+      </div>
+      <div className="contact-dialog-actions">
+        <button className="contact-copy-button" type="button" onClick={copyEmail}>
+          {copied ? <Check /> : <Copy />}{copied ? t.contactDialog.copied : t.contactDialog.copy}
+        </button>
+        <a className="contact-mail-button" href={'mailto:' + profile.email}><Mail />{t.contactDialog.openMail}</a>
+      </div>
+    </dialog>
+  );
+}
+
 function EditorialReality({
   t,
   toggleLocale,
   switchReality,
+  openContact,
 }: {
   t: PortfolioContent;
   toggleLocale: () => void;
   switchReality: () => void;
+  openContact: () => void;
 }) {
   return (
     <main id="top" className="editorial-reality">
@@ -344,7 +438,7 @@ function EditorialReality({
           <h1 id="hero-title">{t.title}</h1>
           <p className="hero-intro">{t.intro}</p>
           <div className="hero-actions">
-            <a className="action action-primary" href={'mailto:' + profile.email}><Mail />{t.contact}</a>
+            <button className="action action-primary" type="button" onClick={openContact}><Mail />{t.contact}</button>
             <a className="action action-outline" href={profile.resume} download><Download />{t.resume}</a>
           </div>
         </div>
@@ -464,12 +558,12 @@ function EditorialReality({
         <h2>{t.contactTitle}</h2>
         <div className="contact-bottom">
           <span>{t.contactBody}</span>
-          <a href={'mailto:' + profile.email}>{t.email}<ArrowUpRight /></a>
+          <button className="contact-email-trigger" type="button" onClick={openContact}>{t.email}<ArrowUpRight /></button>
         </div>
       </section>
 
       <footer>
-        <a href={'mailto:' + profile.email}>{profile.email}</a>
+        <button className="footer-email-trigger" type="button" onClick={openContact}>{profile.email}</button>
         <p>© {new Date().getFullYear()} RAFAEL MOLINA<br />{t.footer}</p>
         <div>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><span>in</span></a>
@@ -484,10 +578,12 @@ function SystemReality({
   t,
   toggleLocale,
   switchReality,
+  openContact,
 }: {
   t: PortfolioContent;
   toggleLocale: () => void;
   switchReality: () => void;
+  openContact: () => void;
 }) {
   const s = t.system;
 
@@ -520,7 +616,7 @@ function SystemReality({
           <div className="system-role-line"><b>{s.role}</b><span>{"///"}</span><i>{s.status}</i></div>
           <p className="system-intro">{s.intro}</p>
           <div className="system-actions">
-            <a className="system-primary" href={'mailto:' + profile.email}><Mail />{t.contact}</a>
+            <button className="system-primary" type="button" onClick={openContact}><Mail />{t.contact}</button>
             <a className="system-secondary" href={profile.resume} download><Download />{s.resume}</a>
           </div>
         </div>
@@ -618,7 +714,7 @@ function SystemReality({
         <h2>{s.contactTitle}</h2>
         <p>{s.contactBody}</p>
         <div>
-          <a className="system-contact-primary" href={'mailto:' + profile.email}>{s.email}<ArrowUpRight /></a>
+          <button className="system-contact-primary" type="button" onClick={openContact}>{s.email}<ArrowUpRight /></button>
           <a href={profile.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a>
           <a href={profile.github} target="_blank" rel="noreferrer">GITHUB ↗</a>
         </div>

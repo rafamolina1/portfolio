@@ -247,12 +247,15 @@ footer {
 }
 
 .action {
+  appearance: none;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   height: 50px;
   padding: 0 18px;
+  border: 1px solid transparent;
   border-radius: 0;
   font-family: var(--font-mono);
   font-size: 11px;
@@ -897,7 +900,8 @@ footer {
   font-size: 18px;
 }
 
-.contact-bottom > a {
+.contact-bottom > a,
+.contact-email-trigger {
   display: inline-flex;
   align-items: center;
   gap: 24px;
@@ -906,13 +910,25 @@ footer {
   letter-spacing: -0.045em;
 }
 
+.contact-email-trigger {
+  appearance: none;
+  cursor: pointer;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
 .contact-bottom svg {
   width: 34px;
   height: 34px;
   transition: transform 220ms ease;
 }
 
-.contact-bottom a:hover svg {
+.contact-bottom a:hover svg,
+.contact-email-trigger:hover svg {
   transform: translate(5px, -5px);
 }
 
@@ -928,13 +944,25 @@ footer {
   line-height: 1.7;
 }
 
-footer > a {
+footer > a,
+.footer-email-trigger {
   color: var(--white);
   font-family: Arial, "Helvetica Neue", sans-serif;
   font-size: clamp(17px, 1.4vw, 23px);
   font-weight: 700;
   letter-spacing: -0.03em;
   text-transform: none;
+}
+
+.footer-email-trigger {
+  appearance: none;
+  cursor: pointer;
+  justify-self: start;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 footer p {
@@ -976,6 +1004,205 @@ footer > div a span {
 footer > div a svg {
   width: 21px;
   height: 21px;
+}
+
+/* Contact choice dialog -------------------------------------------------- */
+
+.contact-dialog {
+  width: min(640px, calc(100vw - 32px));
+  max-width: 640px;
+  gap: 0;
+  overflow: hidden;
+  padding: 0;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  box-shadow: 18px 18px 0 rgba(0, 0, 0, .28);
+}
+
+.contact-dialog-native {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+}
+
+.contact-dialog-native::backdrop {
+  background: rgba(0, 0, 0, .68);
+  backdrop-filter: blur(4px);
+}
+
+.contact-dialog-1 {
+  border: 1px solid var(--acid);
+  background: var(--ink);
+  color: var(--white);
+}
+
+.contact-dialog-2 {
+  border: 1px solid #101528;
+  background: #f2f0e8;
+  color: #101528;
+  box-shadow: 18px 18px 0 #164bff;
+}
+
+.contact-dialog > button[data-slot="dialog-close"],
+.contact-dialog-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  cursor: pointer;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: currentColor;
+  opacity: .8;
+}
+
+.contact-dialog > button[data-slot="dialog-close"]:hover,
+.contact-dialog-close:hover {
+  opacity: 1;
+}
+
+.contact-dialog-close svg {
+  width: 17px;
+  height: 17px;
+}
+
+.contact-dialog-header {
+  gap: 0;
+  padding: 36px 64px 34px 32px;
+  border-bottom: 1px solid currentColor;
+  text-align: left;
+}
+
+.contact-dialog-header > span {
+  margin-bottom: 30px;
+  color: var(--acid);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.contact-dialog-2 .contact-dialog-header > span {
+  color: #164bff;
+}
+
+.contact-dialog-header [data-slot="dialog-title"],
+.contact-dialog-title {
+  max-width: 500px;
+  margin: 0;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: clamp(34px, 5vw, 54px);
+  font-weight: 800;
+  line-height: .94;
+  letter-spacing: -.065em;
+}
+
+.contact-dialog-header [data-slot="dialog-description"],
+.contact-dialog-description {
+  max-width: 490px;
+  margin-top: 18px;
+  color: currentColor;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+  opacity: .7;
+}
+
+.contact-email-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 24px;
+  align-items: center;
+  padding: 25px 32px;
+  border-bottom: 1px solid currentColor;
+}
+
+.contact-email-card span {
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .58;
+}
+
+.contact-email-card strong {
+  justify-self: end;
+  font-family: Arial, "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  letter-spacing: -.025em;
+}
+
+.contact-dialog-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  padding: 16px;
+}
+
+.contact-copy-button,
+.contact-mail-button {
+  appearance: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 18px;
+  border: 1px solid currentColor;
+  border-radius: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.contact-copy-button svg,
+.contact-mail-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.contact-dialog-1 .contact-copy-button {
+  border-color: rgba(248,248,243,.4);
+  background: transparent;
+  color: var(--white);
+}
+
+.contact-dialog-1 .contact-copy-button:hover {
+  border-color: var(--acid);
+  background: transparent;
+  color: var(--acid);
+}
+
+.contact-dialog-1 .contact-mail-button {
+  border: 1px solid var(--acid);
+  background: var(--acid);
+  color: var(--ink);
+}
+
+.contact-dialog-2 .contact-copy-button {
+  border-color: #101528;
+  background: transparent;
+  color: #101528;
+}
+
+.contact-dialog-2 .contact-copy-button:hover {
+  background: #caff45;
+}
+
+.contact-dialog-2 .contact-mail-button {
+  border: 1px solid #164bff;
+  background: #164bff;
+  color: #fff;
+}
+
+.contact-mail-button:hover {
+  filter: brightness(.94);
 }
 
 /* Reality switch --------------------------------------------------------- */
@@ -1388,6 +1615,8 @@ footer > div a svg {
 .system-primary,
 .system-secondary,
 .system-contact-primary {
+  appearance: none;
+  cursor: pointer;
   min-height: 52px;
   display: inline-flex;
   align-items: center;
@@ -2358,7 +2587,8 @@ footer > div a svg {
     margin-top: 58px;
   }
 
-  .contact-bottom > a {
+  .contact-bottom > a,
+  .contact-email-trigger {
     justify-content: space-between;
     padding-top: 24px;
   }
@@ -2368,7 +2598,8 @@ footer > div a svg {
     padding: 44px 20px;
   }
 
-  footer > a {
+  footer > a,
+  .footer-email-trigger {
     grid-column: 1 / -1;
   }
 }
@@ -2635,6 +2866,38 @@ footer > div a svg {
 }
 
 @media (max-width: 520px) {
+  .contact-dialog {
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, .28);
+  }
+
+  .contact-dialog-2 {
+    box-shadow: 8px 8px 0 #164bff;
+  }
+
+  .contact-dialog-header {
+    padding: 30px 48px 28px 22px;
+  }
+
+  .contact-dialog-header > span {
+    margin-bottom: 22px;
+  }
+
+  .contact-email-card {
+    grid-template-columns: 1fr;
+    padding: 22px;
+  }
+
+  .contact-email-card strong {
+    justify-self: start;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    font-size: 16px;
+  }
+
+  .contact-dialog-actions {
+    grid-template-columns: 1fr;
+  }
+
   .header-controls {
     gap: 5px;
   }
