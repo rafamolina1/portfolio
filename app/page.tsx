@@ -20,7 +20,7 @@ const content = {
     language: "EN",
     overline: "BACKEND ENGINEER / SÃO PAULO, BRASIL",
     title: <>Software que<br />aguenta o <em>mundo real.</em></>,
-    intro: "Rafael Molina é um desenvolvedor Backend e Full Stack Pleno com experiência internacional. Ele transforma regras de negócio complexas em sistemas claros, testáveis e preparados para operar.",
+    intro: "Rafael Molina é um desenvolvedor Backend Pleno com experiência internacional. Ele transforma regras de negócio complexas em sistemas claros, testáveis e preparados para operar.",
     status: "DISPONÍVEL PARA NOVAS OPORTUNIDADES",
     contact: "Conversar com Rafael",
     resume: "Currículo atualizado",
@@ -59,7 +59,7 @@ const content = {
       {
         period: "2023—AGORA",
         company: "Autonomus",
-        role: "Cofundador & Desenvolvedor Full Stack",
+        role: "Cofundador & Desenvolvedor Backend",
         location: "Brasil",
         copy: "Rafael levou um produto da ideia às lojas: dois aplicativos Flutter conectados a um backend Laravel, com participação em arquitetura, produto, desenvolvimento e publicação.",
         impact: ["Apps para cliente e prestador", "App Store e Google Play", "Semifinalista do Rocket, do Grupo Globo"],
@@ -91,7 +91,7 @@ const content = {
     contactTitle: <>Tem um problema<br />difícil de explicar?</>,
     contactBody: "É exatamente aí que Rafael gosta de começar.",
     email: "Enviar um e-mail",
-    footer: "Backend / Full Stack Developer",
+    footer: "Backend Developer",
   },
   en: {
     nav: [["Work", "#trabalho"], ["Experience", "#experiencia"], ["Systems", "#sistemas"], ["Contact", "#contato"]],
@@ -99,7 +99,7 @@ const content = {
     language: "PT",
     overline: "BACKEND ENGINEER / SÃO PAULO, BRAZIL",
     title: <>Software built<br />for the <em>real world.</em></>,
-    intro: "Rafael Molina is a Mid-level Backend and Full Stack Developer with international experience. He turns complex business rules into clear, testable systems built to operate.",
+    intro: "Rafael Molina is a Mid-level Backend Developer with international experience. He turns complex business rules into clear, testable systems built to operate.",
     status: "OPEN TO NEW OPPORTUNITIES",
     contact: "Talk to Rafael",
     resume: "Updated résumé",
@@ -138,7 +138,7 @@ const content = {
       {
         period: "2023—NOW",
         company: "Autonomus",
-        role: "Co-founder & Full Stack Developer",
+        role: "Co-founder & Backend Developer",
         location: "Brazil",
         copy: "Rafael took a product from idea to app stores: two Flutter apps connected to a Laravel backend, spanning architecture, product, engineering and release.",
         impact: ["Client and provider apps", "App Store and Google Play", "Rocket by Grupo Globo semifinalist"],
@@ -170,7 +170,7 @@ const content = {
     contactTitle: <>Have a problem<br />that is hard to explain?</>,
     contactBody: "That is exactly where Rafael likes to begin.",
     email: "Send an email",
-    footer: "Backend / Full Stack Developer",
+    footer: "Backend Developer",
   },
 };
 
@@ -207,9 +207,8 @@ export default function Home() {
         </div>
 
         <div className="portrait-wrap">
-          <div className="portrait-index">PORTRAIT / 001</div>
           <Image
-            src="/rafael-2026.jpeg"
+            src="/profilepic.jpeg"
             alt={t.portraitAlt}
             fill
             priority
@@ -332,9 +331,20 @@ export default function Home() {
         <p>© {new Date().getFullYear()} RAFAEL MOLINA<br />{t.footer}</p>
         <div>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><span>in</span></a>
-          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><span>gh</span></a>
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><GithubMark /></a>
         </div>
       </footer>
     </main>
+  );
+}
+
+function GithubMark() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M8 0C3.58 0 0 3.64 0 8.13c0 3.59 2.29 6.64 5.47 7.71.4.08.55-.17.55-.39 0-.19-.01-.83-.01-1.51-2.01.38-2.53-.5-2.69-.96-.09-.23-.48-.96-.82-1.15-.28-.15-.68-.53-.01-.54.63-.01 1.08.59 1.23.83.72 1.23 1.87.88 2.33.67.07-.53.28-.88.51-1.08-1.78-.21-3.64-.91-3.64-4.01 0-.89.31-1.62.82-2.19-.08-.21-.36-1.04.08-2.16 0 0 .67-.22 2.2.84A7.46 7.46 0 0 1 8 3.92c.68 0 1.36.09 2 .27 1.53-1.06 2.2-.84 2.2-.84.44 1.12.16 1.95.08 2.16.51.57.82 1.3.82 2.19 0 3.11-1.87 3.8-3.65 4.01.29.25.54.74.54 1.51 0 1.09-.01 1.97-.01 2.24 0 .22.15.47.55.39A8.16 8.16 0 0 0 16 8.13C16 3.64 12.42 0 8 0Z"
+      />
+    </svg>
   );
 }
