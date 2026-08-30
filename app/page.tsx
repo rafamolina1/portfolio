@@ -1,113 +1,340 @@
 "use client";
 
+import { ArrowDownRight, ArrowUpRight, Download, Mail } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowUpRight, Check, Download, ExternalLink, Github, Linkedin, Mail, Server, ShieldCheck, Workflow } from "lucide-react";
-import { EmailContact } from "@/components/EmailContact";
-import { dictionary, globoHref, languageOptions, type Locale, type PortfolioContent } from "@/data/i18n";
-import { profile } from "@/data/portfolio";
+
+type Locale = "pt" | "en";
+
+const profile = {
+  email: "rafaeloliveiramolina@gmail.com",
+  github: "https://github.com/rafamolina1",
+  linkedin: "https://www.linkedin.com/in/rafaelmolinadev/",
+  resume: "/Rafael_Oliveira_Molina.pdf",
+};
+
+const content = {
+  pt: {
+    nav: [["Trabalho", "#trabalho"], ["Experiência", "#experiencia"], ["Sistemas", "#sistemas"], ["Contato", "#contato"]],
+    switchLabel: "Mudar para inglês",
+    language: "EN",
+    overline: "BACKEND ENGINEER / SÃO PAULO, BRASIL",
+    title: <>Software que<br />aguenta o <em>mundo real.</em></>,
+    intro: "Rafael Molina é um desenvolvedor Backend e Full Stack Pleno com experiência internacional. Ele transforma regras de negócio complexas em sistemas claros, testáveis e preparados para operar.",
+    status: "DISPONÍVEL PARA NOVAS OPORTUNIDADES",
+    contact: "Conversar com Rafael",
+    resume: "Currículo atualizado",
+    portraitAlt: "Rafael Molina",
+    portraitNote: "RAFAEL MOLINA / 2026",
+    rails: [["01", "Backend em produção"], ["02", "Inglês Cambridge C2"], ["03", "Brasil ↔ Estados Unidos"]],
+    manifestoKicker: "O TRABALHO",
+    manifesto: <>Rafael projeta software para o ponto em que <span>produto, domínio e operação</span> deixam de ser problemas separados.</>,
+    manifestoBody: "Sua experiência atravessa SaaS multi-tenant, inteligência logística, aplicativos publicados e plataformas com domínios sensíveis. O objetivo é sempre o mesmo: reduzir ambiguidade, tornar decisões explícitas e deixar o sistema melhor do que foi encontrado.",
+    principles: [
+      ["Domínio antes do framework", "A arquitetura começa nas regras que o produto precisa proteger — não na ferramenta da vez."],
+      ["Qualidade como estratégia", "Testes orientados a risco, contratos consistentes e ambientes repetíveis reduzem o custo de mudar."],
+      ["Operação faz parte do código", "Filas, observabilidade, segurança e falhas são tratados como parte do produto, não como acabamento."],
+    ],
+    experienceKicker: "EXPERIÊNCIA / 2023—AGORA",
+    experienceTitle: "Sistemas reais. Contextos diferentes. A mesma obsessão por clareza.",
+    experiences: [
+      {
+        period: "ATUAL",
+        company: "Domus Control",
+        role: "Desenvolvedor Backend Pleno",
+        location: "Remoto",
+        copy: "Rafael conduz a evolução do backend de uma plataforma SaaS multi-tenant para gestão eclesiástica, definindo padrões de API, camadas de domínio e convenções usadas pelo time.",
+        impact: ["Isolamento multi-tenant em banco único", "Autenticação, autorização e domínios financeiros", "Estratégia de testes E2E orientada a risco"],
+        stack: "PHP 8.4 · Laravel 12 · PostgreSQL · Redis · Docker · Pest",
+      },
+      {
+        period: "2025—2026",
+        company: "Zinger Transportation, LLC",
+        role: "Desenvolvedor Backend Pleno",
+        location: "Texas, EUA / Remoto",
+        copy: "Em um ambiente internacional e 100% em inglês, Rafael desenvolveu microsserviços para inteligência logística e motores de cálculo de consumo e viabilidade financeira de fretes.",
+        impact: ["Arquitetura orientada a domínio", "Integrações governamentais e privadas", "Testes de precificação e simulação de rotas"],
+        stack: "Node.js · TypeScript · REST · Jest · Docker · DDD",
+      },
+      {
+        period: "2023—AGORA",
+        company: "Autonomus",
+        role: "Cofundador & Desenvolvedor Full Stack",
+        location: "Brasil",
+        copy: "Rafael levou um produto da ideia às lojas: dois aplicativos Flutter conectados a um backend Laravel, com participação em arquitetura, produto, desenvolvimento e publicação.",
+        impact: ["Apps para cliente e prestador", "App Store e Google Play", "Semifinalista do Rocket, do Grupo Globo"],
+        stack: "Flutter · Dart · Laravel · Redis · DDD · Mobile",
+      },
+    ],
+    capabilitiesKicker: "SISTEMAS / NÃO BUZZWORDS",
+    capabilitiesTitle: <>Profundidade no backend.<br /><em>Visão do produto inteiro.</em></>,
+    capabilityGroups: [
+      ["Backend & arquitetura", "PHP 8.4 · Laravel 12 · Node.js · TypeScript · Java · APIs REST · Microsserviços · DDD · Design Patterns"],
+      ["Dados & processamento", "PostgreSQL · SQL · Redis · Kafka · RabbitMQ · Queues / Jobs · Value Objects · Multi-tenancy"],
+      ["Produto & interfaces", "Flutter · Dart · React · JavaScript · Publicação na App Store e Google Play · C# / .NET · Angular"],
+      ["Cloud, qualidade & IA", "AWS · Azure · Oracle Cloud · Docker · Linux · CI/CD · Pest · Jest · E2E · Observabilidade · LLMs · Python"],
+    ],
+    featureKicker: "CASO / AUTONOMUS",
+    featureTitle: <>Da ideia<br />às <em>lojas.</em></>,
+    featureCopy: "Como cofundador, Rafael participou de todo o ciclo de um marketplace de serviços: concepção, arquitetura, backend, aplicativos, operação e publicação. O produto chegou à App Store e ao Google Play e foi semifinalista do Rocket, reality show de startups do Grupo Globo.",
+    featureStats: [["02", "aplicativos Flutter"], ["100%", "do ciclo de produto"], ["03", "instituições validadoras"]],
+    featureLink: "Ver cobertura da Globo",
+    credentialsKicker: "FORMAÇÃO / IDIOMAS / CREDENCIAIS",
+    credentialsTitle: "Base técnica, repertório de produto e comunicação internacional.",
+    credentials: [
+      ["Formação", "Análise e Desenvolvimento de Sistemas", "Fundação Getulio Vargas (FGV) · 2025—2027"],
+      ["Idiomas", "Inglês C2 Cambridge", "Português nativo · Inglês proficiente · Espanhol avançado"],
+      ["Certificações", "Cloud, dados, privacidade e Java", "Google Data Analytics · Oracle Cloud Infrastructure · IBM Machine Learning · IBM Data Privacy · Santander"],
+      ["Comunidade", "Palestrante de tecnologia", "Summit Iguassu Valley e eventos nas regiões de Foz do Iguaçu e Cascavel"],
+    ],
+    contactKicker: "PRÓXIMO SISTEMA",
+    contactTitle: <>Tem um problema<br />difícil de explicar?</>,
+    contactBody: "É exatamente aí que Rafael gosta de começar.",
+    email: "Enviar um e-mail",
+    footer: "Backend / Full Stack Developer",
+  },
+  en: {
+    nav: [["Work", "#trabalho"], ["Experience", "#experiencia"], ["Systems", "#sistemas"], ["Contact", "#contato"]],
+    switchLabel: "Switch to Portuguese",
+    language: "PT",
+    overline: "BACKEND ENGINEER / SÃO PAULO, BRAZIL",
+    title: <>Software built<br />for the <em>real world.</em></>,
+    intro: "Rafael Molina is a Mid-level Backend and Full Stack Developer with international experience. He turns complex business rules into clear, testable systems built to operate.",
+    status: "OPEN TO NEW OPPORTUNITIES",
+    contact: "Talk to Rafael",
+    resume: "Updated résumé",
+    portraitAlt: "Rafael Molina",
+    portraitNote: "RAFAEL MOLINA / 2026",
+    rails: [["01", "Production backend"], ["02", "Cambridge C2 English"], ["03", "Brazil ↔ United States"]],
+    manifestoKicker: "THE WORK",
+    manifesto: <>Rafael designs software where <span>product, domain and operations</span> stop being separate problems.</>,
+    manifestoBody: "His experience spans multi-tenant SaaS, logistics intelligence, published apps and platforms with sensitive domains. The goal remains the same: reduce ambiguity, make decisions explicit and leave the system better than he found it.",
+    principles: [
+      ["Domain before framework", "Architecture starts with the rules the product must protect — not with the tool of the moment."],
+      ["Quality as strategy", "Risk-based tests, consistent contracts and repeatable environments make change less expensive."],
+      ["Operations are part of code", "Queues, observability, security and failure modes belong to the product, not to the finishing pass."],
+    ],
+    experienceKicker: "EXPERIENCE / 2023—NOW",
+    experienceTitle: "Real systems. Different contexts. The same obsession with clarity.",
+    experiences: [
+      {
+        period: "CURRENT",
+        company: "Domus Control",
+        role: "Mid-level Backend Developer",
+        location: "Remote",
+        copy: "Rafael leads the backend evolution of a multi-tenant SaaS platform for church management, defining API standards, domain layers and conventions used by the team.",
+        impact: ["Single-database tenant isolation", "Authentication, authorization and financial domains", "Risk-based API E2E testing strategy"],
+        stack: "PHP 8.4 · Laravel 12 · PostgreSQL · Redis · Docker · Pest",
+      },
+      {
+        period: "2025—2026",
+        company: "Zinger Transportation, LLC",
+        role: "Mid-level Backend Developer",
+        location: "Texas, USA / Remote",
+        copy: "In a fully English-speaking international environment, Rafael built logistics intelligence microservices and calculation engines for fuel usage and freight viability.",
+        impact: ["Domain-oriented architecture", "Government and private integrations", "Pricing and route simulation tests"],
+        stack: "Node.js · TypeScript · REST · Jest · Docker · DDD",
+      },
+      {
+        period: "2023—NOW",
+        company: "Autonomus",
+        role: "Co-founder & Full Stack Developer",
+        location: "Brazil",
+        copy: "Rafael took a product from idea to app stores: two Flutter apps connected to a Laravel backend, spanning architecture, product, engineering and release.",
+        impact: ["Client and provider apps", "App Store and Google Play", "Rocket by Grupo Globo semifinalist"],
+        stack: "Flutter · Dart · Laravel · Redis · DDD · Mobile",
+      },
+    ],
+    capabilitiesKicker: "SYSTEMS / NOT BUZZWORDS",
+    capabilitiesTitle: <>Backend depth.<br /><em>Whole-product perspective.</em></>,
+    capabilityGroups: [
+      ["Backend & architecture", "PHP 8.4 · Laravel 12 · Node.js · TypeScript · Java · REST APIs · Microservices · DDD · Design Patterns"],
+      ["Data & processing", "PostgreSQL · SQL · Redis · Kafka · RabbitMQ · Queues / Jobs · Value Objects · Multi-tenancy"],
+      ["Product & interfaces", "Flutter · Dart · React · JavaScript · App Store and Google Play releases · C# / .NET · Angular"],
+      ["Cloud, quality & AI", "AWS · Azure · Oracle Cloud · Docker · Linux · CI/CD · Pest · Jest · E2E · Observability · LLMs · Python"],
+    ],
+    featureKicker: "CASE / AUTONOMUS",
+    featureTitle: <>From idea<br />to the <em>stores.</em></>,
+    featureCopy: "As co-founder, Rafael worked across the entire lifecycle of a services marketplace: concept, architecture, backend, apps, operations and release. The product reached the App Store and Google Play and became a semifinalist on Rocket, Grupo Globo's startup reality show.",
+    featureStats: [["02", "Flutter applications"], ["100%", "of the product lifecycle"], ["03", "validating institutions"]],
+    featureLink: "View Globo coverage",
+    credentialsKicker: "EDUCATION / LANGUAGES / CREDENTIALS",
+    credentialsTitle: "Technical foundation, product repertoire and international communication.",
+    credentials: [
+      ["Education", "Systems Analysis and Development", "Fundação Getulio Vargas (FGV) · 2025—2027"],
+      ["Languages", "Cambridge C2 English", "Native Portuguese · Proficient English · Advanced Spanish"],
+      ["Certifications", "Cloud, data, privacy and Java", "Google Data Analytics · Oracle Cloud Infrastructure · IBM Machine Learning · IBM Data Privacy · Santander"],
+      ["Community", "Technology speaker", "Summit Iguassu Valley and regional technology events in Paraná, Brazil"],
+    ],
+    contactKicker: "THE NEXT SYSTEM",
+    contactTitle: <>Have a problem<br />that is hard to explain?</>,
+    contactBody: "That is exactly where Rafael likes to begin.",
+    email: "Send an email",
+    footer: "Backend / Full Stack Developer",
+  },
+};
 
 export default function Home() {
-  const [locale, setLocale] = useState<Locale>("pt-BR");
-  const t = dictionary[locale];
-  const resume = locale === "pt-BR" ? profile.resumePt : profile.resumeEn;
+  const [locale, setLocale] = useState<Locale>("pt");
+  const t = content[locale];
 
-  const changeLocale = (next: Locale) => {
+  function toggleLocale() {
+    const next = locale === "pt" ? "en" : "pt";
     setLocale(next);
-    document.documentElement.lang = next;
-  };
+    document.documentElement.lang = next === "pt" ? "pt-BR" : "en";
+  }
 
-  return <main>
-    <Header t={t} locale={locale} changeLocale={changeLocale} />
-    <Hero t={t} resume={resume} />
-    <Experience t={t} />
-    <Expertise t={t} />
-    <Autonomus t={t} />
-    <Credentials t={t} />
-    <Contact t={t} resume={resume} />
-    <footer><span>© {new Date().getFullYear()} Rafael Oliveira Molina</span><span>Backend / Full Stack Developer</span></footer>
-  </main>;
-}
+  return (
+    <main id="top">
+      <header className="site-header">
+        <a className="brand" href="#top" aria-label="Rafael Molina — início">RM<span>26</span></a>
+        <nav aria-label="Navegação principal">
+          {t.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
+        </nav>
+        <button className="language-button" onClick={toggleLocale} aria-label={t.switchLabel}>{t.language}</button>
+      </header>
 
-function Header({ t, locale, changeLocale }: { t: PortfolioContent; locale: Locale; changeLocale: (locale: Locale) => void }) {
-  return <header className="site-header">
-    <a className="brand" href="#top" aria-label="Rafael Oliveira Molina">RM<span>.</span></a>
-    <nav aria-label={t.aria.mainNav}>
-      <a href="#experience">{t.nav.experience}</a><a href="#expertise">{t.nav.expertise}</a>
-      <a href="#autonomus">{t.nav.autonomus}</a><a href="#credentials">{t.nav.credentials}</a>
-    </nav>
-    <div className="header-actions">
-      <div className="language" aria-label={t.aria.language}>
-        {languageOptions.map(option => <button key={option.locale} type="button" onClick={() => changeLocale(option.locale)} aria-pressed={locale === option.locale} title={option.label}>{option.short}</button>)}
+      <section className="hero" aria-labelledby="hero-title">
+        <div className="hero-grid" aria-hidden="true" />
+        <div className="hero-copy">
+          <p className="overline"><span />{t.overline}</p>
+          <h1 id="hero-title">{t.title}</h1>
+          <p className="hero-intro">{t.intro}</p>
+          <div className="hero-actions">
+            <a className="action action-primary" href={'mailto:' + profile.email}><Mail />{t.contact}</a>
+            <a className="action action-outline" href={profile.resume} download><Download />{t.resume}</a>
+          </div>
+        </div>
+
+        <div className="portrait-wrap">
+          <div className="portrait-index">PORTRAIT / 001</div>
+          <Image
+            src="/rafael-2026.jpeg"
+            alt={t.portraitAlt}
+            fill
+            priority
+            sizes="(max-width: 720px) calc(100vw - 40px), 34vw"
+          />
+          <div className="portrait-wash" />
+          <p>{t.portraitNote}</p>
+        </div>
+
+        <div className="availability"><i />{t.status}</div>
+        <a className="scroll-cue" href="#trabalho" aria-label="Rolar para o trabalho"><span>SCROLL</span><ArrowDownRight /></a>
+      </section>
+
+      <div className="proof-rail">
+        {t.rails.map(([number, label]) => <div key={number}><span>{number}</span><strong>{label}</strong></div>)}
       </div>
-      <a className="icon-button" href="#contact" aria-label={t.nav.contact}><Mail size={18} /></a>
-    </div>
-  </header>;
-}
 
-function Hero({ t, resume }: { t: PortfolioContent; resume: string }) {
-  return <section className="hero" id="top">
-    <div className="hero-copy">
-      <p className="eyebrow"><span />{t.hero.status}</p>
-      <h1>Rafael Oliveira<br /><strong>Molina</strong></h1>
-      <p className="role">{t.hero.role}</p>
-      <h2>{t.hero.lead}</h2>
-      <p className="hero-text">{t.hero.support}</p>
-      <div className="button-row" aria-label={t.aria.heroActions}>
-        <EmailContact email={profile.email} label={t.hero.contact} className="button primary" messages={t.emailModal} />
-        <a className="button" href={resume} download><Download size={18} />{t.hero.resume}</a>
-        <a className="icon-button" href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={19} /></a>
-        <a className="icon-button" href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={19} /></a>
-      </div>
-      <div className="proof-row">{t.hero.proof.map(item => <div key={item.label}><strong>{item.value}</strong><span>{item.label}</span></div>)}</div>
-    </div>
-    <aside className="profile-panel" aria-label={t.aria.profile}>
-      <div className="profile-head"><div className="portrait"><Image src="/profilepic.jpeg" alt="Rafael Oliveira Molina" fill priority sizes="104px" /></div><div><span>{t.snapshot.label}</span><h2>{t.snapshot.title}</h2><p>{t.snapshot.subtitle}</p></div></div>
-      <div className="signal-grid">{t.snapshot.signals.map(signal => <div key={signal}><Check size={16} /><span>{signal}</span></div>)}</div>
-      <div className="stack"><span>{t.snapshot.stackLabel}</span><div>{t.snapshot.stack.map(item => <b key={item}>{item}</b>)}</div></div>
-    </aside>
-  </section>;
-}
+      <section className="manifesto" id="trabalho">
+        <div className="section-index"><span>01</span><p>{t.manifestoKicker}</p></div>
+        <div className="manifesto-content">
+          <h2>{t.manifesto}</h2>
+          <p className="manifesto-body">{t.manifestoBody}</p>
+          <div className="principles">
+            {t.principles.map(([title, body], index) => (
+              <article key={title}>
+                <span>0{index + 1}</span>
+                <h3>{title}</h3>
+                <p>{body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-function Heading({ kicker, title, description }: { kicker: string; title: string; description: string }) {
-  return <div className="section-heading"><span>{kicker}</span><h2>{title}</h2><p>{description}</p></div>;
-}
+      <section className="experience-section" id="experiencia">
+        <div className="experience-heading">
+          <p>{t.experienceKicker}</p>
+          <h2>{t.experienceTitle}</h2>
+        </div>
+        <div className="experience-list">
+          {t.experiences.map((item, index) => (
+            <article className="experience-row" key={item.company}>
+              <div className="experience-number">0{index + 1}</div>
+              <div className="experience-company">
+                <span>{item.period}</span>
+                <h3>{item.company}</h3>
+                <p>{item.role}</p>
+              </div>
+              <div className="experience-detail">
+                <span>{item.location}</span>
+                <p>{item.copy}</p>
+                <ul>{item.impact.map(point => <li key={point}>{point}</li>)}</ul>
+                <small>{item.stack}</small>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
 
-function Experience({ t }: { t: PortfolioContent }) {
-  return <section className="section" id="experience"><Heading kicker={t.experience.kicker} title={t.experience.title} description={t.experience.description} />
-    <div className="experience-list">{t.experience.items.map((item, index) => <article className={item.featured ? "experience featured" : "experience"} key={item.company}>
-      <div className="experience-meta"><span>0{index + 1}</span><p>{item.period === "Atual" || item.period === "Current" ? <b>{t.experience.current}</b> : item.period}</p></div>
-      <div className="experience-body"><div className="job-heading"><div><h3>{item.company}</h3><h4>{item.role}</h4></div><span>{item.location}</span></div><p className="summary">{item.summary}</p>
-        <ul>{item.highlights.map(text => <li key={text}><Check size={16} />{text}</li>)}</ul><Tags items={item.stack} /></div>
-    </article>)}</div>
-  </section>;
-}
+      <section className="capabilities-section" id="sistemas">
+        <div className="capabilities-heading">
+          <p>{t.capabilitiesKicker}</p>
+          <h2>{t.capabilitiesTitle}</h2>
+        </div>
+        <div className="capability-list">
+          {t.capabilityGroups.map(([title, tools], index) => (
+            <article key={title}>
+              <span>0{index + 1}</span>
+              <h3>{title}</h3>
+              <p>{tools}</p>
+            </article>
+          ))}
+        </div>
+      </section>
 
-function Expertise({ t }: { t: PortfolioContent }) {
-  const icons = [Server, Workflow, ShieldCheck];
-  return <section className="expertise-band" id="expertise"><div className="section"><Heading kicker={t.expertise.kicker} title={t.expertise.title} description={t.expertise.description} />
-    <div className="expertise-grid">{t.expertise.groups.map((group, index) => { const Icon = icons[index]; return <article key={group.title}><Icon size={22} /><h3>{group.title}</h3><p>{group.description}</p><Tags items={group.items} /></article>; })}</div>
-    <div className="secondary"><span>{t.expertise.secondary}</span><div><p>{t.expertise.secondaryText}</p><Tags items={["Java", "C# / .NET"]} /></div></div>
-  </div></section>;
-}
+      <section className="feature-section">
+        <div className="feature-topline"><span>{t.featureKicker}</span><span>2023—NOW</span></div>
+        <div className="feature-grid">
+          <h2>{t.featureTitle}</h2>
+          <div className="feature-copy">
+            <p>{t.featureCopy}</p>
+            <a href="https://redeglobo.globo.com/rpc/realities/rocket-startup/vida/noticia/autonomus-a-startup-que-conecta-trabalhadores-autonomos-e-clientes-na-busca-de-servicos.ghtml" target="_blank" rel="noreferrer">
+              {t.featureLink}<ArrowUpRight />
+            </a>
+          </div>
+        </div>
+        <div className="feature-stats">
+          {t.featureStats.map(([value, label]) => <div key={value}><strong>{value}</strong><span>{label}</span></div>)}
+        </div>
+      </section>
 
-function Autonomus({ t }: { t: PortfolioContent }) {
-  return <section className="section autonomus" id="autonomus"><div><Heading kicker={t.autonomus.kicker} title={t.autonomus.title} description={t.autonomus.description} />
-    <ul>{t.autonomus.highlights.map(item => <li key={item}><Check size={17} />{item}</li>)}</ul><blockquote>{t.autonomus.recognition}</blockquote>
-    <a className="button primary" href={globoHref} target="_blank" rel="noreferrer"><ExternalLink size={18} />{t.autonomus.media}</a></div>
-    <div className="architecture"><div className="architecture-title"><Workflow size={18} /><span>PRODUCT / ARCHITECTURE</span></div>{t.autonomus.architecture.map((item, index) => <div className="architecture-node" key={item}><span>0{index + 1}</span><strong>{item}</strong>{index < t.autonomus.architecture.length - 1 && <ArrowUpRight size={16} />}</div>)}</div>
-  </section>;
-}
+      <section className="credentials-section">
+        <div className="credentials-heading">
+          <p>{t.credentialsKicker}</p>
+          <h2>{t.credentialsTitle}</h2>
+        </div>
+        <div className="credentials-list">
+          {t.credentials.map(([type, title, detail], index) => (
+            <article key={type}>
+              <span>0{index + 1}</span>
+              <p>{type}</p>
+              <h3>{title}</h3>
+              <small>{detail}</small>
+            </article>
+          ))}
+        </div>
+      </section>
 
-function Credentials({ t }: { t: PortfolioContent }) {
-  return <section className="section" id="credentials"><Heading kicker={t.credentials.kicker} title={t.credentials.title} description={t.credentials.description} />
-    <div className="credentials">{t.credentials.items.map((item, index) => { const body = <><span>0{index + 1}</span><div><h3>{item.title}</h3><p>{item.issuer}</p></div>{item.href && <ArrowUpRight size={18} />}</>; return item.href ? <a href={item.href} target="_blank" rel="noreferrer" key={item.title}>{body}</a> : <div key={item.title}>{body}</div>; })}</div>
-    <div className="education"><div><span>{t.education.kicker}</span><h3>{t.education.title}</h3><p>{t.education.degree}</p></div><div><strong>{t.education.period}</strong><span>{t.education.note}</span></div></div>
-  </section>;
-}
+      <section className="contact-section" id="contato">
+        <p>{t.contactKicker}</p>
+        <h2>{t.contactTitle}</h2>
+        <div className="contact-bottom">
+          <span>{t.contactBody}</span>
+          <a href={'mailto:' + profile.email}>{t.email}<ArrowUpRight /></a>
+        </div>
+      </section>
 
-function Contact({ t, resume }: { t: PortfolioContent; resume: string }) {
-  return <section className="contact" id="contact"><span>{t.contact.kicker}</span><h2>{t.contact.title}</h2><p>{t.contact.description}</p><div className="button-row"><EmailContact email={profile.email} label={t.contact.email} className="button primary" messages={t.emailModal} /><a className="button" href={resume} download><Download size={18} />{t.contact.resume}</a><a className="button" href={profile.linkedin} target="_blank" rel="noreferrer"><Linkedin size={18} />LinkedIn</a></div></section>;
+      <footer>
+        <a href={'mailto:' + profile.email}>{profile.email}</a>
+        <p>© {new Date().getFullYear()} RAFAEL MOLINA<br />{t.footer}</p>
+        <div>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><span>in</span></a>
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><span>gh</span></a>
+        </div>
+      </footer>
+    </main>
+  );
 }
-
-function Tags({ items }: { items: string[] }) { return <div className="tags">{items.map(item => <span key={item}>{item}</span>)}</div>; }
