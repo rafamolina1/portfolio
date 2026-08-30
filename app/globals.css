@@ -2002,7 +2002,11 @@ footer > div a svg {
 }
 
 .system-footer a {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
   text-align: right;
+  text-transform: uppercase;
 }
 
 @keyframes reality-load {
