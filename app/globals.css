@@ -1300,7 +1300,7 @@ footer > div a svg {
   gap: 6px 12px;
   padding-bottom: 17px;
   border-bottom: 1px solid var(--sys-line);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: .08em;
 }
 
@@ -1309,6 +1309,7 @@ footer > div a svg {
 }
 
 .system-serial strong {
+  font-size: 10.5px;
   font-weight: 700;
 }
 
@@ -1652,8 +1653,9 @@ footer > div a svg {
 
 .runtime-output span,
 .runtime-stack span {
-  color: #727784;
-  font-size: 8px;
+  color: #a0a5b3;
+  font-size: 10.5px;
+  font-weight: 700;
   letter-spacing: .1em;
 }
 
@@ -1776,7 +1778,7 @@ footer > div a svg {
 
 .dossier-feature > p {
   margin: 0 0 45px;
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: .12em;
 }
 
@@ -1814,7 +1816,7 @@ footer > div a svg {
   gap: 8px;
   border-bottom: 1px solid currentColor;
   padding-bottom: 7px;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
 }
 
@@ -1850,7 +1852,7 @@ footer > div a svg {
 }
 
 .dossier-stats span {
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
@@ -1864,7 +1866,7 @@ footer > div a svg {
   justify-content: space-between;
   padding: 24px;
   border-bottom: 1px solid var(--sys-ink);
-  font-size: 8px;
+  font-size: 10.5px;
   letter-spacing: .1em;
 }
 
@@ -1883,13 +1885,13 @@ footer > div a svg {
   position: absolute;
   top: 27px;
   left: 24px;
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .credential-registry article p,
 .credential-registry article small {
   margin: 0;
-  font-size: 9px;
+  font-size: 10.5px;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
