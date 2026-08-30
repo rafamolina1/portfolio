@@ -2,9 +2,10 @@
 
 import { ArrowDownRight, ArrowUpRight, Download, Mail } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Locale = "pt" | "en";
+type Reality = 1 | 2;
 
 const profile = {
   email: "rafaeloliveiramolina@gmail.com",
@@ -87,6 +88,31 @@ const content = {
       ["Certificações", "Cloud, dados, privacidade e Java", "Google Data Analytics · Oracle Cloud Infrastructure · IBM Machine Learning · IBM Data Privacy · Santander"],
       ["Comunidade", "Palestrante de tecnologia", "Summit Iguassu Valley e eventos nas regiões de Foz do Iguaçu e Cascavel"],
     ],
+    system: {
+      nav: [["Runtime", "#sys-runtime"], ["Topologia", "#sys-topology"], ["Dossiê", "#sys-dossier"], ["Contato", "#sys-contact"]],
+      switchReality: "Reality 02 / Sair",
+      kicker: "RM / SYSTEM PROFILE / 2026",
+      role: "BACKEND DEVELOPER",
+      intro: "Rafael constrói sistemas para domínios que não toleram ambiguidade. Arquitetura, dados, processamento assíncrono e qualidade operam como uma única disciplina.",
+      status: "SYSTEM ONLINE",
+      location: "SÃO PAULO / BRASIL",
+      identity: "SECONDARY IDENTITY / RM-02",
+      signalTitle: "ACTIVE SIGNALS",
+      signals: ["SAAS MULTI-TENANT", "LOGISTICS INTELLIGENCE", "DOMAIN ARCHITECTURE", "ASYNC PROCESSING", "INTERNATIONAL DELIVERY"],
+      runtimeKicker: "RUNTIME LOG / 03 NODES",
+      runtimeTitle: "Experiência carregada como histórico de execução.",
+      topologyKicker: "SYSTEM TOPOLOGY / CAPABILITIES",
+      topologyTitle: "Tecnologia organizada pela responsabilidade que assume.",
+      dossierKicker: "VALIDATION PACKET / AUTONOMUS",
+      dossierTitle: "Um produto levado da hipótese às lojas.",
+      credentials: "CREDENTIAL REGISTRY",
+      contactKicker: "OPEN CHANNEL / AVAILABLE",
+      contactTitle: "Inicializar uma conversa.",
+      contactBody: "Rafael está aberto a problemas difíceis, produtos sérios e times que tratam engenharia como vantagem competitiva.",
+      email: "EXECUTE: SEND_EMAIL",
+      resume: "DOWNLOAD_CV.PDF",
+      footer: "RM SYSTEM VIEW / BACKEND ENGINEERING",
+    },
     contactKicker: "PRÓXIMO SISTEMA",
     contactTitle: <>Tem um problema<br />difícil de explicar?</>,
     contactBody: "É exatamente aí que Rafael gosta de começar.",
@@ -166,6 +192,31 @@ const content = {
       ["Certifications", "Cloud, data, privacy and Java", "Google Data Analytics · Oracle Cloud Infrastructure · IBM Machine Learning · IBM Data Privacy · Santander"],
       ["Community", "Technology speaker", "Summit Iguassu Valley and regional technology events in Paraná, Brazil"],
     ],
+    system: {
+      nav: [["Runtime", "#sys-runtime"], ["Topology", "#sys-topology"], ["Dossier", "#sys-dossier"], ["Contact", "#sys-contact"]],
+      switchReality: "Reality 02 / Exit",
+      kicker: "RM / SYSTEM PROFILE / 2026",
+      role: "BACKEND DEVELOPER",
+      intro: "Rafael builds systems for domains that do not tolerate ambiguity. Architecture, data, asynchronous processing and quality operate as one discipline.",
+      status: "SYSTEM ONLINE",
+      location: "SÃO PAULO / BRAZIL",
+      identity: "SECONDARY IDENTITY / RM-02",
+      signalTitle: "ACTIVE SIGNALS",
+      signals: ["MULTI-TENANT SAAS", "LOGISTICS INTELLIGENCE", "DOMAIN ARCHITECTURE", "ASYNC PROCESSING", "INTERNATIONAL DELIVERY"],
+      runtimeKicker: "RUNTIME LOG / 03 NODES",
+      runtimeTitle: "Experience loaded as an execution history.",
+      topologyKicker: "SYSTEM TOPOLOGY / CAPABILITIES",
+      topologyTitle: "Technology organized by the responsibility it carries.",
+      dossierKicker: "VALIDATION PACKET / AUTONOMUS",
+      dossierTitle: "A product taken from hypothesis to app stores.",
+      credentials: "CREDENTIAL REGISTRY",
+      contactKicker: "OPEN CHANNEL / AVAILABLE",
+      contactTitle: "Initialize a conversation.",
+      contactBody: "Rafael is open to difficult problems, serious products and teams that treat engineering as a competitive advantage.",
+      email: "EXECUTE: SEND_EMAIL",
+      resume: "DOWNLOAD_CV.PDF",
+      footer: "RM SYSTEM VIEW / BACKEND ENGINEERING",
+    },
     contactKicker: "THE NEXT SYSTEM",
     contactTitle: <>Have a problem<br />that is hard to explain?</>,
     contactBody: "That is exactly where Rafael likes to begin.",
@@ -174,8 +225,14 @@ const content = {
   },
 };
 
+type PortfolioContent = (typeof content)[Locale];
+
 export default function Home() {
   const [locale, setLocale] = useState<Locale>("pt");
+  const [reality, setReality] = useState<Reality>(1);
+  const [targetReality, setTargetReality] = useState<Reality>(2);
+  const [isShifting, setIsShifting] = useState(false);
+  const timers = useRef<number[]>([]);
   const t = content[locale];
 
   function toggleLocale() {
@@ -184,14 +241,100 @@ export default function Home() {
     document.documentElement.lang = next === "pt" ? "pt-BR" : "en";
   }
 
+  function switchReality() {
+    if (isShifting) return;
+    const next = reality === 1 ? 2 : 1;
+    setTargetReality(next);
+    setIsShifting(true);
+    document.body.style.overflow = "hidden";
+
+    timers.current.push(window.setTimeout(() => {
+      setReality(next);
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      try {
+        window.sessionStorage.setItem("rm-reality", String(next));
+      } catch {
+        // Session storage is optional; the experience still works without it.
+      }
+    }, 560));
+
+    timers.current.push(window.setTimeout(() => {
+      setIsShifting(false);
+      document.body.style.overflow = "";
+    }, 1240));
+  }
+
+  useEffect(() => {
+    const activeTimers = timers.current;
+    try {
+      const saved = window.sessionStorage.getItem("rm-reality");
+      if (saved === "2") activeTimers.push(window.setTimeout(() => setReality(2), 0));
+    } catch {
+      // Keep the editorial reality when storage is unavailable.
+    }
+
+    return () => {
+      activeTimers.forEach(window.clearTimeout);
+      document.body.style.overflow = "";
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key.toLowerCase() === "r" && !event.metaKey && !event.ctrlKey && !event.altKey) {
+        switchReality();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
+
   return (
-    <main id="top">
+    <div className={"reality-root reality-active-" + reality}>
+      <RealitySplash active={isShifting} target={targetReality} />
+      {reality === 1
+        ? <EditorialReality t={t} toggleLocale={toggleLocale} switchReality={switchReality} />
+        : <SystemReality t={t} toggleLocale={toggleLocale} switchReality={switchReality} />}
+    </div>
+  );
+}
+
+function RealitySplash({ active, target }: { active: boolean; target: Reality }) {
+  return (
+    <div className={"reality-splash reality-splash-" + target + (active ? " is-active" : "")} aria-hidden={!active}>
+      <div className="splash-coordinates">RM / REALITY ENGINE / 2026</div>
+      <div className="splash-center">
+        <span>REALITY SHIFT</span>
+        <strong>RM—0{target}</strong>
+        <p>{target === 2 ? "RECONSTRUCTING SYSTEM VIEW" : "RESTORING EDITORIAL VIEW"}</p>
+      </div>
+      <div className="splash-progress">{Array.from({ length: 8 }).map((_, index) => <i key={index} />)}</div>
+    </div>
+  );
+}
+
+function EditorialReality({
+  t,
+  toggleLocale,
+  switchReality,
+}: {
+  t: PortfolioContent;
+  toggleLocale: () => void;
+  switchReality: () => void;
+}) {
+  return (
+    <main id="top" className="editorial-reality">
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Rafael Molina — início">RM<span>26</span></a>
         <nav aria-label="Navegação principal">
           {t.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
         </nav>
-        <button className="language-button" onClick={toggleLocale} aria-label={t.switchLabel}>{t.language}</button>
+        <div className="header-controls">
+          <button className="reality-switch editorial-switch" type="button" onClick={switchReality}>
+            <span>REALITY 01</span> SWITCH [R]
+          </button>
+          <button className="language-button" type="button" onClick={toggleLocale} aria-label={t.switchLabel}>{t.language}</button>
+        </div>
       </header>
 
       <section className="hero" aria-labelledby="hero-title">
@@ -215,7 +358,6 @@ export default function Home() {
             sizes="(max-width: 720px) calc(100vw - 40px), 34vw"
           />
           <div className="portrait-wash" />
-          <p>{t.portraitNote}</p>
         </div>
 
         <div className="availability"><i />{t.status}</div>
@@ -333,6 +475,159 @@ export default function Home() {
           <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><span>in</span></a>
           <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub"><GithubMark /></a>
         </div>
+      </footer>
+    </main>
+  );
+}
+
+function SystemReality({
+  t,
+  toggleLocale,
+  switchReality,
+}: {
+  t: PortfolioContent;
+  toggleLocale: () => void;
+  switchReality: () => void;
+}) {
+  const s = t.system;
+
+  return (
+    <main className="system-reality" id="sys-top">
+      <header className="system-header">
+        <a className="system-brand" href="#sys-top"><span>RM</span><b>{"//02"}</b></a>
+        <div className="system-online"><i />{s.status}</div>
+        <nav aria-label="System navigation">
+          {s.nav.map(([label, href]) => <a key={href} href={href}>{label}</a>)}
+        </nav>
+        <div className="system-header-actions">
+          <button className="system-reality-switch" type="button" onClick={switchReality}>{s.switchReality}<kbd>R</kbd></button>
+          <button className="system-language" type="button" onClick={toggleLocale} aria-label={t.switchLabel}>{t.language}</button>
+        </div>
+      </header>
+
+      <section className="system-hero">
+        <div className="system-ruler" aria-hidden="true">
+          {["00", "20", "40", "60", "80", "100"].map(value => <span key={value}>{value}</span>)}
+        </div>
+        <div className="system-serial">
+          <span>PROFILE_ID</span><strong>RM-BE-2608</strong>
+          <span>LOCATION</span><strong>{s.location}</strong>
+          <span>LANGUAGE</span><strong>PT / EN-C2 / ES</strong>
+        </div>
+        <div className="system-hero-copy">
+          <p>{s.kicker}</p>
+          <h1><span>Rafael</span><strong>Molina</strong></h1>
+          <div className="system-role-line"><b>{s.role}</b><span>{"///"}</span><i>{s.status}</i></div>
+          <p className="system-intro">{s.intro}</p>
+          <div className="system-actions">
+            <a className="system-primary" href={'mailto:' + profile.email}><Mail />{t.contact}</a>
+            <a className="system-secondary" href={profile.resume} download><Download />{s.resume}</a>
+          </div>
+        </div>
+        <aside className="system-identity">
+          <div className="system-image-frame">
+            <Image
+              src="/rafael-system.jpeg"
+              alt={t.portraitAlt}
+              fill
+              priority
+              sizes="(max-width: 780px) calc(100vw - 40px), 32vw"
+            />
+            <span>{s.identity}</span>
+          </div>
+          <div className="identity-readout">
+            <span>CLASS</span><b>BACKEND_ENGINEER</b>
+            <span>STATUS</span><b className="readout-online">AVAILABLE</b>
+          </div>
+        </aside>
+      </section>
+
+      <section className="system-signal-strip" aria-label={s.signalTitle}>
+        <div><span>01</span><b>{s.signalTitle}</b></div>
+        {s.signals.map((signal, index) => <div key={signal}><span>0{index + 2}</span><strong>{signal}</strong></div>)}
+      </section>
+
+      <section className="system-runtime" id="sys-runtime">
+        <div className="system-section-heading">
+          <div><span>01</span><p>{s.runtimeKicker}</p></div>
+          <h2>{s.runtimeTitle}</h2>
+        </div>
+        <div className="runtime-nodes">
+          {t.experiences.map((item, index) => (
+            <article className="runtime-node" key={item.company}>
+              <div className="runtime-node-index">NODE_0{index + 1}</div>
+              <div className="runtime-node-meta"><span>{item.period}</span><span>{item.location}</span></div>
+              <div className="runtime-node-title"><h3>{item.company}</h3><p>{item.role}</p></div>
+              <p className="runtime-node-copy">{item.copy}</p>
+              <div className="runtime-output">
+                <span>OUTPUT</span>
+                <ul>{item.impact.map(point => <li key={point}>{point}</li>)}</ul>
+              </div>
+              <div className="runtime-stack"><span>DEPENDENCIES</span><p>{item.stack}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="system-topology" id="sys-topology">
+        <div className="system-section-heading">
+          <div><span>02</span><p>{s.topologyKicker}</p></div>
+          <h2>{s.topologyTitle}</h2>
+        </div>
+        <div className="topology-grid">
+          {t.capabilityGroups.map(([title, tools], index) => (
+            <article key={title}>
+              <header><span>MODULE_0{index + 1}</span><i>ACTIVE</i></header>
+              <h3>{title}</h3>
+              <p>{tools}</p>
+              <div className="module-meter">{Array.from({ length: 12 }).map((_, meter) => <i key={meter} className={meter <= 7 + index ? "is-on" : ""} />)}</div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="system-dossier" id="sys-dossier">
+        <div className="dossier-feature">
+          <p>{s.dossierKicker}</p>
+          <h2>{s.dossierTitle}</h2>
+          <div className="dossier-body">
+            <p>{t.featureCopy}</p>
+            <a href="https://redeglobo.globo.com/rpc/realities/rocket-startup/vida/noticia/autonomus-a-startup-que-conecta-trabalhadores-autonomos-e-clientes-na-busca-de-servicos.ghtml" target="_blank" rel="noreferrer">
+              {t.featureLink}<ArrowUpRight />
+            </a>
+          </div>
+          <div className="dossier-stats">
+            {t.featureStats.map(([value, label]) => <div key={value}><strong>{value}</strong><span>{label}</span></div>)}
+          </div>
+        </div>
+        <div className="credential-registry">
+          <header><span>{s.credentials}</span><b>04 RECORDS</b></header>
+          {t.credentials.map(([type, title, detail], index) => (
+            <article key={type}>
+              <span>CRD-0{index + 1}</span>
+              <p>{type}</p>
+              <h3>{title}</h3>
+              <small>{detail}</small>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="system-contact" id="sys-contact">
+        <div className="contact-command"><span>&gt;</span><p>{s.contactKicker}</p><i /></div>
+        <h2>{s.contactTitle}</h2>
+        <p>{s.contactBody}</p>
+        <div>
+          <a className="system-contact-primary" href={'mailto:' + profile.email}>{s.email}<ArrowUpRight /></a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a>
+          <a href={profile.github} target="_blank" rel="noreferrer">GITHUB ↗</a>
+        </div>
+      </section>
+
+      <footer className="system-footer">
+        <span>{s.footer}</span>
+        <span>© {new Date().getFullYear()} RAFAEL MOLINA</span>
+        <a href="#sys-top">RETURN_TO_TOP ↑</a>
       </footer>
     </main>
   );
