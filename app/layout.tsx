@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Rafael Molina — Backend Developer",
     description: "Software que aguenta o mundo real.",
     type: "website",
-    images: [{ url: "/profilepic.jpeg", width: 895, height: 885, alt: "Rafael Molina" }],
+    images: [{ url: "/profilepic.jpeg", width: 900, height: 1600, alt: "Rafael Molina" }],
   },
 };
 
