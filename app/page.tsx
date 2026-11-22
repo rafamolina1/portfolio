@@ -197,8 +197,8 @@ export default function Home() {
                 "2",
                 t("apps publicados", "apps shipped"),
                 t(
-                  "Cofundei um marketplace de serviços. Construí o backend Laravel e participei da publicação dos apps Flutter de clientes e prestadores.",
-                  "I co-founded a services marketplace, built its Laravel backend and helped ship the Flutter apps for customers and providers.",
+                  "Cofundei um marketplace de serviços. Construí o backend Laravel e participei da publicação dos apps Flutter de clientes e prestadores. Fui parar na Globo.",
+                  "I co-founded a services marketplace, built its Laravel backend and helped ship the Flutter apps for customers and providers. I even ended up on Globo.",
                 ),
               ],
             ].map(([name, period, metric, unit, body]) => (
