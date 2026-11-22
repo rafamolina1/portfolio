@@ -3,15 +3,15 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rafamolinadev.vercel.app"),
-  title: "Rafael Molina — Backend Developer",
+  title: "Rafael Molina — Software Engineer",
   description:
-    "Rafael Molina é desenvolvedor Backend Pleno com experiência internacional em SaaS, logística, APIs, arquitetura e sistemas em produção.",
+    "Rafael Molina é engenheiro de software e contribuidor open source. Conheça suas contribuições, experiência profissional e certificações.",
   authors: [{ name: "Rafael Oliveira Molina" }],
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   openGraph: {
-    title: "Rafael Molina — Backend Developer",
+    title: "Rafael Molina — Software Engineer",
     description:
-      "Engenharia backend, experiência em logística e contribuições ao gVisor e ao Chanfana.",
+      "Engenharia de software, contribuições open source e experiência profissional de Rafael Molina.",
     type: "website",
     images: [
       {

@@ -428,3 +428,24 @@ footer {
   color: var(--accent);
   margin-right: 14px;
 }
+#certificacoes {
+  margin-top: 2.5rem;
+}
+.credential-list {
+  list-style: none;
+  padding: 0;
+  max-width: 52rem;
+  margin: 1rem 0 1.5rem;
+}
+.credential-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.credential-list small {
+  color: var(--muted);
+}

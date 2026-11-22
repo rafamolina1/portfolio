@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { dictionary } from "../data/i18n";
 import { useEffect, useState } from "react";
-import { projects, profile, trustSignals } from "../data/portfolio";
+import { profile, trustSignals } from "../data/portfolio";
 
 const pulls = [
   {
@@ -52,7 +53,7 @@ export default function Home() {
   useEffect(() => {
     document.documentElement.lang = en ? "en" : "pt-BR";
   }, [en]);
-  const selected = [projects[1], projects[0]];
+
   return (
     <>
       <a className="skip" href="#main">
@@ -66,7 +67,7 @@ export default function Home() {
           <nav>
             <a href="#opensource">Open source</a>
             <a href="#experiencia">{t("Experiência", "Experience")}</a>
-            <a href="#projetos">{t("Projetos", "Projects")}</a>
+            <a href="#certificacoes">{t("Certificações", "Certifications")}</a>
           </nav>
           <button
             onClick={() => setEn(!en)}
@@ -90,16 +91,16 @@ export default function Home() {
             </h1>
             <p className="lede">
               {t(
-                "Desenvolvo sistemas de logística e SaaS. Fora do trabalho, contribuo com código para o gVisor do Google e o Chanfana da Cloudflare.",
-                "I build logistics and SaaS systems. Outside work, I contribute code to Google’s gVisor and Cloudflare’s Chanfana.",
+                "Sou engenheiro de software e contribuidor open source. Trabalho com arquitetura de sistemas, APIs e testes automatizados. Gosto de investigar um problema até entender o que precisa mudar no código.",
+                "I’m a software engineer and open source contributor. I work on system architecture, APIs and automated tests. I like tracing a problem until I understand what needs to change in the code.",
               )}
             </p>
             <div className="actions">
               <a className="primary" href="#opensource">
                 {t("Explorar contribuições", "Explore contributions")} ↓
               </a>
-              <a href={en ? profile.resumeEn : "/Rafael_Oliveira_Molina.pdf"}>
-                {t("Currículo", "Résumé")} ↗
+              <a href="/Rafael_Oliveira_Molina.pdf">
+                {t("Currículo", "Résumé (PDF in Portuguese)")} ↗
               </a>
             </div>
           </div>
@@ -113,7 +114,7 @@ export default function Home() {
             />
             <figcaption>
               <span>Rafael Oliveira Molina</span>
-              <span>Backend Engineer</span>
+              <span>{t("Engenheiro de software", "Software Engineer")}</span>
             </figcaption>
           </figure>
         </div>
@@ -218,40 +219,6 @@ export default function Home() {
             ))}
           </div>
         </section>
-        <section id="projetos" className="wrap chapter projects">
-          <h2>
-            {t("Projetos", "Projects")}
-            <span>.</span>
-          </h2>
-          <div className="projectgrid">
-            {selected.map((p, i) => (
-              <article key={p.title}>
-                <Image
-                  src={p.image}
-                  width={760}
-                  height={445}
-                  alt={t("Tela do projeto ", "Screenshot of ") + p.title}
-                />
-                <small>{p.stack.slice(0, 4).join(" / ")}</small>
-                <h3>{p.title}</h3>
-                <p>
-                  {i === 0
-                    ? t(
-                        "Monitor de disponibilidade com Fastify e Redis. Um lock distribuído evita checagens duplicadas e os alertas saem quando o serviço muda de estado.",
-                        "An uptime monitor with Fastify and Redis. A distributed lock prevents duplicate checks, and alerts fire when a service changes state.",
-                      )
-                    : t(
-                        "Uma comunidade de receitas que parte dos ingredientes que você já tem. Usei PostgreSQL com políticas de acesso por linha para os dados dos usuários.",
-                        "A recipe community built around ingredients you already have. I used PostgreSQL row-level security for user data.",
-                      )}
-                </p>
-                {p.deploy && (
-                  <a href={p.deploy}>{t("Abrir projeto", "Visit project")} ↗</a>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
       </main>
       <section className="wrap qualifications">
         <h2>
@@ -264,13 +231,27 @@ export default function Home() {
             "I study Systems Analysis and Development at FGV and expect to graduate in April 2027. I speak Portuguese, English (Cambridge C2) and advanced Spanish.",
           )}
         </p>
-        <p>
-          {trustSignals.slice(2, 5).map((c) => (
-            <a key={c.label} href={c.href}>
-              {c.label} ↗{" "}
-            </a>
+        <h2 id="certificacoes">
+          {t("Certificações", "Certifications")}
+          <span>.</span>
+        </h2>
+        <ul className="credential-list">
+          {dictionary[en ? "en" : "pt-BR"].credentials.items.map((c) => (
+            <li key={c.title}>
+              <strong>
+                {c.href ? <a href={c.href}>{c.title} ↗</a> : c.title}
+              </strong>
+              <small>{c.issuer}</small>
+            </li>
           ))}
-        </p>
+        </ul>
+        <a href="https://www.linkedin.com/in/rafaelmolinadev/details/certifications/">
+          {t(
+            "Ver certificações no LinkedIn",
+            "View certifications on LinkedIn",
+          )}{" "}
+          ↗
+        </a>
       </section>
       <footer>
         <div className="wrap">
@@ -284,8 +265,8 @@ export default function Home() {
           <div className="footerlinks">
             <a href={profile.linkedin}>LinkedIn ↗</a>
             <a href={profile.github}>GitHub ↗</a>
-            <a href={en ? profile.resumeEn : "/Rafael_Oliveira_Molina.pdf"}>
-              {t("Currículo", "Résumé")} ↗
+            <a href="/Rafael_Oliveira_Molina.pdf">
+              {t("Currículo", "Résumé (PDF in Portuguese)")} ↗
             </a>
           </div>
         </div>
