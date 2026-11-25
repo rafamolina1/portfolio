@@ -7,6 +7,19 @@ import { profile, trustSignals } from "../data/portfolio";
 
 const pulls = [
   {
+    org: "U.S. Federal Government",
+    repo: "Data.gov",
+    lang: "SCSS · Python",
+    id: 521,
+    base: "GSA/datagov-catalog",
+    pt: "Cores acessíveis no sistema do governo federal dos EUA",
+    en: "Accessible colors in a U.S. federal government system",
+    detail: [
+      "Restaurei as cores dos indicadores de formato de arquivo no Data.gov, corrigindo a prioridade das regras SCSS. Garanti contraste mínimo de 4,5:1 nas 13 cores e adicionei 20 testes de navegador para detectar regressões de acessibilidade. PR aprovado, aguardando merge.",
+      "I restored file format badge colors on Data.gov by fixing SCSS rule specificity. All 13 colors meet the 4.5:1 contrast requirement. I added 20 browser tests to catch accessibility regressions. PR approved, awaiting merge.",
+    ],
+  },
+  {
     org: "Google",
     repo: "gVisor",
     lang: "Go · C++",
