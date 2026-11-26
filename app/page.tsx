@@ -112,8 +112,8 @@ export default function Home() {
               <a className="primary" href="#opensource">
                 {t("Explorar contribuições", "Explore contributions")} ↓
               </a>
-              <a href="/Rafael_Oliveira_Molina.pdf">
-                {t("Currículo", "Résumé (PDF in Portuguese)")} ↗
+              <a href={en ? "/Rafael_Oliveira_Molina_EN.pdf" : "/Rafael_Oliveira_Molina.pdf"}>
+                {t("Currículo", "Résumé")} ↗
               </a>
             </div>
           </div>
@@ -278,8 +278,8 @@ export default function Home() {
           <div className="footerlinks">
             <a href={profile.linkedin}>LinkedIn ↗</a>
             <a href={profile.github}>GitHub ↗</a>
-            <a href="/Rafael_Oliveira_Molina.pdf">
-              {t("Currículo", "Résumé (PDF in Portuguese)")} ↗
+            <a href={en ? "/Rafael_Oliveira_Molina_EN.pdf" : "/Rafael_Oliveira_Molina.pdf"}>
+              {t("Currículo", "Résumé")} ↗
             </a>
           </div>
         </div>
